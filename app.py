@@ -19,7 +19,7 @@ db = client['DTL_db']
 collection = db['posts']
 
 # Send a ping to confirm a successful connection
-test = True  # Set to False to skip test
+test = True  # ! Set to False to skip test
 if test:
     try:
         client.admin.command('ping')
