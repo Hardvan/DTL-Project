@@ -2,7 +2,7 @@ from flask import Flask, render_template, request
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
 import json
-from datetime import datetime
+from datetime import datetime, date
 
 import os
 from dotenv import load_dotenv
@@ -47,6 +47,8 @@ if test:
 
 def formatData(posts_dict):
 
+    today = date.today()
+
     for post in posts_dict:
         # Convert date from string to datetime object
         post['date'] = datetime.strptime(post['date'], '%Y-%m-%d')
@@ -54,8 +56,30 @@ def formatData(posts_dict):
         # Convert date to string in the format DD MMM YYYY
         post['date_str'] = post['date'].strftime('%d %b %Y')
 
+        # Categorize the post
+        if post['date'].date() > today:
+            post['category'] = 'Upcoming'
+        elif post['date'].date() == today:
+            post['category'] = 'Today'
+        else:
+            post['category'] = 'Completed'
+
     # Sort posts by date (Newest first)
     posts_dict = sorted(posts_dict, key=lambda k: k['date'])
+
+    return posts_dict
+
+
+def getPostsData():
+
+    # Get data from MongoDB afterwards
+
+    # Sample data
+    with open('./static/json/sample_posts.json', 'r') as file:
+        data = json.load(file)
+        posts_dict = data['posts']
+
+    posts_dict = formatData(posts_dict)
 
     return posts_dict
 
@@ -63,11 +87,7 @@ def formatData(posts_dict):
 @app.route('/')
 def index():
 
-    with open('./static/json/sample_posts.json', 'r') as file:
-        data = json.load(file)
-        posts_dict = data['posts']
-
-    posts_dict = formatData(posts_dict)
+    posts_dict = getPostsData()
 
     return render_template('index.html', posts_dict=posts_dict)
 
