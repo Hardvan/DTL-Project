@@ -21,7 +21,7 @@ db = client['DTL_db']
 collection = db['posts']
 
 # Send a ping to confirm a successful connection
-test = True  # ! Set to False to skip test
+test = False  # ! Set to False to skip test
 if test:
     try:
         client.admin.command('ping')
@@ -53,6 +53,9 @@ def formatData(posts_dict):
 
         # Convert date to string in the format DD MMM YYYY
         post['date_str'] = post['date'].strftime('%d %b %Y')
+
+    # Sort posts by date (Newest first)
+    posts_dict = sorted(posts_dict, key=lambda k: k['date'])
 
     return posts_dict
 
