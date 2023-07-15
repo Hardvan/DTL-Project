@@ -1,0 +1,22 @@
+{
+  "posts": [
+    {
+      "title": "First Post",
+      "desc": "This is the description for the first post.",
+      "date": "2023-07-15",
+      "clubName": "Gardening Club"
+    },
+    {
+      "title": "Second Post",
+      "desc": "Here's the description for the second post.",
+      "date": "2023-07-14",
+      "clubName": "Book Club"
+    },
+    {
+      "title": "Third Post",
+      "desc": "This post is all about the exciting event coming up.",
+      "date": "2023-07-13",
+      "clubName": "Sports Club"
+    }
+  ]
+}

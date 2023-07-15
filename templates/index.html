@@ -8,5 +8,16 @@
 
   <body>
     <h1>DTL Project</h1>
+
+    <ul>
+      {% for post in posts_dict %}
+      <li>
+        <h2>{{ post.title }}</h2>
+        <p>{{ post.desc }}</p>
+        <p>Date: {{ post.date_str }}</p>
+        <p>Club Name: {{ post.clubName }}</p>
+      </li>
+      {% endfor %}
+    </ul>
   </body>
 </html>
