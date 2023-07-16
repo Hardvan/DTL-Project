@@ -11,6 +11,10 @@ load_dotenv()
 
 app = Flask(__name__)
 
+# Testing Parameters
+TEST_CONNECTION = False     # ? Set to True to test connection to MongoDB
+REAL_DATA = True            # ? Set to False to use sample data
+
 
 # MongoDB connection
 mongodb_uri = os.getenv("MONGODB_URI")
@@ -21,8 +25,7 @@ db = client['DTL_db']
 collection = db['posts']
 
 # Send a ping to confirm a successful connection
-test = False  # ? Set to False to skip test
-if test:
+if TEST_CONNECTION:
     try:
         client.admin.command('ping')
         print("✅ Pinged your deployment. You successfully connected to MongoDB!")
@@ -73,10 +76,9 @@ def formatData(posts_dict):
 def getPostsData():
 
     posts_dict = []
-    real_data = True  # ? Set to False to use sample data
 
     # Get data from MongoDB afterwards
-    if real_data:
+    if REAL_DATA:
         posts_dict = list(collection.find({}))
 
     # Sample data
