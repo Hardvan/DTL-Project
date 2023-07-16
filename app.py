@@ -21,7 +21,7 @@ db = client['DTL_db']
 collection = db['posts']
 
 # Send a ping to confirm a successful connection
-test = False  # ! Set to False to skip test
+test = False  # ? Set to False to skip test
 if test:
     try:
         client.admin.command('ping')
@@ -72,12 +72,18 @@ def formatData(posts_dict):
 
 def getPostsData():
 
+    posts_dict = []
+    real_data = True  # ? Set to False to use sample data
+
     # Get data from MongoDB afterwards
+    if real_data:
+        posts_dict = list(collection.find({}))
 
     # Sample data
-    with open('./static/json/sample_posts.json', 'r') as file:
-        data = json.load(file)
-        posts_dict = data['posts']
+    else:
+        with open('./static/json/sample_posts.json', 'r') as file:
+            data = json.load(file)
+            posts_dict = data['posts']
 
     posts_dict = formatData(posts_dict)
 
