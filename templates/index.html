@@ -17,6 +17,7 @@
         <p>Date: {{ post.date_str }}</p>
         <p>Club Name: {{ post.clubName }}</p>
         <p>Category: {{ post.category }}</p>
+        <img src="{{ post.image }}" alt="Event Image" style="width: 420px" />
       </li>
       {% endfor %}
     </ul>
