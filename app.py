@@ -97,7 +97,7 @@ def index():
 
     posts_dict = getPostsData()
 
-    return render_template('index.html', posts_dict=posts_dict)
+    return render_template('events.html', posts_dict=posts_dict)
 
 
 @app.route('/dashboard')
