@@ -1,0 +1,10 @@
+/* General Layout */
+html {
+  background-color: rgb(250, 239, 239);
+}
+
+body {
+  margin-left: 15%;
+  margin-right: 15%;
+  background-color: white;
+}

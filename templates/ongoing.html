@@ -1,0 +1,97 @@
+{% extends 'events.html' %} {% block switchbar_section %}
+<section id="switchbar_section">
+    <div id="switchbar_container">
+      <a href="{{ url_for('upcoming') }}">
+      <button class="left_btn switchbar_btn ">
+        Upcoming
+      </button></a>
+      </a><a href="{{ url_for('ongoing') }}"><button class="switchbar_btn_on">
+        Ongoing
+      </button></a>
+      <a href="{{ url_for('completed') }}"><button class="switchbar_btn right_btn">
+        Completed
+        </button></a>
+    </div>
+  </section>
+{% endblock %}
+{% block genEvents %}
+<!-- Landing Image -->
+<div class="add_img_margin ">
+  <!-- <img src="https://i.ibb.co/X87YJ1B/Admin-block.jpg" class="img-fluid" alt="Wild Landscape" /> -->
+  <h1 class="sub_title">Ongoing Events</h1>
+  </div>
+<!-- Section Separator -->
+<div class="section_separator"></div>
+<!-- Sports -->
+<section id="sports_section">
+  <div class="sub_heading">Sports</div>
+  <div class="addmargin row row-cols-1 row-cols-md-3 g-4">
+    {% for post in posts_dict if post.tag == "s" %}
+    <div class="col">
+      <div class="card_align card">
+        <img src="{{ post.image }}" class="img_align_card card-img-top" alt="Hollywood Sign on The Hill"/>
+        <div class="card-body">
+          <h5 class="card-title">{{ post.title }}</h5>
+          <div>
+            <p class="card-text">
+              {{ post.date_str }}
+            </p>
+            <a href ="{{url_for('eventDetail', title=post.title, date=post.date_str, des = post.desc)}}"><button class="explore_button">Explore</button></a>
+            </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+    
+  </div>
+</section>
+<!-- Section Separator -->
+<div class="section_separator"></div>
+<!-- Technical -->
+<section id="technical_section">
+  <div class="sub_heading">Technical</div>
+  <div class="addmargin row row-cols-1 row-cols-md-3 g-4">
+    {% for post in posts_dict if post.tag == "t" %}
+    <div class="col">
+      <div class="card_align card">
+        <img src="{{ post.image }}" class="img_align_card card-img-top" alt="Hollywood Sign on The Hill"/>
+        <div class="card-body">
+          <h5 class="card-title">{{ post.title }}</h5>
+          <div>
+            <p class="card-text">
+              {{ post.date_str }}
+            </p>
+            <a href ="{{url_for('eventDetail', title=post.title, date=post.date_str, des = post.desc)}}"><button class="explore_button">Explore</button></a>
+            </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+<!-- Section Separator -->
+<div class="section_separator"></div>
+<!-- Cultural -->
+<section if="cultural_section">
+  <div class="sub_heading">Culutral</div>
+  <div class="addmargin row row-cols-1 row-cols-md-3 g-4">
+    {% for post in posts_dict if post.tag == "c" %}
+    <div class="col">
+      <div class="card_align card">
+        <img src="{{ post.image }}" class="img_align_card card-img-top" alt="Hollywood Sign on The Hill"/>
+        <div class="card-body">
+          <h5 class="card-title">{{ post.title }}</h5>
+          <div>
+            <p class="card-text">
+              {{ post.date_str }}
+            </p>
+            <a href ="{{url_for('eventDetail', title=post.title, date=post.date_str, des = post.desc)}}"><button class="explore_button">Explore</button></a>
+            </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+{% endblock %}

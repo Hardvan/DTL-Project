@@ -100,5 +100,43 @@ def index():
     return render_template('index.html', posts_dict=posts_dict)
 
 
+@app.route('/dashboard')
+def dashboard():
+    return render_template('dashboard.html')
+
+
+@app.route('/events')
+def events():
+    return render_template('events.html')
+
+
+@app.route('/events/upcoming')
+def upcoming():
+    posts_dict = getPostsData()
+    return render_template('upcoming.html', posts_dict=posts_dict)
+
+
+@app.route('/events/ongoing')
+def ongoing():
+    posts_dict = getPostsData()
+    return render_template('ongoing.html', posts_dict=posts_dict)
+
+
+@app.route('/events/completed')
+def completed():
+    posts_dict = getPostsData()
+    return render_template('completed.html', posts_dict=posts_dict)
+
+
+@app.route('/eventDetail')
+def eventDetail():
+    title = request.args.get('title')
+    date = request.args.get('date')
+    des = request.args.get('des')
+    image = request.args.get('image')
+    host = request.args.get('host')
+    return render_template('eventDetails.html', title=title, date=date, des=des, image=image, host=host)
+
+
 if __name__ == '__main__':
     app.run(debug=True)
