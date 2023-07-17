@@ -1,22 +1,76 @@
 {
   "posts": [
     {
-      "title": "First Post",
-      "desc": "This is the description for the first post.",
+      "title": "Sri Chamaraju Memorial Cricket Tournament",
+      "desc": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Placeat rerum magnam commodi! Aperiam ratione ad, in facere exercitationem eum tenetur qui consectetur. Consequuntur sequi eaque earum minima cum iusto quisquam commodi beatae. Minus, inventore. Delectus nemo esse illo? Consectetur quasi voluptates recusandae dolor iusto officia fuga corporis tempore vero nobis voluptas, quae iste minima magni mollitia illo in dolores repudiandae. Praesentium suscipit, illum, quos ea repellendus culpa, blanditiis totam illo obcaecati molestiae ratione nostrum dolor saepe. Similique, architecto. Ullam ducimus, beatae dignissimos molestiae reiciendis voluptate cum quo odit deserunt numquam possimus. Quae ut autem asperiores ipsam minus assumenda unde sint.",
       "date": "2023-07-28",
-      "clubName": "Gardening Club"
+      "clubName": "Department of Pyhical Education",
+      "tag": "s",
+      "image": "https://i.ibb.co/R4b49MY/cricket.jpg"
     },
     {
-      "title": "Second Post",
-      "desc": "Here's the description for the second post.",
-      "date": "2023-07-15",
-      "clubName": "Book Club"
+      "title": "Kho-Kho Men Tournament",
+      "desc": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Placeat rerum magnam commodi! Aperiam ratione ad, in facere exercitationem eum tenetur qui consectetur. Consequuntur sequi eaque earum minima cum iusto quisquam commodi beatae. Minus, inventore. Delectus nemo esse illo? Consectetur quasi voluptates recusandae dolor iusto officia fuga corporis tempore vero nobis voluptas, quae iste minima magni mollitia illo in dolores repudiandae. Praesentium suscipit, illum, quos ea repellendus culpa, blanditiis totam illo obcaecati molestiae ratione nostrum dolor saepe. Similique, architecto. Ullam ducimus, beatae dignissimos molestiae reiciendis voluptate cum quo odit deserunt numquam possimus. Quae ut autem asperiores ipsam minus assumenda unde sint.",
+      "date": "2023-08-15",
+      "clubName": "Department of Physical Education",
+      "tag": "s",
+      "image": "https://i.ibb.co/SBSbxg2/khokho.jpg"
     },
     {
-      "title": "Third Post",
-      "desc": "This post is all about the exciting event coming up.",
+      "title": "Football Men Tournament",
+      "desc": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Placeat rerum magnam commodi! Aperiam ratione ad, in facere exercitationem eum tenetur qui consectetur. Consequuntur sequi eaque earum minima cum iusto quisquam commodi beatae. Minus, inventore. Delectus nemo esse illo? Consectetur quasi voluptates recusandae dolor iusto officia fuga corporis tempore vero nobis voluptas, quae iste minima magni mollitia illo in dolores repudiandae. Praesentium suscipit, illum, quos ea repellendus culpa, blanditiis totam illo obcaecati molestiae ratione nostrum dolor saepe. Similique, architecto. Ullam ducimus, beatae dignissimos molestiae reiciendis voluptate cum quo odit deserunt numquam possimus. Quae ut autem asperiores ipsam minus assumenda unde sint.oming up.",
+      "date": "2023-08-08",
+      "clubName": "Department of Physical Education",
+      "tag": "s",
+      "image": "https://i.ibb.co/NSk9nvM/football.jpg"
+    },
+    {
+      "title": "Antenna Building Workshop",
+      "desc": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Placeat rerum magnam commodi! Aperiam ratione ad, in facere exercitationem eum tenetur qui consectetur. Consequuntur sequi eaque earum minima cum iusto quisquam commodi beatae. Minus, inventore. Delectus nemo esse illo? Consectetur quasi voluptates recusandae dolor iusto officia fuga corporis tempore vero nobis voluptas, quae iste minima magni mollitia illo in dolores repudiandae. Praesentium suscipit, illum, quos ea repellendus culpa, blanditiis totam illo obcaecati molestiae ratione nostrum dolor saepe. Similique, architecto. Ullam ducimus, beatae dignissimos molestiae reiciendis voluptate cum quo odit deserunt numquam possimus. Quae ut autem asperiores ipsam minus assumenda unde sint.",
+      "date": "2023-09-20",
+      "clubName": "HAM Club",
+      "tag": "t",
+      "image": "https://i.ibb.co/XspXyJC/ham.jpg"
+    },
+    {
+      "title": "Business Marathon",
+      "desc": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Placeat rerum magnam commodi! Aperiam ratione ad, in facere exercitationem eum tenetur qui consectetur. Consequuntur sequi eaque earum minima cum iusto quisquam commodi beatae. Minus, inventore. Delectus nemo esse illo? Consectetur quasi voluptates recusandae dolor iusto officia fuga corporis tempore vero nobis voluptas, quae iste minima magni mollitia illo in dolores repudiandae. Praesentium suscipit, illum, quos ea repellendus culpa, blanditiis totam illo obcaecati molestiae ratione nostrum dolor saepe. Similique, architecto. Ullam ducimus, beatae dignissimos molestiae reiciendis voluptate cum quo odit deserunt numquam possimus. Quae ut autem asperiores ipsam minus assumenda unde sint.",
+      "date": "2023-10-15",
+      "clubName": "E Cell",
+      "tag": "t",
+      "image": "https://i.ibb.co/GcX9fhQ/ecell.jpg"
+    },
+    {
+      "title": "Workshop on Competitive Programming",
+      "desc": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Placeat rerum magnam commodi! Aperiam ratione ad, in facere exercitationem eum tenetur qui consectetur. Consequuntur sequi eaque earum minima cum iusto quisquam commodi beatae. Minus, inventore. Delectus nemo esse illo? Consectetur quasi voluptates recusandae dolor iusto officia fuga corporis tempore vero nobis voluptas, quae iste minima magni mollitia illo in dolores repudiandae. Praesentium suscipit, illum, quos ea repellendus culpa, blanditiis totam illo obcaecati molestiae ratione nostrum dolor saepe. Similique, architecto. Ullam ducimus, beatae dignissimos molestiae reiciendis voluptate cum quo odit deserunt numquam possimus. Quae ut autem asperiores ipsam minus assumenda unde sint.oming up.",
+      "date": "2023-07-19",
+      "clubName": "Coding Club",
+      "tag": "t",
+      "image": "https://i.ibb.co/MSydPXZ/coding.png"
+    },
+    {
+      "title": "Coliseum",
+      "desc": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Placeat rerum magnam commodi! Aperiam ratione ad, in facere exercitationem eum tenetur qui consectetur. Consequuntur sequi eaque earum minima cum iusto quisquam commodi beatae. Minus, inventore. Delectus nemo esse illo? Consectetur quasi voluptates recusandae dolor iusto officia fuga corporis tempore vero nobis voluptas, quae iste minima magni mollitia illo in dolores repudiandae. Praesentium suscipit, illum, quos ea repellendus culpa, blanditiis totam illo obcaecati molestiae ratione nostrum dolor saepe. Similique, architecto. Ullam ducimus, beatae dignissimos molestiae reiciendis voluptate cum quo odit deserunt numquam possimus. Quae ut autem asperiores ipsam minus assumenda unde sint.oming up.",
       "date": "2023-07-13",
-      "clubName": "Sports Club"
+      "clubName": "Carv English",
+      "tag": "c",
+      "image": "https://i.ibb.co/PmJZmHp/coliseum.jpg"
+    },
+    {
+      "title": "Verve",
+      "desc": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Placeat rerum magnam commodi! Aperiam ratione ad, in facere exercitationem eum tenetur qui consectetur. Consequuntur sequi eaque earum minima cum iusto quisquam commodi beatae. Minus, inventore. Delectus nemo esse illo? Consectetur quasi voluptates recusandae dolor iusto officia fuga corporis tempore vero nobis voluptas, quae iste minima magni mollitia illo in dolores repudiandae. Praesentium suscipit, illum, quos ea repellendus culpa, blanditiis totam illo obcaecati molestiae ratione nostrum dolor saepe. Similique, architecto. Ullam ducimus, beatae dignissimos molestiae reiciendis voluptate cum quo odit deserunt numquam possimus. Quae ut autem asperiores ipsam minus assumenda unde sint.oming up.",
+      "date": "2023-12-01",
+      "clubName": "Evoke",
+      "tag": "c",
+      "image": "https://i.ibb.co/ZNPY5hc/verve.jpg"
+    },
+    {
+      "title": "Soul Train",
+      "desc": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Placeat rerum magnam commodi! Aperiam ratione ad, in facere exercitationem eum tenetur qui consectetur. Consequuntur sequi eaque earum minima cum iusto quisquam commodi beatae. Minus, inventore. Delectus nemo esse illo? Consectetur quasi voluptates recusandae dolor iusto officia fuga corporis tempore vero nobis voluptas, quae iste minima magni mollitia illo in dolores repudiandae. Praesentium suscipit, illum, quos ea repellendus culpa, blanditiis totam illo obcaecati molestiae ratione nostrum dolor saepe. Similique, architecto. Ullam ducimus, beatae dignissimos molestiae reiciendis voluptate cum quo odit deserunt numquam possimus. Quae ut autem asperiores ipsam minus assumenda unde sint.oming up.",
+      "date": "2023-08-30",
+      "clubName": "Footprints",
+      "tag": "c",
+      "image": "https://i.ibb.co/TvTY8mJ/soul-train.jpg"
     }
   ]
 }

@@ -1,0 +1,15 @@
+{% extends 'events.html' %} {% block switchbar_section %}
+<!-- Landing Image -->
+<div class="add_img_margin_new">
+  <img src="{{ image }}" class="img-fluid" alt="Wild Landscape" />
+</div>
+{% endblock %} {% block genEvents %}
+<h1 class="sub_title_det">{{ title }}</h1>
+<div class="description">
+  <h2>Hosted by {{ host }}</h2>
+  <h5>On {{ date }}</h5>
+  <p>{{ des }}</p>
+  <button class="explore_button">Register</button>
+</div>
+
+{% endblock %}

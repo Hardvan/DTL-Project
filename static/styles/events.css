@@ -1,0 +1,288 @@
+/* General */
+
+html {
+  background-color: aliceblue;
+  font-family: sans-serif;
+}
+
+body {
+  margin-left: 15%;
+  margin-right: 15%;
+  background-color: white;
+}
+
+/* Logo Section */
+
+#logo_section {
+  display: flex;
+  justify-content: space-between;
+  color: #333;
+}
+
+.logo_right {
+  padding-right: 60px;
+  padding-left: 0px;
+}
+
+.logo {
+  padding-left: 60px;
+  padding-right: 60px;
+}
+
+#top_font {
+  font-size: 16px;
+}
+
+#bottom_font {
+  font-size: 12px;
+}
+
+.logo_des {
+  text-align: center;
+}
+
+#great_rv {
+  font-size: 26px;
+  font-weight: bold;
+  display: block;
+  margin-top: 20px;
+}
+
+#since_rv {
+  display: block;
+  margin-right: 25px;
+  color: #002f65;
+  line-height: 83px;
+  font-size: 25px;
+  float: left;
+  margin-top: 20px;
+}
+
+/* Navbar */
+
+#navbar_layout {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+.nav_button {
+  padding: 10px;
+  color: white;
+  background-color: #27447e;
+  border: none;
+}
+
+#nav_btn_container {
+  background-color: #27447e;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+/* Switchbar */
+
+#switchbar_section {
+  display: flex;
+  justify-content: center;
+}
+
+#switchbar_container {
+  background-color: rgb(153, 198, 234);
+  border-radius: 10px;
+  padding-left: 0px;
+  padding-right: 0px;
+  margin-top: 12px;
+}
+
+.switchbar_btn {
+  padding-top: 6px;
+  padding-bottom: 6px;
+  background-color: rgb(153, 198, 234);
+  border-color: rgb(142, 194, 236);
+  color: white;
+}
+
+.right_btn {
+  border-right: none;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  padding-right: 5px;
+}
+
+.left_btn {
+  border-left: none;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  padding-left: 5px;
+}
+
+/* Upcoming switchbar */
+
+.switchbar_btn_up {
+  padding: 6px;
+  background-color: #27447e;
+  border-color: rgb(142, 194, 236);
+  color: white;
+}
+
+.switchbar_btn_on {
+  padding: 6px;
+  background-color: #27447e;
+  border-color: rgb(142, 194, 236);
+  color: white;
+}
+
+.switchbar_btn_com {
+  padding: 6px;
+  background-color: #27447e;
+  border-color: rgb(142, 194, 236);
+  color: white;
+}
+
+/* Events */
+
+.sub_heading {
+  font-size: 26px;
+  font-weight: bold;
+  display: block;
+  margin-top: 80px;
+  text-align: center;
+}
+
+.gen_text {
+  margin-top: 40px;
+  text-align: center;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+/* Carousel */
+
+/* For Carousel 3 __ContinuousPlayback */
+
+#carousel_section {
+  display: flex;
+  justify-content: center;
+  margin-left: 15%;
+  margin-right: 15%;
+}
+
+#type_1_carousel_3 {
+  display: flex;
+  margin-top: 100px;
+}
+
+.firstCarousel_3 {
+  display: flex;
+  width: 300px;
+  height: 180px;
+  justify-content: center;
+}
+
+#img3_3 {
+  width: 210px;
+  height: 140px;
+  margin-top: 25px;
+  opacity: 50%;
+  border-radius: 40%;
+}
+
+#img1_3 {
+  width: 210px;
+  height: 140px;
+  margin-top: 25px;
+  opacity: 50%;
+  border-radius: 40%;
+}
+
+#img2_3 {
+  border-radius: 10%;
+}
+
+/* Section Separator */
+
+.section_separator {
+  background-color: #27447e;
+  display: flex;
+  justify-content: center;
+  height: 10px;
+  margin-top: 40px;
+  margin-left: 22px;
+  margin-right: 22px;
+}
+
+/* Cards */
+
+.addmargin {
+  margin: 10%;
+}
+
+/* Upcoming Events */
+/* Landing Image */
+
+.add_img_margin {
+  margin: 22px;
+  width: 95%;
+  align-content: center;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  background-image: url("https://i.ibb.co/X87YJ1B/Admin-block.jpg");
+}
+
+.sub_title {
+  padding-top: 200px;
+  padding-bottom: 200px;
+  background: #0ccfb5;
+  background: linear-gradient(to right, #0ccfb5 0%, #2982cf 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-family: "Chela One", cursive;
+  font-size: 100px;
+}
+
+/* Cards */
+
+.explore_button {
+  color: white;
+  background-color: green;
+  border: none;
+  border-radius: 10px;
+}
+
+.img_align_card {
+  height: 250px;
+}
+
+.card_align {
+  height: 420px;
+}
+
+/* Event Details */
+
+.add_img_margin_new {
+  margin: 22px;
+  width: 95%;
+  align-content: center;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.sub_title_det {
+  margin-top: 10px;
+  margin-bottom: 60px;
+  background: #0ccfb5;
+  background: linear-gradient(to right, #0ccfb5 0%, #2982cf 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-family: "Chela One", cursive;
+  font-size: 80px;
+  text-align: center;
+}
+
+.description {
+  margin-left: 10%;
+  margin-right: 10%;
+}
