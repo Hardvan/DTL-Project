@@ -52,7 +52,18 @@ if __name__ == "__main__":
     index_css = "static/css/index.css"
     index_js = "static/js/index.js"
 
+    completed_html = "templates/completed.html"
+    dashboard_html = "templates/dashboard.html"
+    eventDetails_html = "templates/eventDetails.html"
+    events_html = "templates/events.html"
+    ongoing_html = "templates/ongoing.html"
+    upcoming_html = "templates/upcoming.html"
+
     file_list = [app_py,
-                 index_html]
+                 completed_html,
+                 ongoing_html,
+                 upcoming_html,
+                 events_html,
+                 ]
 
     read_files_in_directory(".", file_list)
