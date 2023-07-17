@@ -60,7 +60,7 @@
 
 <!-- Sports -->
 <section id="sports_section">
-  <div class="sub_heading">Sports</div>
+  <div class="sub_title_det_new sub_heading">Sports</div>
   <div class="addmargin row row-cols-1 row-cols-md-3 g-4">
     {% for post in posts_dict if post.tag == "s" and post.category.lower() ==
     category %}
@@ -94,7 +94,7 @@
 
 <!-- Technical -->
 <section id="technical_section">
-  <div class="sub_heading">Technical</div>
+  <div class="sub_title_det_new sub_heading">Technical</div>
   <div class="addmargin row row-cols-1 row-cols-md-3 g-4">
     {% for post in posts_dict if post.tag == "t" and post.category.lower() ==
     category %}
@@ -128,7 +128,7 @@
 
 <!-- Cultural -->
 <section if="cultural_section">
-  <div class="sub_heading">Culutral</div>
+  <div class="sub_title_det_new sub_heading">Culutral</div>
   <div class="addmargin row row-cols-1 row-cols-md-3 g-4">
     {% for post in posts_dict if post.tag == "c" and post.category.lower() ==
     category %}
