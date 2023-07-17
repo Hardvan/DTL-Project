@@ -1,11 +1,13 @@
 from flask import Flask, render_template, request
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
-import json
-from datetime import datetime, date
 
 import os
 from dotenv import load_dotenv
+
+# Custom modules
+import PostHandler
+
 load_dotenv()
 
 
@@ -48,54 +50,10 @@ if TEST_CONNECTION:
     print("✅ Deleted the sample document.")
 
 
-def formatData(posts_dict):
-
-    today = date.today()
-
-    for post in posts_dict:
-        # Convert date from string to datetime object
-        post['date'] = datetime.strptime(post['date'], '%Y-%m-%d')
-
-        # Convert date to string in the format DD MMM YYYY
-        post['date_str'] = post['date'].strftime('%d %b %Y')
-
-        # Categorize the post
-        if post['date'].date() > today:
-            post['category'] = 'Upcoming'
-        elif post['date'].date() == today:
-            post['category'] = 'Today'
-        else:
-            post['category'] = 'Completed'
-
-    # Sort posts by date (Newest first)
-    posts_dict = sorted(posts_dict, key=lambda k: k['date'])
-
-    return posts_dict
-
-
-def getPostsData():
-
-    posts_dict = []
-
-    # Get data from MongoDB afterwards
-    if REAL_DATA:
-        posts_dict = list(collection.find({}))
-
-    # Sample data
-    else:
-        with open('./static/json/sample_posts.json', 'r') as file:
-            data = json.load(file)
-            posts_dict = data['posts']
-
-    posts_dict = formatData(posts_dict)
-
-    return posts_dict
-
-
 @app.route('/')
 def index():
 
-    posts_dict = getPostsData()
+    posts_dict = PostHandler.getPostsData(collection, REAL_DATA)
 
     return render_template('dashboard.html', posts_dict=posts_dict)
 
@@ -112,25 +70,25 @@ def events():
 
 @app.route('/events/all_in_one/<category>')
 def all_in_one(category):
-    posts_dict = getPostsData()
+    posts_dict = PostHandler.getPostsData(collection, REAL_DATA)
     return render_template('all_in_one.html', posts_dict=posts_dict, category=category)
 
 
 # @app.route('/events/upcoming')
 # def upcoming():
-#     posts_dict = getPostsData()
+#     posts_dict = PostHandler.getPostsData(collection, REAL_DATA)
 #     return render_template('upcoming.html', posts_dict=posts_dict)
 
 
 # @app.route('/events/ongoing')
 # def ongoing():
-#     posts_dict = getPostsData()
+#     posts_dict = PostHandler.getPostsData(collection, REAL_DATA)
 #     return render_template('ongoing.html', posts_dict=posts_dict)
 
 
 # @app.route('/events/completed')
 # def completed():
-#     posts_dict = getPostsData()
+#     posts_dict = PostHandler.getPostsData(collection, REAL_DATA)
 #     return render_template('completed.html', posts_dict=posts_dict)
 
 
