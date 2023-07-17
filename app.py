@@ -13,7 +13,7 @@ app = Flask(__name__)
 
 # Testing Parameters
 TEST_CONNECTION = False     # ? Set to True to test connection to MongoDB
-REAL_DATA = True            # ? Set to False to use sample data
+REAL_DATA = False            # ? Set to False to use sample data
 
 
 # MongoDB connection
@@ -97,7 +97,7 @@ def index():
 
     posts_dict = getPostsData()
 
-    return render_template('events.html', posts_dict=posts_dict)
+    return render_template('dashboard.html', posts_dict=posts_dict)
 
 
 @app.route('/dashboard')
