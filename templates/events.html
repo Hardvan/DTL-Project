@@ -86,15 +86,15 @@
     {% block switchbar_section %}
     <section id="switchbar_section">
       <div id="switchbar_container">
-        <a href="{{ url_for('upcoming') }}">
-          <button class="switchbar_btn left_btn">Upcoming</button></a
-        >
-        <a href="{{ url_for('ongoing') }}"
-          ><button class="switchbar_btn">Ongoing</button></a
-        >
-        <a href="{{ url_for('completed') }}"
-          ><button class="switchbar_btn right_btn">Completed</button></a
-        >
+        <a href="{{ url_for('all_in_one', category='upcoming') }}">
+          <button class="switchbar_btn left_btn">Upcoming</button>
+        </a>
+        <a href="{{ url_for('all_in_one', category='ongoing') }}">
+          <button class="switchbar_btn">Ongoing</button>
+        </a>
+        <a href="{{ url_for('all_in_one', category='completed') }}">
+          <button class="switchbar_btn right_btn">Completed</button>
+        </a>
       </div>
     </section>
     {% endblock %}

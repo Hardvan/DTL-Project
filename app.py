@@ -110,22 +110,28 @@ def events():
     return render_template('events.html')
 
 
-@app.route('/events/upcoming')
-def upcoming():
+@app.route('/events/all_in_one/<category>')
+def all_in_one(category):
     posts_dict = getPostsData()
-    return render_template('upcoming.html', posts_dict=posts_dict)
+    return render_template('all_in_one.html', posts_dict=posts_dict, category=category)
 
 
-@app.route('/events/ongoing')
-def ongoing():
-    posts_dict = getPostsData()
-    return render_template('ongoing.html', posts_dict=posts_dict)
+# @app.route('/events/upcoming')
+# def upcoming():
+#     posts_dict = getPostsData()
+#     return render_template('upcoming.html', posts_dict=posts_dict)
 
 
-@app.route('/events/completed')
-def completed():
-    posts_dict = getPostsData()
-    return render_template('completed.html', posts_dict=posts_dict)
+# @app.route('/events/ongoing')
+# def ongoing():
+#     posts_dict = getPostsData()
+#     return render_template('ongoing.html', posts_dict=posts_dict)
+
+
+# @app.route('/events/completed')
+# def completed():
+#     posts_dict = getPostsData()
+#     return render_template('completed.html', posts_dict=posts_dict)
 
 
 @app.route('/eventDetail')
