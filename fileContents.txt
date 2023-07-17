@@ -1,3 +1,4 @@
+app.py:
 from flask import Flask, render_template, request
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
@@ -100,43 +101,35 @@ def index():
     return render_template('index.html', posts_dict=posts_dict)
 
 
-@app.route('/dashboard')
-def dashboard():
-    return render_template('dashboard.html')
-
-
-@app.route('/events')
-def events():
-    return render_template('events.html')
-
-
-@app.route('/events/upcoming')
-def upcoming():
-    posts_dict = getPostsData()
-    return render_template('upcoming.html', posts_dict=posts_dict)
-
-
-@app.route('/events/ongoing')
-def ongoing():
-    posts_dict = getPostsData()
-    return render_template('ongoing.html', posts_dict=posts_dict)
-
-
-@app.route('/events/completed')
-def completed():
-    posts_dict = getPostsData()
-    return render_template('completed.html', posts_dict=posts_dict)
-
-
-@app.route('/eventDetail')
-def eventDetail():
-    title = request.args.get('title')
-    date = request.args.get('date')
-    des = request.args.get('des')
-    image = request.args.get('image')
-    host = request.args.get('host')
-    return render_template('eventDetails.html', title=title, date=date, des=des, image=image, host=host)
-
-
 if __name__ == '__main__':
     app.run(debug=True)
+
+
+templates/index.html:
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DTL Project</title>
+  </head>
+
+  <body>
+    <h1>DTL Project</h1>
+
+    <ul>
+      {% for post in posts_dict %}
+      <li>
+        <h2>{{ post.title }}</h2>
+        <p>Desc: {{ post.desc }}</p>
+        <p>Date: {{ post.date_str }}</p>
+        <p>Club Name: {{ post.clubName }}</p>
+        <p>Category: {{ post.category }}</p>
+        <img src="{{ post.image }}" alt="Event Image" style="width: 420px" />
+      </li>
+      {% endfor %}
+    </ul>
+  </body>
+</html>
+
+
