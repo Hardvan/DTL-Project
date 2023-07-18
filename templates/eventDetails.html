@@ -7,9 +7,24 @@
 <h1 class="sub_title_det">{{ title }}</h1>
 <div class="description">
   <h2>Hosted by {{ host }}</h2>
-  <h5>On {{ date }}</h5>
+  <img
+    src="{{ url_for('static',filename='Images/pocket-watch.gif') }}"
+    alt=""
+    class="gif_adjust"
+  />
+  <h5 style="display: inline-block; text-align: center; margin-top: 20px">
+    On {{ date }}
+  </h5>
   <p>{{ des }}</p>
-  <button class="explore_button">Register</button>
+  <img
+    src="{{ url_for('static',filename='Images/location.gif') }}"
+    alt=""
+    class="gif_adjust"
+  />
+  <h6 style="display: inline-block">RVCE</h6>
+  <div>
+    <button class="explore_button">Register</button>
+  </div>
 </div>
 
 {% endblock %}

@@ -286,3 +286,24 @@ body {
   margin-left: 10%;
   margin-right: 10%;
 }
+
+/* Gifs */
+
+.gif_adjust {
+  width: 50px;
+  display: inline-block;
+}
+
+.card_size_adjust {
+  height: 200px;
+}
+
+.sub_title_det_new {
+  background: #0ccfb5;
+  background: linear-gradient(to right, #0ccfb5 40%, #2982cf 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-family: "Chela One", cursive;
+  font-size: 40px;
+  text-align: center;
+}
