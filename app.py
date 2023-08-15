@@ -88,23 +88,6 @@ def eventDetail():
 
 
 # Chatbot functions
-def getChatbotResponse(user_input):
-
-    response_text = "Sorry, I don't understand. Please try again."
-    redirect_link = None
-
-    if user_input == "See upcoming events":
-        response_text = "You chose option 1: See upcoming events."
-        redirect_link = url_for('all_in_one', category='upcoming')
-    elif user_input == "See completed events":
-        response_text = "You chose option 2: See completed events."
-        redirect_link = url_for('all_in_one', category='completed')
-    elif user_input == "Visit the events page":
-        response_text = "You chose option 3: Visit the events page."
-
-    return response_text, redirect_link
-
-
 def getSpeech(result_text):
 
     language = 'en'
@@ -123,6 +106,25 @@ def getSpeech(result_text):
     return speech_base64
 
 
+def getChatbotResponse(user_input):
+
+    response_text = "Sorry, I don't understand. Please try again."
+    redirect_link = None
+
+    if user_input == "See upcoming events":
+        response_text = "You chose option 1: See upcoming events."
+        redirect_link = url_for('all_in_one', category='upcoming')
+    elif user_input == "See completed events":
+        response_text = "You chose option 2: See completed events."
+        redirect_link = url_for('all_in_one', category='completed')
+    elif user_input == "Visit the events page":
+        response_text = "You chose option 3: Visit the events page."
+
+    response_audio = getSpeech(response_text)
+
+    return response_text, redirect_link, response_audio
+
+
 @app.route('/chatbot', methods=['GET', 'POST'])
 def chatbot():
 
@@ -136,12 +138,12 @@ def chatbot():
 
     if request.method == 'POST':
         user_input = request.form['user_input']
-        response_text, redirect_link = getChatbotResponse(
+        response_text, redirect_link, response_audio = getChatbotResponse(
             user_input)
 
         return render_template('chatbot.html', questionnaire=questionnaire,
                                user_input=user_input, response_text=response_text,
-                               redirect_link=redirect_link)
+                               redirect_link=redirect_link, response_audio=response_audio)
 
     return render_template('chatbot.html', questionnaire=questionnaire, speech_base64=speech_base64)
 
