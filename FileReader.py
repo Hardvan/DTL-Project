@@ -39,7 +39,7 @@ def read_files_in_directory(directory='.', file_list=None, output_file='fileCont
                     print(f"✅ '{file_path}' read successfully")
 
             else:
-                print(f"File '{file_path}' does not exist.")
+                print(f"❌ File '{file_path}' does not exist.")
 
         # Close the output file
         f.close()
@@ -61,15 +61,17 @@ if __name__ == "__main__":
     upcoming_html = "templates/upcoming.html"
 
     chatbot_html = "templates/chatbot.html"
-    chatbot_css = "static/css/chatbot.css"
+    chatbot_css = "static/styles/chatbot.css"
     chatbot_js = "static/javaScript/chatbot.js"
 
     file_list = [app_py,
                  post_handler_py,
+                 completed_html,
                  dashboard_html,
-                 chatbot_html,
-                 chatbot_css,
-                 chatbot_js
+                 eventDetails_html,
+                 events_html,
+                 ongoing_html,
+                 upcoming_html
                  ]
 
     read_files_in_directory(".", file_list)

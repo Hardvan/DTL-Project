@@ -75,24 +75,6 @@ def all_in_one(category):
     return render_template('all_in_one.html', posts_dict=posts_dict, category=category)
 
 
-# @app.route('/events/upcoming')
-# def upcoming():
-#     posts_dict = PostHandler.getPostsData(collection, REAL_DATA)
-#     return render_template('upcoming.html', posts_dict=posts_dict)
-
-
-# @app.route('/events/ongoing')
-# def ongoing():
-#     posts_dict = PostHandler.getPostsData(collection, REAL_DATA)
-#     return render_template('ongoing.html', posts_dict=posts_dict)
-
-
-# @app.route('/events/completed')
-# def completed():
-#     posts_dict = PostHandler.getPostsData(collection, REAL_DATA)
-#     return render_template('completed.html', posts_dict=posts_dict)
-
-
 @app.route('/eventDetail')
 def eventDetail():
     title = request.args.get('title')
@@ -101,6 +83,33 @@ def eventDetail():
     image = request.args.get('image')
     host = request.args.get('host')
     return render_template('eventDetails.html', title=title, date=date, des=des, image=image, host=host)
+
+
+# Chatbot functions
+def getChatbotResponse(user_input):
+
+    options = {
+        "1": "You chose option 1: See upcoming events.",
+        "2": "You chose option 2: See completed events.",
+        # Add more options here
+    }
+
+    default_response = "You have chosen an invalid option. Please try again."
+
+    response = options.get(user_input, default_response)
+    return response
+
+
+@app.route('/chatbot', methods=['GET', 'POST'])
+def chatbot():
+
+    if request.method == 'POST':
+        user_input = request.form['user_input']
+        bot_response = getChatbotResponse(user_input)
+
+        return render_template('chatbot.html', user_input=user_input, bot_response=bot_response)
+
+    return render_template('chatbot.html')
 
 
 if __name__ == '__main__':
@@ -168,7 +177,7 @@ templates/dashboard.html:
     <link
       rel="stylesheet"
       type="text/css"
-      href="{{ url_for('static',filename='styles/dashboard.css') }}"
+      href="{{ url_for('static', filename='styles/dashboard.css') }}"
     />
   </head>
 
@@ -176,6 +185,7 @@ templates/dashboard.html:
     <!-- Navbar -->
     <nav>
       <a href="{{ url_for('events') }}"> <button>Events</button></a>
+      <a href="{{ url_for('chatbot') }}"><button>Chatbot</button></a>
       <button>Achievments</button>
       <button>Home</button>
       <button>Login</button>
@@ -227,627 +237,51 @@ templates/dashboard.html:
 </html>
 
 
-templates/completed.html:
-<!-- NOT USED -->
-
-{% extends 'events.html' %} {% block switchbar_section %}
-
-<!-- Switchbar Section -->
-<section id="switchbar_section">
-  <div id="switchbar_container">
-    <a href="{{ url_for('upcoming') }}">
-      <button class="left_btn switchbar_btn">Upcoming</button></a
-    >
-    <a href="{{ url_for('ongoing') }}"
-      ><button class="switchbar_btn">Ongoing</button></a
-    >
-    <a href="{{ url_for('completed') }}"
-      ><button class="switchbar_btn_com right_btn">Completed</button></a
-    >
-  </div>
-</section>
-{% endblock %} {% block genEvents %}
-
-<!-- Landing Image -->
-<div class="add_img_margin">
-  <!-- <img src="https://i.ibb.co/X87YJ1B/Admin-block.jpg" class="img-fluid" alt="Wild Landscape" /> -->
-  <h1 class="sub_title">Completed Events</h1>
-</div>
-
-<!-- Section Separator -->
-<div class="section_separator"></div>
-
-<!-- Sports -->
-<section id="sports_section">
-  <div class="sub_heading">Sports</div>
-  <div class="addmargin row row-cols-1 row-cols-md-3 g-4">
-    {% for post in posts_dict if post.tag == "s" %}
-    <div class="col">
-      <div class="card_align card">
-        <img
-          src="{{ post.image }}"
-          class="img_align_card card-img-top"
-          alt="Hollywood Sign on The Hill"
-        />
-        <div class="card-body">
-          <h5 class="card-title">{{ post.title }}</h5>
-          <div>
-            <p class="card-text">{{ post.date_str }}</p>
-            <a
-              href="{{url_for('eventDetail', title=post.title, date=post.date_str, des = post.desc)}}"
-              ><button class="explore_button">Explore</button></a
-            >
-          </div>
-        </div>
-      </div>
-    </div>
-    {% endfor %}
-  </div>
-</section>
-
-<!-- Section Separator -->
-<div class="section_separator"></div>
-
-<!-- Technical -->
-<section id="technical_section">
-  <div class="sub_heading">Technical</div>
-  <div class="addmargin row row-cols-1 row-cols-md-3 g-4">
-    {% for post in posts_dict if post.tag == "t" %}
-    <div class="col">
-      <div class="card_align card">
-        <img
-          src="{{ post.image }}"
-          class="img_align_card card-img-top"
-          alt="Hollywood Sign on The Hill"
-        />
-        <div class="card-body">
-          <h5 class="card-title">{{ post.title }}</h5>
-          <div>
-            <p class="card-text">{{ post.date_str }}</p>
-            <a
-              href="{{url_for('eventDetail', title=post.title, date=post.date_str, des = post.desc)}}"
-              ><button class="explore_button">Explore</button></a
-            >
-          </div>
-        </div>
-      </div>
-    </div>
-    {% endfor %}
-  </div>
-</section>
-
-<!-- Section Separator -->
-<div class="section_separator"></div>
-
-<!-- Cultural -->
-<section if="cultural_section">
-  <div class="sub_heading">Culutral</div>
-  <div class="addmargin row row-cols-1 row-cols-md-3 g-4">
-    {% for post in posts_dict if post.tag == "c" %}
-    <div class="col">
-      <div class="card_align card">
-        <img
-          src="{{ post.image }}"
-          class="img_align_card card-img-top"
-          alt="Hollywood Sign on The Hill"
-        />
-        <div class="card-body">
-          <h5 class="card-title">{{ post.title }}</h5>
-          <div>
-            <p class="card-text">{{ post.date_str }}</p>
-            <a
-              href="{{url_for('eventDetail', title=post.title, date=post.date_str, des = post.desc)}}"
-              ><button class="explore_button">Explore</button></a
-            >
-          </div>
-        </div>
-      </div>
-    </div>
-    {% endfor %}
-  </div>
-</section>
-{% endblock %}
-
-
-templates/ongoing.html:
-<!-- NOT USED -->
-
-{% extends 'events.html' %} {% block switchbar_section %}
-
-<!-- Switchbar Section -->
-<section id="switchbar_section">
-  <div id="switchbar_container">
-    <a href="{{ url_for('upcoming') }}">
-      <button class="left_btn switchbar_btn">Upcoming</button></a
-    >
-    <a href="{{ url_for('ongoing') }}"
-      ><button class="switchbar_btn_on">Ongoing</button></a
-    >
-    <a href="{{ url_for('completed') }}"
-      ><button class="switchbar_btn right_btn">Completed</button></a
-    >
-  </div>
-</section>
-{% endblock %} {% block genEvents %}
-
-<!-- Landing Image -->
-<div class="add_img_margin">
-  <!-- <img src="https://i.ibb.co/X87YJ1B/Admin-block.jpg" class="img-fluid" alt="Wild Landscape" /> -->
-  <h1 class="sub_title">Ongoing Events</h1>
-</div>
-
-<!-- Section Separator -->
-<div class="section_separator"></div>
-
-<!-- Sports -->
-<section id="sports_section">
-  <div class="sub_heading">Sports</div>
-  <div class="addmargin row row-cols-1 row-cols-md-3 g-4">
-    {% for post in posts_dict if post.tag == "s" %}
-    <div class="col">
-      <div class="card_align card">
-        <img
-          src="{{ post.image }}"
-          class="img_align_card card-img-top"
-          alt="Hollywood Sign on The Hill"
-        />
-        <div class="card-body">
-          <h5 class="card-title">{{ post.title }}</h5>
-          <div>
-            <p class="card-text">{{ post.date_str }}</p>
-            <a
-              href="{{url_for('eventDetail', title=post.title, date=post.date_str, des = post.desc)}}"
-              ><button class="explore_button">Explore</button></a
-            >
-          </div>
-        </div>
-      </div>
-    </div>
-    {% endfor %}
-  </div>
-</section>
-
-<!-- Section Separator -->
-<div class="section_separator"></div>
-
-<!-- Technical -->
-<section id="technical_section">
-  <div class="sub_heading">Technical</div>
-  <div class="addmargin row row-cols-1 row-cols-md-3 g-4">
-    {% for post in posts_dict if post.tag == "t" %}
-    <div class="col">
-      <div class="card_align card">
-        <img
-          src="{{ post.image }}"
-          class="img_align_card card-img-top"
-          alt="Hollywood Sign on The Hill"
-        />
-        <div class="card-body">
-          <h5 class="card-title">{{ post.title }}</h5>
-          <div>
-            <p class="card-text">{{ post.date_str }}</p>
-            <a
-              href="{{url_for('eventDetail', title=post.title, date=post.date_str, des = post.desc)}}"
-              ><button class="explore_button">Explore</button></a
-            >
-          </div>
-        </div>
-      </div>
-    </div>
-    {% endfor %}
-  </div>
-</section>
-
-<!-- Section Separator -->
-<div class="section_separator"></div>
-
-<!-- Cultural -->
-<section if="cultural_section">
-  <div class="sub_heading">Culutral</div>
-  <div class="addmargin row row-cols-1 row-cols-md-3 g-4">
-    {% for post in posts_dict if post.tag == "c" %}
-    <div class="col">
-      <div class="card_align card">
-        <img
-          src="{{ post.image }}"
-          class="img_align_card card-img-top"
-          alt="Hollywood Sign on The Hill"
-        />
-        <div class="card-body">
-          <h5 class="card-title">{{ post.title }}</h5>
-          <div>
-            <p class="card-text">{{ post.date_str }}</p>
-            <a
-              href="{{url_for('eventDetail', title=post.title, date=post.date_str, des = post.desc)}}"
-              ><button class="explore_button">Explore</button></a
-            >
-          </div>
-        </div>
-      </div>
-    </div>
-    {% endfor %}
-  </div>
-</section>
-{% endblock %}
-
-
-templates/upcoming.html:
-<!-- NOT USED -->
-
-{% extends 'events.html' %} {% block switchbar_section %}
-
-<!-- Switchbar Section -->
-<section id="switchbar_section">
-  <div id="switchbar_container">
-    <a href="{{ url_for('upcoming') }}">
-      <button class="left_btn switchbar_btn_up">Upcoming</button></a
-    >
-    <a href="{{ url_for('ongoing') }}"
-      ><button class="switchbar_btn">Ongoing</button></a
-    >
-    <a href="{{ url_for('completed') }}"
-      ><button class="switchbar_btn right_btn">Completed</button></a
-    >
-  </div>
-</section>
-{% endblock %} {% block genEvents %}
-
-<!-- Landing Image -->
-<div class="add_img_margin">
-  <!-- <img src="https://i.ibb.co/X87YJ1B/Admin-block.jpg" class="img-fluid" alt="Wild Landscape" /> -->
-  <h1 class="sub_title">Upcoming Events</h1>
-</div>
-
-<!-- Section Separator -->
-<div class="section_separator"></div>
-
-<!-- Sports -->
-<section id="sports_section">
-  <div class="sub_heading">Sports</div>
-  <div class="addmargin row row-cols-1 row-cols-md-3 g-4">
-    {% for post in posts_dict if post.tag == "s" %}
-    <div class="col">
-      <div class="card_align card">
-        <img
-          src="{{ post.image }}"
-          class="img_align_card card-img-top"
-          alt="Hollywood Sign on The Hill"
-        />
-        <div class="card-body">
-          <h5 class="card-title">{{ post.title }}</h5>
-          <div>
-            <p class="card-text">{{ post.date_str }}</p>
-            <a
-              href="{{url_for('eventDetail', title=post.title, date=post.date_str, des = post.desc, image=post.image, host=post.clubName)}}"
-              ><button class="explore_button">Explore</button></a
-            >
-          </div>
-        </div>
-      </div>
-    </div>
-    {% endfor %}
-  </div>
-</section>
-
-<!-- Section Separator -->
-<div class="section_separator"></div>
-
-<!-- Technical -->
-<section id="technical_section">
-  <div class="sub_heading">Technical</div>
-  <div class="addmargin row row-cols-1 row-cols-md-3 g-4">
-    {% for post in posts_dict if post.tag == "t" %}
-    <div class="col">
-      <div class="card_align card">
-        <img
-          src="{{ post.image }}"
-          class="img_align_card card-img-top"
-          alt="Hollywood Sign on The Hill"
-        />
-        <div class="card-body">
-          <h5 class="card-title">{{ post.title }}</h5>
-          <div>
-            <p class="card-text">{{ post.date_str }}</p>
-            <a
-              href="{{url_for('eventDetail', title=post.title, date=post.date_str, des = post.desc, image=post.image, host=post.clubName)}}"
-              ><button class="explore_button">Explore</button></a
-            >
-          </div>
-        </div>
-      </div>
-    </div>
-    {% endfor %}
-  </div>
-</section>
-
-<!-- Section Separator -->
-<div class="section_separator"></div>
-
-<!-- Cultural -->
-<section if="cultural_section">
-  <div class="sub_heading">Culutral</div>
-  <div class="addmargin row row-cols-1 row-cols-md-3 g-4">
-    {% for post in posts_dict if post.tag == "c" %}
-    <div class="col">
-      <div class="card_align card">
-        <img
-          src="{{ post.image }}"
-          class="img_align_card card-img-top"
-          alt="Hollywood Sign on The Hill"
-        />
-        <div class="card-body">
-          <h5 class="card-title">{{ post.title }}</h5>
-          <div>
-            <p class="card-text">{{ post.date_str }}</p>
-            <a
-              href="{{url_for('eventDetail', title=post.title, date=post.date_str, des = post.desc, image=post.image, host=post.clubName)}}"
-              ><button class="explore_button">Explore</button></a
-            >
-          </div>
-        </div>
-      </div>
-    </div>
-    {% endfor %}
-  </div>
-</section>
-{% endblock %}
-
-
-templates/events.html:
+templates/chatbot.html:
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Events</title>
+    <title>Chatbot</title>
 
-    <!-- Custom JS -->
-    <script src="{{url_for('static',filename='javaScript/script.js')}}"></script>
-    <!-- Font Awesome -->
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-      rel="stylesheet"
-    />
-    <!-- Google Fonts -->
-    <link
-      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Chela+One&display=swap"
-      rel="stylesheet"
-    />
-    <!-- MDB -->
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.css"
-      rel="stylesheet"
-    />
+    <!-- Custom CSS -->
     <link
       rel="stylesheet"
       type="text/css"
-      href="{{ url_for('static',filename='styles/events.css') }}"
+      href="{{ url_for('static', filename='styles/chatbot.css') }}"
     />
   </head>
 
-  <body onload="playback()">
-    <!-- RV logo section -->
-    <section id="logo_section">
-      <div class="logo">
-        <img
-          src="{{url_for('static', filename='Images/RVlogo.png')}}"
-          alt="RV logo"
-        />
-      </div>
-      <div class="logo_des">
-        <span id="top_font">Rashtreeya Sikshana Samithi Trust</span>
-        <span id="great_rv">R V College of Engineering</span>
-        <span id="bottom_font"
-          >Autonomous Institution affiliated to Visvesvaraya Technological
-          University, Belagavi <br />
-          Approved By AICTE, New Delhi, Accredited By NBA, New Delhi</span
-        >
-      </div>
-      <div style="display: flex">
-        <div><span id="since_rv">Since 1963</span></div>
-
-        <div class="logo_right">
-          <img
-            src="{{url_for('static', filename='Images/RVrightLogo.jpg')}}"
-            alt="RV right logo"
-          />
-        </div>
-      </div>
-    </section>
-
-    <!-- Navbar -->
-    <nav id="navbar_layout">
-      <div id="nav_btn_container">
-        <a href="{{ url_for('dashboard') }}">
-          <button class="nav_button">Home</button></a
-        >
-        <button class="nav_button">Events</button>
-        <button class="nav_button">Achievments</button>
-
-        <button class="nav_button">Login</button>
-        <button class="nav_button">Timeline</button>
-        <!-- Admin Page Link-->
-        <!-- Only after login -->
-        <button class="nav_button">Admin</button>
-      </div>
-    </nav>
-
-    <!-- SwitchBar -->
-    {% block switchbar_section %}
-    <section id="switchbar_section">
-      <div id="switchbar_container">
-        <a href="{{ url_for('all_in_one', category='upcoming') }}">
-          <button class="switchbar_btn left_btn">Upcoming</button>
-        </a>
-        <a href="{{ url_for('all_in_one', category='ongoing') }}">
-          <button class="switchbar_btn">Ongoing</button>
-        </a>
-        <a href="{{ url_for('all_in_one', category='completed') }}">
-          <button class="switchbar_btn right_btn">Completed</button>
-        </a>
-      </div>
-    </section>
-    {% endblock %}
-
-    <!-- Section Separator -->
-    <div class="section_separator"></div>
-    {% block genEvents %}
-
-    <!-- Events -->
+  <body>
+    <!-- Chatbot section -->
     <section>
-      <div class="sub_heading">
-        Welcome to the centralised event hub of RVCE
-      </div>
-      <div class="gen_text">
-        Discover a world of captivating events organized by various clubs and
-        departments at our college. Stay informed about the latest happenings
-        and relive memorable past events through our comprehensive event
-        notification platform. Engage in stimulating discussions, showcase your
-        talents, and partake in friendly competitions. Whether you're interested
-        in academic pursuits, artistic expressions, or athletic endeavors, our
-        website is your gateway to a plethora of enriching experiences. Stay
-        connected, get involved, and make the most of your college journey as we
-        keep you updated on all the exciting events taking place on campus.
-      </div>
+      <h2>Chatbot</h2>
+
+      <!-- Form -->
+      <form method="POST" action="/chatbot">
+        <label for="user_input">What do you want to do today?</label>
+        <select name="user_input" id="user_input">
+          <option value="1">See upcoming events</option>
+          <option value="2">See completed events</option>
+          <!-- Add more options here -->
+        </select>
+        <button type="submit">Submit</button>
+      </form>
+
+      <!-- Display user input and bot response -->
+      {% if user_input %}
+      <p>User input: {{ user_input }}</p>
+      <p>Bot response: {{ bot_response }}</p>
+      {% endif %}
     </section>
-
-    <!-- Carousel -->
-    <section id="carousel_section">
-      <section id="type_1_carousel_3">
-        <div class="firstCarousel_3">
-          <img
-            src="https://i.ibb.co/ykRbtKR/8thMile.jpg"
-            alt="Image not found"
-            id="img1_3"
-          />
-        </div>
-        <div id="midCarousel">
-          <img
-            src="https://i.ibb.co/gjpCPTP/fest.jpg"
-            alt="Image not found"
-            id="img2_3"
-          />
-        </div>
-        <div class="firstCarousel_3">
-          <img
-            src="https://i.ibb.co/nBSM2Z1/marathon.jpg"
-            alt="Image not found"
-            id="img3_3"
-          />
-        </div>
-      </section>
-    </section>
-
-    <!-- Section Separator -->
-    <div class="section_separator"></div>
-
-    <!--Tech Clubs Section -->
-    <section id="tech_clubs_section">
-      <div class="sub_heading">Technical Clubs</div>
-      <div class="addmargin row row-cols-1 row-cols-md-3 g-4">
-        <div class="col">
-          <div class="card">
-            <img
-              src="{{ url_for('static', filename='Images/ashwa.jpeg') }}"
-              class="card_size_adjust card-img-top"
-              alt="Hollywood Sign on The Hill"
-            />
-          </div>
-        </div>
-        <div class="col">
-          <div class="card">
-            <img
-              src="{{ url_for('static', filename='Images/antariksh.png') }}"
-              class="card_size_adjust card-img-top"
-              alt="Palm Springs Road"
-            />
-          </div>
-        </div>
-        <div class="col">
-          <div class="card">
-            <img
-              src="https://i.ibb.co/MSydPXZ/coding.png"
-              class="card_size_adjust card-img-top"
-              alt="Los Angeles Skyscrapers"
-            />
-          </div>
-        </div>
-        <div class="col">
-          <div class="card">
-            <img
-              src="https://i.ibb.co/XspXyJC/ham.jpg"
-              class="card_size_adjust card-img-top"
-              alt="Skyscrapers"
-            />
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Section Separator -->
-    <div class="section_separator"></div>
-
-    <!-- Cultural Clubs Section -->
-    <section id="cultural_clubs_section">
-      <div class="sub_heading">Culutral Clubs</div>
-      <div class="addmargin row row-cols-1 row-cols-md-3 g-4">
-        <div class="col">
-          <div class="card">
-            <img
-              src="{{ url_for('static', filename='Images/evoke.jpeg') }}"
-              class="card_size_adjust card-img-top"
-              alt="Hollywood Sign on The Hill"
-            />
-          </div>
-        </div>
-        <div class="col">
-          <div class="card">
-            <img
-              src="{{ url_for('static', filename='Images/rotaract.png') }}"
-              class="card_size_adjust card-img-top"
-              alt="Palm Springs Road"
-            />
-          </div>
-        </div>
-        <div class="col">
-          <div class="card">
-            <img
-              src="{{ url_for('static', filename='Images/footprints.jpeg') }}"
-              class="card_size_adjust card-img-top"
-              alt="Los Angeles Skyscrapers"
-            />
-          </div>
-        </div>
-        <div class="col">
-          <div class="card">
-            <img
-              src="{{ url_for('static', filename='Images/ecell.jpeg') }}"
-              class="card_size_adjust card-img-top"
-              alt="Skyscrapers"
-            />
-          </div>
-        </div>
-      </div>
-    </section>
-    {% endblock %}
-
-    <!-- Section Separator -->
-    <div class="section_separator"></div>
-
-    <!-- Footer -->
-
-    <!-- MDB -->
-    <script
-      type="text/javascript"
-      src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.js"
-    ></script>
   </body>
 </html>
+
+
+static/styles/chatbot.css:
+
+
+static/javaScript/chatbot.js:
 
 
