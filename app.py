@@ -2,6 +2,8 @@ from flask import Flask, render_template, request, redirect, url_for
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
 from gtts import gTTS
+import io
+import base64
 
 import os
 from dotenv import load_dotenv
@@ -103,6 +105,24 @@ def getChatbotResponse(user_input):
     return response_text, redirect_link
 
 
+def getSpeech(result_text):
+
+    language = 'en'
+    speech = gTTS(text=result_text, lang=language, slow=False)
+
+    # On local machine
+    # speech.save("speech.mp3")
+    # os.system("start speech.mp3")
+
+    # Save the speech to memory as bytes
+    speech_file = io.BytesIO()
+    speech.write_to_fp(speech_file)
+    speech_bytes = speech_file.getvalue()
+    speech_base64 = base64.b64encode(speech_bytes).decode('utf-8')
+
+    return speech_base64
+
+
 @app.route('/chatbot', methods=['GET', 'POST'])
 def chatbot():
 
@@ -110,6 +130,9 @@ def chatbot():
     questionnaire = {"What would you like to do?": ["See upcoming events",
                                                     "See completed events",
                                                     "Visit the events page"]}
+
+    hello = "Hello, I am the DTL Chatbot. How can I help you today?"
+    speech_base64 = getSpeech(hello)
 
     if request.method == 'POST':
         user_input = request.form['user_input']
@@ -120,7 +143,7 @@ def chatbot():
                                user_input=user_input, response_text=response_text,
                                redirect_link=redirect_link)
 
-    return render_template('chatbot.html', questionnaire=questionnaire)
+    return render_template('chatbot.html', questionnaire=questionnaire, speech_base64=speech_base64)
 
 
 if __name__ == '__main__':

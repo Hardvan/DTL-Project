@@ -18,6 +18,14 @@
     <section class="chatbot">
       <h2>Chatbot</h2>
 
+      <audio controls>
+        <source
+          src="data:audio/mpeg;base64,{{ speech_base64 }}"
+          type="audio/mpeg"
+        />
+        Your browser does not support the audio element.
+      </audio>
+
       <!-- Form -->
       <form method="POST" action="/chatbot">
         <label for="user_input">Hello there! How can I assist you today?</label>
