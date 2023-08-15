@@ -41,6 +41,11 @@
         </div>
         <div class="bot-message">
           <p>Bot Message: {{ response_text }}</p>
+          {% if redirect_link %}
+          <a href="{{ redirect_link }}"
+            >Click here to go to the specified page</a
+          >
+          {% endif %}
         </div>
       </div>
       {% endif %}

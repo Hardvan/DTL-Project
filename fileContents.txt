@@ -90,18 +90,22 @@ def getChatbotResponse(user_input):
 
     response_text = "Sorry, I don't understand. Please try again."
     response_no = -1
+    redirect_link = None
 
     if user_input == "See upcoming events":
         response_text = "You chose option 1: See upcoming events."
         response_no = 1
+        redirect_link = url_for('all_in_one', category='upcoming')
     elif user_input == "See completed events":
         response_text = "You chose option 2: See completed events."
         response_no = 2
+        redirect_link = url_for('all_in_one', category='completed')
     elif user_input == "Visit the events page":
         response_text = "You chose option 3: Visit the events page."
         response_no = 3
+        redirect_link = url_for('events')
 
-    return response_text, response_no
+    return response_text, redirect_link
 
 
 @app.route('/chatbot', methods=['GET', 'POST'])
@@ -114,17 +118,11 @@ def chatbot():
 
     if request.method == 'POST':
         user_input = request.form['user_input']
-        response_text, response_no = getChatbotResponse(user_input)
-
-        if response_no == 1:
-            return redirect(url_for('all_in_one', category='upcoming'))
-        elif response_no == 2:
-            return redirect(url_for('all_in_one', category='completed'))
-        elif response_no == 3:
-            return redirect(url_for('events'))
+        response_text, redirect_link = getChatbotResponse(user_input)
 
         return render_template('chatbot.html', questionnaire=questionnaire,
-                               user_input=user_input, response_text=response_text)
+                               user_input=user_input, response_text=response_text,
+                               redirect_link=redirect_link)
 
     return render_template('chatbot.html', questionnaire=questionnaire)
 
@@ -298,6 +296,11 @@ templates/chatbot.html:
         </div>
         <div class="bot-message">
           <p>Bot Message: {{ response_text }}</p>
+          {% if redirect_link %}
+          <a href="{{ redirect_link }}"
+            >Click here to go to the specified page</a
+          >
+          {% endif %}
         </div>
       </div>
       {% endif %}
