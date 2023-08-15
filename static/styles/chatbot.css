@@ -42,7 +42,7 @@
 }
 
 .chatbot button:hover {
-  background-color: #0056b3;
+  background-color: #0069d9;
 }
 
 /* Styling for the conversation */
@@ -55,6 +55,9 @@
   padding: 10px;
   border-radius: 5px;
   margin: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .user-message {
@@ -64,7 +67,11 @@
 
 .bot-message {
   background-color: #e0ffe0;
-  text-align: right;
+  text-align: left;
+}
+
+.bot-message p:first-child {
+  margin-bottom: 5px;
 }
 
 /* Responsive design */
