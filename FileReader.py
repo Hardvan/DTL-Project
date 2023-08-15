@@ -70,10 +70,6 @@ if __name__ == "__main__":
                  post_handler_py,
                  dashboard_html,
                  chatbot_html,
-                 chatbot_css,
-                 chatbot_js,
-                 eventDetails_html,
-                 events_html,
                  ]
 
     read_files_in_directory(".", file_list)
