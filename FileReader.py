@@ -48,6 +48,7 @@ def read_files_in_directory(directory='.', file_list=None, output_file='fileCont
 if __name__ == "__main__":
 
     app_py = "app.py"
+    post_handler_py = "PostHandler.py"
     index_html = "templates/index.html"
     index_css = "static/css/index.css"
     index_js = "static/js/index.js"
@@ -59,11 +60,16 @@ if __name__ == "__main__":
     ongoing_html = "templates/ongoing.html"
     upcoming_html = "templates/upcoming.html"
 
+    chatbot_html = "templates/chatbot.html"
+    chatbot_css = "static/css/chatbot.css"
+    chatbot_js = "static/javaScript/chatbot.js"
+
     file_list = [app_py,
-                 completed_html,
-                 ongoing_html,
-                 upcoming_html,
-                 events_html,
+                 post_handler_py,
+                 dashboard_html,
+                 chatbot_html,
+                 chatbot_css,
+                 chatbot_js
                  ]
 
     read_files_in_directory(".", file_list)

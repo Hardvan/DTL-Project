@@ -74,24 +74,6 @@ def all_in_one(category):
     return render_template('all_in_one.html', posts_dict=posts_dict, category=category)
 
 
-# @app.route('/events/upcoming')
-# def upcoming():
-#     posts_dict = PostHandler.getPostsData(collection, REAL_DATA)
-#     return render_template('upcoming.html', posts_dict=posts_dict)
-
-
-# @app.route('/events/ongoing')
-# def ongoing():
-#     posts_dict = PostHandler.getPostsData(collection, REAL_DATA)
-#     return render_template('ongoing.html', posts_dict=posts_dict)
-
-
-# @app.route('/events/completed')
-# def completed():
-#     posts_dict = PostHandler.getPostsData(collection, REAL_DATA)
-#     return render_template('completed.html', posts_dict=posts_dict)
-
-
 @app.route('/eventDetail')
 def eventDetail():
     title = request.args.get('title')
@@ -100,6 +82,33 @@ def eventDetail():
     image = request.args.get('image')
     host = request.args.get('host')
     return render_template('eventDetails.html', title=title, date=date, des=des, image=image, host=host)
+
+
+# Chatbot functions
+def getChatbotResponse(user_input):
+
+    options = {
+        "1": "You chose option 1: See upcoming events.",
+        "2": "You chose option 2: See completed events.",
+        # Add more options here
+    }
+
+    default_response = "You have chosen an invalid option. Please try again."
+
+    response = options.get(user_input, default_response)
+    return response
+
+
+@app.route('/chatbot', methods=['GET', 'POST'])
+def chatbot():
+
+    if request.method == 'POST':
+        user_input = request.form['user_input']
+        bot_response = getChatbotResponse(user_input)
+
+        return render_template('chatbot.html', user_input=user_input, bot_response=bot_response)
+
+    return render_template('chatbot.html')
 
 
 if __name__ == '__main__':

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chatbot</title>
+
+    <!-- Custom CSS -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='styles/chatbot.css') }}"
+    />
+  </head>
+
+  <body>
+    <!-- Chatbot section -->
+    <section>
+      <h2>Chatbot</h2>
+
+      <!-- Form -->
+      <form method="POST" action="/chatbot">
+        <label for="user_input">What do you want to do today?</label>
+        <select name="user_input" id="user_input">
+          <option value="1">See upcoming events</option>
+          <option value="2">See completed events</option>
+          <!-- Add more options here -->
+        </select>
+        <button type="submit">Submit</button>
+      </form>
+
+      <!-- Display user input and bot response -->
+      {% if user_input %}
+      <p>User input: {{ user_input }}</p>
+      <p>Bot response: {{ bot_response }}</p>
+      {% endif %}
+    </section>
+  </body>
+</html>
