@@ -120,7 +120,9 @@ def getChatbotResponse(user_input):
     elif user_input == "Visit the events page":
         response_text = "You chose option 3: Visit the events page."
 
-    response_audio = getSpeech(response_text)
+    audio_text = f"{response_text} Click the link below to proceed to your chosen option."
+
+    response_audio = getSpeech(audio_text)
 
     return response_text, redirect_link, response_audio
 

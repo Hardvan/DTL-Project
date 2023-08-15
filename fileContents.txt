@@ -2,6 +2,9 @@ app.py:
 from flask import Flask, render_template, request, redirect, url_for
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
+from gtts import gTTS
+import io
+import base64
 
 import os
 from dotenv import load_dotenv
@@ -86,26 +89,41 @@ def eventDetail():
 
 
 # Chatbot functions
+def getSpeech(result_text):
+
+    language = 'en'
+    speech = gTTS(text=result_text, lang=language, slow=False)
+
+    # On local machine
+    # speech.save("speech.mp3")
+    # os.system("start speech.mp3")
+
+    # Save the speech to memory as bytes
+    speech_file = io.BytesIO()
+    speech.write_to_fp(speech_file)
+    speech_bytes = speech_file.getvalue()
+    speech_base64 = base64.b64encode(speech_bytes).decode('utf-8')
+
+    return speech_base64
+
+
 def getChatbotResponse(user_input):
 
     response_text = "Sorry, I don't understand. Please try again."
-    response_no = -1
     redirect_link = None
 
     if user_input == "See upcoming events":
         response_text = "You chose option 1: See upcoming events."
-        response_no = 1
         redirect_link = url_for('all_in_one', category='upcoming')
     elif user_input == "See completed events":
         response_text = "You chose option 2: See completed events."
-        response_no = 2
         redirect_link = url_for('all_in_one', category='completed')
     elif user_input == "Visit the events page":
         response_text = "You chose option 3: Visit the events page."
-        response_no = 3
-        redirect_link = url_for('events')
 
-    return response_text, redirect_link
+    response_audio = getSpeech(response_text)
+
+    return response_text, redirect_link, response_audio
 
 
 @app.route('/chatbot', methods=['GET', 'POST'])
@@ -116,140 +134,23 @@ def chatbot():
                                                     "See completed events",
                                                     "Visit the events page"]}
 
+    hello = "Hello, I am the DTL Chatbot. How can I help you today?"
+    speech_base64 = getSpeech(hello)
+
     if request.method == 'POST':
         user_input = request.form['user_input']
-        response_text, redirect_link = getChatbotResponse(user_input)
+        response_text, redirect_link, response_audio = getChatbotResponse(
+            user_input)
 
         return render_template('chatbot.html', questionnaire=questionnaire,
                                user_input=user_input, response_text=response_text,
-                               redirect_link=redirect_link)
+                               redirect_link=redirect_link, response_audio=response_audio)
 
-    return render_template('chatbot.html', questionnaire=questionnaire)
+    return render_template('chatbot.html', questionnaire=questionnaire, speech_base64=speech_base64)
 
 
 if __name__ == '__main__':
     app.run(debug=True)
-
-
-PostHandler.py:
-import json
-from datetime import datetime, date
-
-
-def formatData(posts_dict):
-
-    today = date.today()
-
-    for post in posts_dict:
-        # Convert date from string to datetime object
-        post['date'] = datetime.strptime(post['date'], '%Y-%m-%d')
-
-        # Convert date to string in the format DD MMM YYYY
-        post['date_str'] = post['date'].strftime('%d %b %Y')
-
-        # Categorize the post
-        if post['date'].date() > today:
-            post['category'] = 'Upcoming'
-        elif post['date'].date() == today:
-            post['category'] = 'Today'
-        else:
-            post['category'] = 'Completed'
-
-    # Sort posts by date (Newest first)
-    posts_dict = sorted(posts_dict, key=lambda k: k['date'])
-
-    return posts_dict
-
-
-def getPostsData(collection, REAL_DATA):
-
-    posts_dict = []
-
-    # Get data from MongoDB afterwards
-    if REAL_DATA:
-        posts_dict = list(collection.find({}))
-
-    # Sample data
-    else:
-        with open('./static/json/sample_posts.json', 'r') as file:
-            data = json.load(file)
-            posts_dict = data['posts']
-
-    posts_dict = formatData(posts_dict)
-
-    return posts_dict
-
-
-templates/dashboard.html:
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dashboard</title>
-
-    <!-- Custom CSS -->
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="{{ url_for('static', filename='styles/dashboard.css') }}"
-    />
-  </head>
-
-  <body>
-    <!-- Navbar -->
-    <nav>
-      <a href="{{ url_for('events') }}"> <button>Events</button></a>
-      <a href="{{ url_for('chatbot') }}"><button>Chatbot</button></a>
-      <button>Achievments</button>
-      <button>Home</button>
-      <button>Login</button>
-      <button>Timeline</button>
-      <!-- Admin Page Link-->
-      <!-- Only after login -->
-      <button>Admin</button>
-    </nav>
-
-    <!-- Carousel -->
-    <section>
-      <div>
-        <!-- Carousel here -->
-        <p>Placeholder for carousel</p>
-      </div>
-    </section>
-
-    <!-- Brief intro to our webpage/subdomain -->
-    <section>
-      <div>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi
-          voluptas, incidunt accusantium neque corporis voluptatem laborum error
-          a quas rem maxime consequuntur voluptatibus sequi quisquam enim fuga
-          perspiciatis natus. Incidunt.
-        </p>
-      </div>
-    </section>
-
-    <!-- Grid section -->
-    <section>
-      <!-- Grid goes here -->
-      <div>
-        <h2>Clubs</h2>
-        <!-- Club boxes -->
-        <h2>Departments</h2>
-        <!-- Department boxes-->
-      </div>
-    </section>
-
-    <!-- Footer -->
-    <section>
-      <div>
-        <!-- RV footer here -->
-        <p>Footer</p>
-      </div>
-    </section>
-  </body>
-</html>
 
 
 templates/chatbot.html:
@@ -272,6 +173,14 @@ templates/chatbot.html:
     <!-- Chatbot section -->
     <section class="chatbot">
       <h2>Chatbot</h2>
+
+      <audio controls>
+        <source
+          src="data:audio/mpeg;base64,{{ speech_base64 }}"
+          type="audio/mpeg"
+        />
+        Your browser does not support the audio element.
+      </audio>
 
       <!-- Form -->
       <form method="POST" action="/chatbot">
@@ -301,6 +210,13 @@ templates/chatbot.html:
             >Click here to go to the specified page</a
           >
           {% endif %}
+          <audio controls>
+            <source
+              src="data:audio/mpeg;base64,{{ response_audio }}"
+              type="audio/mpeg"
+            />
+            Your browser does not support the audio element.
+          </audio>
         </div>
       </div>
       {% endif %}

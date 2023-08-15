@@ -18,7 +18,8 @@
     <section class="chatbot">
       <h2>Chatbot</h2>
 
-      <audio controls>
+      <!-- Use hidden to hide the audio container -->
+      <audio controls autoplay>
         <source
           src="data:audio/mpeg;base64,{{ speech_base64 }}"
           type="audio/mpeg"
@@ -28,7 +29,9 @@
 
       <!-- Form -->
       <form method="POST" action="/chatbot">
-        <label for="user_input">Hello there! How can I assist you today?</label>
+        <label for="user_input"
+          >Hello, I am the DTL Chatbot. How can I help you today?</label
+        >
         <select name="user_input" id="user_input">
           {% for question, choices in questionnaire.items() %}
           <option value="{{ question }}" disabled selected>
@@ -47,6 +50,14 @@
         <div class="user-message">
           <p>You: {{ user_input }}</p>
         </div>
+        <!-- Use hidden to hide the audio container -->
+        <audio controls autoplay>
+          <source
+            src="data:audio/mpeg;base64,{{ response_audio }}"
+            type="audio/mpeg"
+          />
+          Your browser does not support the audio element.
+        </audio>
         <div class="bot-message">
           <p>Bot Message: {{ response_text }}</p>
           {% if redirect_link %}
@@ -54,13 +65,6 @@
             >Click here to go to the specified page</a
           >
           {% endif %}
-          <audio controls>
-            <source
-              src="data:audio/mpeg;base64,{{ response_audio }}"
-              type="audio/mpeg"
-            />
-            Your browser does not support the audio element.
-          </audio>
         </div>
       </div>
       {% endif %}
