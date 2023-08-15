@@ -22,9 +22,13 @@
       <form method="POST" action="/chatbot">
         <label for="user_input">What do you want to do today?</label>
         <select name="user_input" id="user_input">
-          <option value="1">See upcoming events</option>
-          <option value="2">See completed events</option>
-          <!-- Add more options here -->
+          {% for question, choices in questionnaire.items() %}
+          <option value="{{ question }}" disabled selected>
+            {{ question }}
+          </option>
+          {% for choice in choices %}
+          <option value="{{ choice }}">{{ choice }}</option>
+          {% endfor %} {% endfor %}
         </select>
         <button type="submit">Submit</button>
       </form>
@@ -32,7 +36,7 @@
       <!-- Display user input and bot response -->
       {% if user_input %}
       <p>User input: {{ user_input }}</p>
-      <p>Bot response: {{ bot_response }}</p>
+      <p>Bot response: {{ response_text }}</p>
       {% endif %}
     </section>
   </body>

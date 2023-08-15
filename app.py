@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
 
@@ -87,28 +87,45 @@ def eventDetail():
 # Chatbot functions
 def getChatbotResponse(user_input):
 
-    options = {
-        "1": "You chose option 1: See upcoming events.",
-        "2": "You chose option 2: See completed events.",
-        # Add more options here
-    }
+    response_text = "Sorry, I don't understand. Please try again."
+    response_no = -1
 
-    default_response = "You have chosen an invalid option. Please try again."
+    if user_input == "See upcoming events":
+        response_text = "You chose option 1: See upcoming events."
+        response_no = 1
+    elif user_input == "See completed events":
+        response_text = "You chose option 2: See completed events."
+        response_no = 2
+    elif user_input == "Visit the events page":
+        response_text = "You chose option 3: Visit the events page."
+        response_no = 3
 
-    response = options.get(user_input, default_response)
-    return response
+    return response_text, response_no
 
 
 @app.route('/chatbot', methods=['GET', 'POST'])
 def chatbot():
 
+    # Question : Options dictionary
+    questionnaire = {"What would you like to do?": ["See upcoming events",
+                                                    "See completed events",
+                                                    "Visit the events page"]}
+
     if request.method == 'POST':
         user_input = request.form['user_input']
-        bot_response = getChatbotResponse(user_input)
+        response_text, response_no = getChatbotResponse(user_input)
 
-        return render_template('chatbot.html', user_input=user_input, bot_response=bot_response)
+        if response_no == 1:
+            return redirect(url_for('all_in_one', category='upcoming'))
+        elif response_no == 2:
+            return redirect(url_for('all_in_one', category='completed'))
+        elif response_no == 3:
+            return redirect(url_for('events'))
 
-    return render_template('chatbot.html')
+        return render_template('chatbot.html', questionnaire=questionnaire,
+                               user_input=user_input, response_text=response_text)
+
+    return render_template('chatbot.html', questionnaire=questionnaire)
 
 
 if __name__ == '__main__':

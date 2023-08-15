@@ -165,6 +165,34 @@ def getPostsData(collection, REAL_DATA):
     return posts_dict
 
 
+templates/index.html:
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DTL Project</title>
+  </head>
+
+  <body>
+    <h1>DTL Project</h1>
+
+    <ul>
+      {% for post in posts_dict %}
+      <li>
+        <h2>{{ post.title }}</h2>
+        <p>Desc: {{ post.desc }}</p>
+        <p>Date: {{ post.date_str }}</p>
+        <p>Club Name: {{ post.clubName }}</p>
+        <p>Category: {{ post.category }}</p>
+        <img src="{{ post.image }}" alt="Event Image" style="width: 420px" />
+      </li>
+      {% endfor %}
+    </ul>
+  </body>
+</html>
+
+
 templates/dashboard.html:
 <!DOCTYPE html>
 <html lang="en">
@@ -237,6 +265,297 @@ templates/dashboard.html:
 </html>
 
 
+templates/eventDetails.html:
+{% extends 'events.html' %} {% block switchbar_section %}
+<!-- Landing Image -->
+<div class="add_img_margin_new">
+  <img src="{{ image }}" class="img-fluid" alt="Wild Landscape" />
+</div>
+{% endblock %} {% block genEvents %}
+<h1 class="sub_title_det">{{ title }}</h1>
+<div class="description">
+  <h2>Hosted by {{ host }}</h2>
+  <img
+    src="{{ url_for('static',filename='Images/pocket-watch.gif') }}"
+    alt=""
+    class="gif_adjust"
+  />
+  <h5 style="display: inline-block; text-align: center; margin-top: 20px">
+    On {{ date }}
+  </h5>
+  <p>{{ des }}</p>
+  <img
+    src="{{ url_for('static',filename='Images/location.gif') }}"
+    alt=""
+    class="gif_adjust"
+  />
+  <h6 style="display: inline-block">RVCE</h6>
+  <div>
+    <button class="explore_button">Register</button>
+  </div>
+</div>
+
+{% endblock %}
+
+
+templates/events.html:
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Events</title>
+
+    <!-- Custom JS -->
+    <script src="{{url_for('static',filename='javaScript/script.js')}}"></script>
+    <!-- Font Awesome -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Chela+One&display=swap"
+      rel="stylesheet"
+    />
+    <!-- MDB -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static',filename='styles/events.css') }}"
+    />
+  </head>
+
+  <body onload="playback()">
+    <!-- RV logo section -->
+    <section id="logo_section">
+      <div class="logo">
+        <img
+          src="{{url_for('static', filename='Images/RVlogo.png')}}"
+          alt="RV logo"
+        />
+      </div>
+      <div class="logo_des">
+        <span id="top_font">Rashtreeya Sikshana Samithi Trust</span>
+        <span id="great_rv">R V College of Engineering</span>
+        <span id="bottom_font"
+          >Autonomous Institution affiliated to Visvesvaraya Technological
+          University, Belagavi <br />
+          Approved By AICTE, New Delhi, Accredited By NBA, New Delhi</span
+        >
+      </div>
+      <div style="display: flex">
+        <div><span id="since_rv">Since 1963</span></div>
+
+        <div class="logo_right">
+          <img
+            src="{{url_for('static', filename='Images/RVrightLogo.jpg')}}"
+            alt="RV right logo"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- Navbar -->
+    <nav id="navbar_layout">
+      <div id="nav_btn_container">
+        <a href="{{ url_for('dashboard') }}">
+          <button class="nav_button">Home</button></a
+        >
+        <button class="nav_button">Events</button>
+        <button class="nav_button">Achievments</button>
+
+        <button class="nav_button">Login</button>
+        <button class="nav_button">Timeline</button>
+        <!-- Admin Page Link-->
+        <!-- Only after login -->
+        <button class="nav_button">Admin</button>
+      </div>
+    </nav>
+
+    <!-- SwitchBar -->
+    {% block switchbar_section %}
+    <section id="switchbar_section">
+      <div id="switchbar_container">
+        <a href="{{ url_for('all_in_one', category='upcoming') }}">
+          <button class="switchbar_btn left_btn">Upcoming</button>
+        </a>
+        <a href="{{ url_for('all_in_one', category='ongoing') }}">
+          <button class="switchbar_btn">Ongoing</button>
+        </a>
+        <a href="{{ url_for('all_in_one', category='completed') }}">
+          <button class="switchbar_btn right_btn">Completed</button>
+        </a>
+      </div>
+    </section>
+    {% endblock %}
+
+    <!-- Section Separator -->
+    <div class="section_separator"></div>
+    {% block genEvents %}
+
+    <!-- Events -->
+    <section>
+      <div class="sub_heading">
+        Welcome to the centralised event hub of RVCE
+      </div>
+      <div class="gen_text">
+        Discover a world of captivating events organized by various clubs and
+        departments at our college. Stay informed about the latest happenings
+        and relive memorable past events through our comprehensive event
+        notification platform. Engage in stimulating discussions, showcase your
+        talents, and partake in friendly competitions. Whether you're interested
+        in academic pursuits, artistic expressions, or athletic endeavors, our
+        website is your gateway to a plethora of enriching experiences. Stay
+        connected, get involved, and make the most of your college journey as we
+        keep you updated on all the exciting events taking place on campus.
+      </div>
+    </section>
+
+    <!-- Carousel -->
+    <section id="carousel_section">
+      <section id="type_1_carousel_3">
+        <div class="firstCarousel_3">
+          <img
+            src="https://i.ibb.co/ykRbtKR/8thMile.jpg"
+            alt="Image not found"
+            id="img1_3"
+          />
+        </div>
+        <div id="midCarousel">
+          <img
+            src="https://i.ibb.co/gjpCPTP/fest.jpg"
+            alt="Image not found"
+            id="img2_3"
+          />
+        </div>
+        <div class="firstCarousel_3">
+          <img
+            src="https://i.ibb.co/nBSM2Z1/marathon.jpg"
+            alt="Image not found"
+            id="img3_3"
+          />
+        </div>
+      </section>
+    </section>
+
+    <!-- Section Separator -->
+    <div class="section_separator"></div>
+
+    <!--Tech Clubs Section -->
+    <section id="tech_clubs_section">
+      <div class="sub_heading">Technical Clubs</div>
+      <div class="addmargin row row-cols-1 row-cols-md-3 g-4">
+        <div class="col">
+          <div class="card">
+            <img
+              src="{{ url_for('static', filename='Images/ashwa.jpeg') }}"
+              class="card_size_adjust card-img-top"
+              alt="Hollywood Sign on The Hill"
+            />
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+            <img
+              src="{{ url_for('static', filename='Images/antariksh.png') }}"
+              class="card_size_adjust card-img-top"
+              alt="Palm Springs Road"
+            />
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+            <img
+              src="https://i.ibb.co/MSydPXZ/coding.png"
+              class="card_size_adjust card-img-top"
+              alt="Los Angeles Skyscrapers"
+            />
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+            <img
+              src="https://i.ibb.co/XspXyJC/ham.jpg"
+              class="card_size_adjust card-img-top"
+              alt="Skyscrapers"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section Separator -->
+    <div class="section_separator"></div>
+
+    <!-- Cultural Clubs Section -->
+    <section id="cultural_clubs_section">
+      <div class="sub_heading">Culutral Clubs</div>
+      <div class="addmargin row row-cols-1 row-cols-md-3 g-4">
+        <div class="col">
+          <div class="card">
+            <img
+              src="{{ url_for('static', filename='Images/evoke.jpeg') }}"
+              class="card_size_adjust card-img-top"
+              alt="Hollywood Sign on The Hill"
+            />
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+            <img
+              src="{{ url_for('static', filename='Images/rotaract.png') }}"
+              class="card_size_adjust card-img-top"
+              alt="Palm Springs Road"
+            />
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+            <img
+              src="{{ url_for('static', filename='Images/footprints.jpeg') }}"
+              class="card_size_adjust card-img-top"
+              alt="Los Angeles Skyscrapers"
+            />
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+            <img
+              src="{{ url_for('static', filename='Images/ecell.jpeg') }}"
+              class="card_size_adjust card-img-top"
+              alt="Skyscrapers"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+    {% endblock %}
+
+    <!-- Section Separator -->
+    <div class="section_separator"></div>
+
+    <!-- Footer -->
+
+    <!-- MDB -->
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.js"
+    ></script>
+  </body>
+</html>
+
+
 templates/chatbot.html:
 <!DOCTYPE html>
 <html lang="en">
@@ -255,7 +574,7 @@ templates/chatbot.html:
 
   <body>
     <!-- Chatbot section -->
-    <section>
+    <section class="chatbot">
       <h2>Chatbot</h2>
 
       <!-- Form -->
@@ -277,11 +596,5 @@ templates/chatbot.html:
     </section>
   </body>
 </html>
-
-
-static/styles/chatbot.css:
-
-
-static/javaScript/chatbot.js:
 
 

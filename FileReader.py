@@ -47,31 +47,32 @@ def read_files_in_directory(directory='.', file_list=None, output_file='fileCont
 
 if __name__ == "__main__":
 
+    # .py files
     app_py = "app.py"
     post_handler_py = "PostHandler.py"
-    index_html = "templates/index.html"
-    index_css = "static/css/index.css"
-    index_js = "static/js/index.js"
 
-    completed_html = "templates/completed.html"
+    # .html files
+    index_html = "templates/index.html"
     dashboard_html = "templates/dashboard.html"
     eventDetails_html = "templates/eventDetails.html"
     events_html = "templates/events.html"
-    ongoing_html = "templates/ongoing.html"
-    upcoming_html = "templates/upcoming.html"
-
     chatbot_html = "templates/chatbot.html"
+
+    # .css files
+    index_css = "static/css/index.css"
     chatbot_css = "static/styles/chatbot.css"
+
+    # .js files
+    index_js = "static/js/index.js"
     chatbot_js = "static/javaScript/chatbot.js"
 
     file_list = [app_py,
                  post_handler_py,
-                 completed_html,
+                 index_html,
                  dashboard_html,
                  eventDetails_html,
                  events_html,
-                 ongoing_html,
-                 upcoming_html
+                 chatbot_html,
                  ]
 
     read_files_in_directory(".", file_list)
