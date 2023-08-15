@@ -114,17 +114,21 @@ def getChatbotResponse(user_input):
     if user_input == "See upcoming events":
         response_text = "You chose option 1: See upcoming events."
         redirect_link = url_for('all_in_one', category='upcoming')
+        redirect_text = "View upcoming events"
     elif user_input == "See completed events":
         response_text = "You chose option 2: See completed events."
         redirect_link = url_for('all_in_one', category='completed')
+        redirect_text = "View completed events"
     elif user_input == "Visit the events page":
         response_text = "You chose option 3: Visit the events page."
+        redirect_link = url_for('events')
+        redirect_text = "Visit the events page"
 
     audio_text = f"{response_text} Click the link below to proceed to your chosen option."
 
     response_audio = getSpeech(audio_text)
 
-    return response_text, redirect_link, response_audio
+    return response_text, redirect_link, redirect_text, response_audio
 
 
 @app.route('/chatbot', methods=['GET', 'POST'])
@@ -140,12 +144,13 @@ def chatbot():
 
     if request.method == 'POST':
         user_input = request.form['user_input']
-        response_text, redirect_link, response_audio = getChatbotResponse(
+        response_text, redirect_link, redirect_text, response_audio = getChatbotResponse(
             user_input)
 
         return render_template('chatbot.html', questionnaire=questionnaire,
                                user_input=user_input, response_text=response_text,
-                               redirect_link=redirect_link, response_audio=response_audio)
+                               redirect_link=redirect_link, redirect_text=redirect_text,
+                               response_audio=response_audio)
 
     return render_template('chatbot.html', questionnaire=questionnaire, speech_base64=speech_base64)
 
