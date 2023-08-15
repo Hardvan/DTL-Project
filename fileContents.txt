@@ -1,5 +1,5 @@
 app.py:
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
 
@@ -88,28 +88,45 @@ def eventDetail():
 # Chatbot functions
 def getChatbotResponse(user_input):
 
-    options = {
-        "1": "You chose option 1: See upcoming events.",
-        "2": "You chose option 2: See completed events.",
-        # Add more options here
-    }
+    response_text = "Sorry, I don't understand. Please try again."
+    response_no = -1
 
-    default_response = "You have chosen an invalid option. Please try again."
+    if user_input == "See upcoming events":
+        response_text = "You chose option 1: See upcoming events."
+        response_no = 1
+    elif user_input == "See completed events":
+        response_text = "You chose option 2: See completed events."
+        response_no = 2
+    elif user_input == "Visit the events page":
+        response_text = "You chose option 3: Visit the events page."
+        response_no = 3
 
-    response = options.get(user_input, default_response)
-    return response
+    return response_text, response_no
 
 
 @app.route('/chatbot', methods=['GET', 'POST'])
 def chatbot():
 
+    # Question : Options dictionary
+    questionnaire = {"What would you like to do?": ["See upcoming events",
+                                                    "See completed events",
+                                                    "Visit the events page"]}
+
     if request.method == 'POST':
         user_input = request.form['user_input']
-        bot_response = getChatbotResponse(user_input)
+        response_text, response_no = getChatbotResponse(user_input)
 
-        return render_template('chatbot.html', user_input=user_input, bot_response=bot_response)
+        if response_no == 1:
+            return redirect(url_for('all_in_one', category='upcoming'))
+        elif response_no == 2:
+            return redirect(url_for('all_in_one', category='completed'))
+        elif response_no == 3:
+            return redirect(url_for('events'))
 
-    return render_template('chatbot.html')
+        return render_template('chatbot.html', questionnaire=questionnaire,
+                               user_input=user_input, response_text=response_text)
+
+    return render_template('chatbot.html', questionnaire=questionnaire)
 
 
 if __name__ == '__main__':
@@ -163,34 +180,6 @@ def getPostsData(collection, REAL_DATA):
     posts_dict = formatData(posts_dict)
 
     return posts_dict
-
-
-templates/index.html:
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DTL Project</title>
-  </head>
-
-  <body>
-    <h1>DTL Project</h1>
-
-    <ul>
-      {% for post in posts_dict %}
-      <li>
-        <h2>{{ post.title }}</h2>
-        <p>Desc: {{ post.desc }}</p>
-        <p>Date: {{ post.date_str }}</p>
-        <p>Club Name: {{ post.clubName }}</p>
-        <p>Category: {{ post.category }}</p>
-        <img src="{{ post.image }}" alt="Event Image" style="width: 420px" />
-      </li>
-      {% endfor %}
-    </ul>
-  </body>
-</html>
 
 
 templates/dashboard.html:
@@ -263,6 +252,140 @@ templates/dashboard.html:
     </section>
   </body>
 </html>
+
+
+templates/chatbot.html:
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chatbot</title>
+
+    <!-- Custom CSS -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='styles/chatbot.css') }}"
+    />
+  </head>
+
+  <body>
+    <!-- Chatbot section -->
+    <section class="chatbot">
+      <h2>Chatbot</h2>
+
+      <!-- Form -->
+      <form method="POST" action="/chatbot">
+        <label for="user_input">Hello there! How can I assist you today?</label>
+        <select name="user_input" id="user_input">
+          {% for question, choices in questionnaire.items() %}
+          <option value="{{ question }}" disabled selected>
+            {{ question }}
+          </option>
+          {% for choice in choices %}
+          <option value="{{ choice }}">{{ choice }}</option>
+          {% endfor %} {% endfor %}
+        </select>
+        <button type="submit">Get Assistance</button>
+      </form>
+
+      <!-- Display user input and bot response -->
+      {% if user_input %}
+      <div class="conversation">
+        <div class="user-message">
+          <p>You: {{ user_input }}</p>
+        </div>
+        <div class="bot-message">
+          <p>Bot Message: {{ response_text }}</p>
+        </div>
+      </div>
+      {% endif %}
+    </section>
+  </body>
+</html>
+
+
+static/styles/chatbot.css:
+/* styles/chatbot.css */
+
+/* Styling for the chatbot section */
+.chatbot {
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+/* Styling for the form */
+.chatbot form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.chatbot label {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.chatbot select {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.chatbot button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.chatbot button:hover {
+  background-color: #0056b3;
+}
+
+/* Styling for the conversation */
+.conversation {
+  margin-top: 20px;
+}
+
+.user-message,
+.bot-message {
+  padding: 10px;
+  border-radius: 5px;
+  margin: 5px;
+}
+
+.user-message {
+  background-color: #f0f8ff;
+  text-align: left;
+}
+
+.bot-message {
+  background-color: #e0ffe0;
+  text-align: right;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .chatbot section {
+    margin: 10px;
+    padding: 10px;
+  }
+}
+
+
+static/javaScript/chatbot.js:
 
 
 templates/eventDetails.html:
@@ -552,48 +675,6 @@ templates/events.html:
       type="text/javascript"
       src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.js"
     ></script>
-  </body>
-</html>
-
-
-templates/chatbot.html:
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Chatbot</title>
-
-    <!-- Custom CSS -->
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="{{ url_for('static', filename='styles/chatbot.css') }}"
-    />
-  </head>
-
-  <body>
-    <!-- Chatbot section -->
-    <section class="chatbot">
-      <h2>Chatbot</h2>
-
-      <!-- Form -->
-      <form method="POST" action="/chatbot">
-        <label for="user_input">What do you want to do today?</label>
-        <select name="user_input" id="user_input">
-          <option value="1">See upcoming events</option>
-          <option value="2">See completed events</option>
-          <!-- Add more options here -->
-        </select>
-        <button type="submit">Submit</button>
-      </form>
-
-      <!-- Display user input and bot response -->
-      {% if user_input %}
-      <p>User input: {{ user_input }}</p>
-      <p>Bot response: {{ bot_response }}</p>
-      {% endif %}
-    </section>
   </body>
 </html>
 

@@ -20,7 +20,7 @@
 
       <!-- Form -->
       <form method="POST" action="/chatbot">
-        <label for="user_input">What do you want to do today?</label>
+        <label for="user_input">Hello there! How can I assist you today?</label>
         <select name="user_input" id="user_input">
           {% for question, choices in questionnaire.items() %}
           <option value="{{ question }}" disabled selected>
@@ -30,13 +30,19 @@
           <option value="{{ choice }}">{{ choice }}</option>
           {% endfor %} {% endfor %}
         </select>
-        <button type="submit">Submit</button>
+        <button type="submit">Get Assistance</button>
       </form>
 
       <!-- Display user input and bot response -->
       {% if user_input %}
-      <p>User input: {{ user_input }}</p>
-      <p>Bot response: {{ response_text }}</p>
+      <div class="conversation">
+        <div class="user-message">
+          <p>You: {{ user_input }}</p>
+        </div>
+        <div class="bot-message">
+          <p>Bot Message: {{ response_text }}</p>
+        </div>
+      </div>
       {% endif %}
     </section>
   </body>

@@ -52,15 +52,15 @@ if __name__ == "__main__":
     post_handler_py = "PostHandler.py"
 
     # .html files
-    index_html = "templates/index.html"
     dashboard_html = "templates/dashboard.html"
+    chatbot_html = "templates/chatbot.html"
     eventDetails_html = "templates/eventDetails.html"
     events_html = "templates/events.html"
-    chatbot_html = "templates/chatbot.html"
 
     # .css files
-    index_css = "static/css/index.css"
     chatbot_css = "static/styles/chatbot.css"
+    dashboard_css = "static/styles/dashboard.css"
+    events_css = "static/styles/events.css"
 
     # .js files
     index_js = "static/js/index.js"
@@ -68,11 +68,12 @@ if __name__ == "__main__":
 
     file_list = [app_py,
                  post_handler_py,
-                 index_html,
                  dashboard_html,
+                 chatbot_html,
+                 chatbot_css,
+                 chatbot_js,
                  eventDetails_html,
                  events_html,
-                 chatbot_html,
                  ]
 
     read_files_in_directory(".", file_list)
