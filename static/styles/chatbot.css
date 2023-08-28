@@ -1,13 +1,7 @@
-/* styles/chatbot.css */
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap");
 
 /* Styling for the chatbot section */
 
-.chatbot-bckg{
-
-  background-image:url("../images/chatbot-background.png") ;
-  opacity: 90%;
-
-}
 .chatbot {
   margin: 20px;
   padding: 20px;
@@ -16,6 +10,12 @@
   background-color: #f9f9f9;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   text-align: center;
+  font-family: "Roboto", sans-serif;
+}
+
+.chatbot-bckg {
+  background-image: url("../images/chatbot-background.png");
+  opacity: 90%;
 }
 
 /* Styling for the form */
@@ -23,29 +23,30 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 20px;
+  margin-top: 30px;
 }
 
 .chatbot label {
-  font-size: 18px;
+  font-size: 20px;
   margin-bottom: 10px;
 }
 
 .chatbot select {
-  padding: 8px;
+  padding: 12px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  font-size: 16px;
+  font-size: 18px;
 }
 
 .chatbot button {
-  margin-top: 10px;
+  margin-top: 15px;
   padding: 10px 20px;
   background-color: #007bff;
   color: #fff;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  font-size: 18px;
 }
 
 .chatbot button:hover {
@@ -65,6 +66,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  font-size: 16px;
 }
 
 .user-message {
