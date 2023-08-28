@@ -1,6 +1,13 @@
 /* styles/chatbot.css */
 
 /* Styling for the chatbot section */
+
+.chatbot-bckg{
+
+  background-image:url("../Images/chatbot-background.png") ;
+  opacity: 90%;
+
+}
 .chatbot {
   margin: 20px;
   padding: 20px;
