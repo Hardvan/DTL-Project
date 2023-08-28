@@ -131,8 +131,17 @@ def getChatbotResponse(user_input):
         response_text = "You chose option 3: Visit the events page."
         redirect_link = url_for('events')
         redirect_text = "Visit the events page"
+    elif user_input == "Visit the official RVCE website":
+        response_text = "You chose option 4: Visit the official RVCE website."
+        redirect_link = "https://www.rvce.edu.in/"
+        redirect_text = "Visit the official RVCE website"
+    elif user_input == "Get Placement Statistics":
+        response_text = "You chose option 5: Get Placement Statistics."
+        redirect_link = "https://rvce.edu.in/placement-statistics"
+        redirect_text = "Get Placement Statistics"
 
-    audio_text = f"{response_text} Click the link below to proceed to your chosen option."
+    audio_text = f"""{response_text} Click the link below to proceed to your chosen option.
+    If you would like to choose another option, please select it from the dropdown menu given above."""
 
     response_audio = getSpeech(audio_text)
 
@@ -145,7 +154,10 @@ def chatbot():
     # Question : Options dictionary
     questionnaire = {"What would you like to do?": ["See upcoming events",
                                                     "See completed events",
-                                                    "Visit the events page"]}
+                                                    "Visit the events page",
+                                                    "Visit the official RVCE website",
+                                                    "Get Placement Statistics"
+                                                    ]}
 
     hello = "Hello, I am the DTL Chatbot of RVCE. How can I help you today?"
     speech_base64 = getSpeech(hello)

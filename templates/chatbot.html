@@ -64,7 +64,7 @@
           </audio>
           <p>Bot Message: {{ response_text }}</p>
           {% if redirect_link %}
-          <a href="{{ redirect_link }}">{{redirect_text}}</a>
+          <a target="_blank" href="{{ redirect_link }}">{{redirect_text}}</a>
           {% endif %}
         </div>
       </div>

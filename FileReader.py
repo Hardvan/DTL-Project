@@ -54,12 +54,12 @@ if __name__ == "__main__":
     # .html files
     dashboard_html = "templates/dashboard.html"
     chatbot_html = "templates/chatbot.html"
-    eventDetails_html = "templates/eventDetails.html"
     events_html = "templates/events.html"
+    eventDetails_html = "templates/eventDetails.html"
 
     # .css files
-    chatbot_css = "static/styles/chatbot.css"
     dashboard_css = "static/styles/dashboard.css"
+    chatbot_css = "static/styles/chatbot.css"
     events_css = "static/styles/events.css"
 
     # .js files
@@ -67,8 +67,11 @@ if __name__ == "__main__":
     chatbot_js = "static/javaScript/chatbot.js"
 
     file_list = [
+        app_py,
+        dashboard_html,
         chatbot_html,
-        chatbot_css
+        events_html,
+        eventDetails_html
     ]
 
     read_files_in_directory(".", file_list)
