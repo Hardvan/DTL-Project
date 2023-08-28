@@ -123,20 +123,24 @@ def getChatbotResponse(user_input):
         response_text = "You chose option 1: See upcoming events."
         redirect_link = url_for('all_in_one', category='upcoming')
         redirect_text = "View upcoming events"
+    elif user_input == "See ongoing events":
+        response_text = "You chose option 2: See ongoing events."
+        redirect_link = url_for('all_in_one', category='ongoing')
+        redirect_text = "View ongoing events"
     elif user_input == "See completed events":
-        response_text = "You chose option 2: See completed events."
+        response_text = "You chose option 3: See completed events."
         redirect_link = url_for('all_in_one', category='completed')
         redirect_text = "View completed events"
     elif user_input == "Visit the events page":
-        response_text = "You chose option 3: Visit the events page."
+        response_text = "You chose option 4: Visit the events page."
         redirect_link = url_for('events')
         redirect_text = "Visit the events page"
     elif user_input == "Visit the official RVCE website":
-        response_text = "You chose option 4: Visit the official RVCE website."
+        response_text = "You chose option 5: Visit the official RVCE website."
         redirect_link = "https://www.rvce.edu.in/"
         redirect_text = "Visit the official RVCE website"
     elif user_input == "Get Placement Statistics":
-        response_text = "You chose option 5: Get Placement Statistics."
+        response_text = "You chose option 6: Get Placement Statistics."
         redirect_link = "https://rvce.edu.in/placement-statistics"
         redirect_text = "Get Placement Statistics"
 
@@ -153,6 +157,7 @@ def chatbot():
 
     # Question : Options dictionary
     questionnaire = {"What would you like to do?": ["See upcoming events",
+                                                    "See ongoing events",
                                                     "See completed events",
                                                     "Visit the events page",
                                                     "Visit the official RVCE website",

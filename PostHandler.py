@@ -17,7 +17,7 @@ def formatData(posts_dict):
         if post['date'].date() > today:
             post['category'] = 'Upcoming'
         elif post['date'].date() == today:
-            post['category'] = 'Today'
+            post['category'] = 'Ongoing'
         else:
             post['category'] = 'Completed'
 
