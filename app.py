@@ -73,17 +73,24 @@ def events():
 
 @app.route('/events/all_in_one/<category>')
 def all_in_one(category):
+
+    # category = upcoming/ongoing/completed
+
     posts_dict = PostHandler.getPostsData(collection, REAL_DATA)
     return render_template('all_in_one.html', posts_dict=posts_dict, category=category)
 
 
 @app.route('/eventDetail')
 def eventDetail():
+
+    # Get the event details from the URL
+
     title = request.args.get('title')
     date = request.args.get('date')
     des = request.args.get('des')
     image = request.args.get('image')
     host = request.args.get('host')
+
     return render_template('eventDetails.html', title=title, date=date, des=des, image=image, host=host)
 
 
@@ -108,6 +115,7 @@ def getSpeech(result_text):
 
 def getChatbotResponse(user_input):
 
+    # Default values
     response_text = "Sorry, I don't understand. Please try again."
     redirect_link = None
 
@@ -139,7 +147,7 @@ def chatbot():
                                                     "See completed events",
                                                     "Visit the events page"]}
 
-    hello = "Hello, I am the DTL Chatbot. How can I help you today?"
+    hello = "Hello, I am the DTL Chatbot of RVCE. How can I help you today?"
     speech_base64 = getSpeech(hello)
 
     if request.method == 'POST':
