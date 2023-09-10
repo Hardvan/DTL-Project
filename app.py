@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
-# from gtts import gTTS
+from gtts import gTTS
 import io
 import base64
 
@@ -85,15 +85,6 @@ def all_in_one(category):
     return render_template('all_in_one.html', posts_dict=posts_dict, category=category)
 
 
-@app.route('/clubs/all_in_one_clubs/<category>')
-def all_in_one_clubs(category):
-
-    # category = upcoming/ongoing/completed
-
-    posts_dict = PostHandler.getPostsDataClubs(collection, REAL_DATA)
-    return render_template('all_in_one_clubs.html', posts_dict=posts_dict, category=category)
-
-
 @app.route('/eventDetail')
 def eventDetail():
 
@@ -106,6 +97,18 @@ def eventDetail():
     host = request.args.get('host')
 
     return render_template('eventDetails.html', title=title, date=date, des=des, image=image, host=host)
+
+
+@app.route('/clubs')
+def clubs_page():
+    return render_template('clubs.html')
+
+
+@app.route('/clubs/all_in_one_clubs/<category>')
+def all_in_one_clubs(category):
+
+    posts_dict = PostHandler.getPostsDataClubs(collection, REAL_DATA)
+    return render_template('all_in_one_clubs.html', posts_dict=posts_dict, category=category)
 
 
 @app.route('/clubDetails')
@@ -122,7 +125,7 @@ def clubDetails():
 def getSpeech(result_text):
 
     language = 'en'
-    # speech = gTTS(text=result_text, lang=language, slow=False)
+    speech = gTTS(text=result_text, lang=language, slow=False)
 
     # On local machine
     # speech.save("speech.mp3")
@@ -202,11 +205,6 @@ def chatbot():
                                response_audio=response_audio)
 
     return render_template('chatbot.html', questionnaire=questionnaire, speech_base64=speech_base64)
-
-
-@app.route('/clubs')
-def clubs_page():
-    return render_template('clubs.html')
 
 
 if __name__ == '__main__':
