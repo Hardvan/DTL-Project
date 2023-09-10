@@ -18,7 +18,10 @@
     <section class="chatbot">
       <!-- <h2>Chatbot</h2> -->
 
-      <img src="../static/images/chat-bot-img.png" alt="" />
+      <img
+        src="{{ url_for('static', filename='images/chat-bot-img.png') }}"
+        alt=""
+      />
 
       <!-- Use hidden to hide the audio container -->
       <audio controls autoplay hidden>
