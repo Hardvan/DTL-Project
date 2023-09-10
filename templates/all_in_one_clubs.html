@@ -1,0 +1,86 @@
+{% extends 'clubs.html' %} {% block switchbar_section %}
+
+<!-- Switchbar Section -->
+<section id="switchbar_section">
+  <div id="switchbar_container">
+    {% if category == "cultural" %}
+    <a href="{{ url_for('all_in_one_clubs', category='cultural') }}">
+      <button class="left_btn switchbar_btn_up">Cultural</button></a
+    >
+    <a href="{{ url_for('all_in_one_clubs', category='technical') }}"
+      ><button class="switchbar_btn">Technical</button></a
+    >
+    <a href="{{ url_for('all_in_one_clubs', category='sports') }}"
+      ><button class="switchbar_btn right_btn">Sports</button></a
+    >
+
+    {% elif category == "technical" %}
+    <a href="{{ url_for('all_in_one_clubs', category='cultural') }}">
+      <button class="left_btn switchbar_btn">Cultural</button></a
+    >
+    <a href="{{ url_for('all_in_one_clubs', category='technical') }}"
+      ><button class="switchbar_btn_on">Technical</button></a
+    >
+    <a href="{{ url_for('all_in_one_clubs', category='sports') }}"
+      ><button class="switchbar_btn right_btn">Sports</button></a
+    >
+
+    {% elif category == "sports" %}
+    <a href="{{ url_for('all_in_one_clubs', category='cultural') }}">
+      <button class="left_btn switchbar_btn">Cultural</button></a
+    >
+    <a href="{{ url_for('all_in_one_clubs', category='technical') }}"
+      ><button class="switchbar_btn">Technical</button></a
+    >
+    <a href="{{ url_for('all_in_one_clubs', category='sports') }}"
+      ><button class="switchbar_btn_com right_btn">Sports</button></a
+    >
+
+    {% else %}
+    <p>Invalid (category = {{category}})</p>
+    {% endif %}
+  </div>
+</section>
+{% endblock %} {% block genEvents %}
+
+<!-- Landing Image -->
+<div class="add_img_margin">
+  <!-- <img src="https://i.ibb.co/X87YJ1B/Admin-block.jpg" class="img-fluid" alt="Wild Landscape" /> -->
+  {% if category == "cultural" %}
+  <h1 class="sub_title">Cultural Clubs</h1>
+  {% elif category == "technical" %}
+  <h1 class="sub_title">Technical Clubs</h1>
+  {% elif category == "sports" %}
+  <h1 class="sub_title">Sports Clubs</h1>
+  {% endif %}
+</div>
+
+<!-- Section Separator -->
+<div class="section_separator"></div>
+
+<!-- Sports -->
+<section id="sports_section">
+  <div class="addmargin row row-cols-1 row-cols-md-3 g-4">
+    {% for post in posts_dict if post.category == category %}
+    <div class="col">
+      <div class="card_align card">
+        <img
+          src="{{ post.image }}"
+          class="img_align_card card-img-top"
+          alt="Hollywood Sign on The Hill"
+        />
+        <div class="card-body">
+          <h5 class="card-title">{{ post.name }}</h5>
+          <div>
+            <a href="{{url_for('clubDetails', name=post.name )}}"
+              ><button class="explore_button">Explore</button></a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+{% endblock %}

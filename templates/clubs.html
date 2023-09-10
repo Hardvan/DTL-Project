@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Events</title>
+    <title>Clubs</title>
 
     <!-- Custom JS -->
     <script src="{{url_for('static',filename='javaScript/script.js')}}"></script>
@@ -72,12 +72,12 @@
           <button class="nav_button">Home</button></a
         >
         <a href="{{ url_for('events') }}">
-          <button class="nav_button">Events</button>
-        </a>
+          <button class="nav_button">Events</button></a
+        >
         <button class="nav_button">Achievments</button>
         <a href="{{ url_for('clubs_page') }}">
-          <button class="nav_button">clubs</button>
-        </a>
+          <button class="nav_button">clubs</button></a
+        >
         <button class="nav_button">Timeline</button>
         <!-- Admin Page Link-->
         <!-- Only after login -->
@@ -89,14 +89,14 @@
     {% block switchbar_section %}
     <section id="switchbar_section">
       <div id="switchbar_container">
-        <a href="{{ url_for('all_in_one', category='upcoming') }}">
-          <button class="switchbar_btn left_btn">Upcoming</button>
+        <a href="{{ url_for('all_in_one_clubs', category='cultural') }}">
+          <button class="switchbar_btn left_btn">Cultural</button>
         </a>
-        <a href="{{ url_for('all_in_one', category='ongoing') }}">
-          <button class="switchbar_btn">Ongoing</button>
+        <a href="{{ url_for('all_in_one_clubs', category='technical') }}">
+          <button class="switchbar_btn">Technical</button>
         </a>
-        <a href="{{ url_for('all_in_one', category='completed') }}">
-          <button class="switchbar_btn right_btn">Completed</button>
+        <a href="{{ url_for('all_in_one_clubs', category='sports') }}">
+          <button class="switchbar_btn right_btn">Sports</button>
         </a>
       </div>
     </section>
@@ -108,19 +108,14 @@
 
     <!-- Events -->
     <section>
-      <div class="sub_heading">
-        Welcome to the centralised event hub of RVCE
-      </div>
+      <div class="sub_heading">Discover the vibrant clubs of RVCE</div>
       <div class="gen_text">
-        Discover a world of captivating events organized by various clubs and
-        departments at our college. Stay informed about the latest happenings
-        and relive memorable past events through our comprehensive event
-        notification platform. Engage in stimulating discussions, showcase your
-        talents, and partake in friendly competitions. Whether you're interested
-        in academic pursuits, artistic expressions, or athletic endeavors, our
-        website is your gateway to a plethora of enriching experiences. Stay
-        connected, get involved, and make the most of your college journey as we
-        keep you updated on all the exciting events taking place on campus.
+        RVCE offers a vibrant array of club activities to complement your
+        college experience. Whether you're into technology, arts, sports,
+        entrepreneurship, or community service, we have clubs to match your
+        interests. These clubs provide opportunities for personal growth, skill
+        development, and building lasting friendships. Join RVCE's club culture
+        and make the most of your college journey!
       </div>
     </section>
 
@@ -129,21 +124,21 @@
       <section id="type_1_carousel_3">
         <div class="firstCarousel_3">
           <img
-            src="https://i.ibb.co/ykRbtKR/8thMile.jpg"
+            src="https://i.ibb.co/H2M07fj/sportsz.jpg"
             alt="Image not found"
             id="img1_3"
           />
         </div>
         <div id="midCarousel">
           <img
-            src="https://i.ibb.co/gjpCPTP/fest.jpg"
+            src="https://i.ibb.co/fk2wGyy/debsoc.jpg"
             alt="Image not found"
             id="img2_3"
           />
         </div>
         <div class="firstCarousel_3">
           <img
-            src="https://i.ibb.co/nBSM2Z1/marathon.jpg"
+            src="https://i.ibb.co/7YHHyY2/ashwa.jpg"
             alt="Image not found"
             id="img3_3"
           />

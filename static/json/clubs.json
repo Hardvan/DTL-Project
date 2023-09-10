@@ -1,0 +1,33 @@
+{
+  "posts": [
+    {
+      "name": "Debsoc",
+      "category": "cultural",
+      "President": "Akash Shetty",
+      "Intro": "DEBSOC, the Debating Society of RV College of Engineering, is a student-run organization that promotes the art of debate and critical thinking. The society was founded in 1963 and has since produced some of the finest debaters in the country. DEBSOC is affiliated to the Indian Parliamentary Debate Association (IADA) and the World Universities Debating Championship (WUDC).",
+      "Prompt": "The society organizes a number of debate tournaments throughout the year, including the RVCE Inter-Collegiate Debate Tournament, the RVCE Open Debate Tournament, and the RVCE Parliamentary Debate Tournament. DEBSOC also sends teams to represent RVCE at national and international tournaments. In addition to debating, DEBSOC also organizes a number of other activities, such as workshops, lectures, and discussions on current affairs. The society also has a vibrant alumni network that provides support and guidance to current members.DEBSOC is a great way to develop your critical thinking skills, learn how to articulate your ideas, and meet new people. If you are interested in debating or public speaking, then DEBSOC is the perfect place for you.",
+      "Achievements": "DEBSOC RVCE has won several awards at national and international debate tournaments, including the Best New Team Award in the 13th All Asian Debate Championship in Langkawi, Malaysia, the Best Speaker Award at the RVCE Inter-Collegiate Debate Tournament in 2022, and the Best Overall Team award at the RVCE Open Debate Tournament in 2022. They have also sent teams to represent RVCE at the World Universities Debating Championship (WUDC) in 2019, 2021, and 2023.",
+      "Registration": "https://www.instagram.com/rvcedebsoc/?hl=en",
+      "reg_open": "1",
+      "deadline": "10/10/2023",
+      "image": "https://i.ibb.co/fk2wGyy/debsoc.jpg",
+      "insta": "https://www.instagram.com/rvcedebsoc/?hl=en",
+      "fb": "https://www.facebook.com/rvcedebsoc/",
+      "linkedin": "https://www.linkedin.com/in/rvce-debating-society-163890187/?originalSubdomain=in",
+      "gallery": [
+        {
+          "image": "https://i.ibb.co/Kbtk5kL/deb4.jpg"
+        },
+        {
+          "image": "https://i.ibb.co/922n8NF/deb3.jpg"
+        },
+        {
+          "image": "https://i.ibb.co/z5Bk45k/deb2.jpg"
+        },
+        {
+          "image": "https://i.ibb.co/7kmfSpd/deb1.jpg"
+        }
+      ]
+    }
+  ]
+}
