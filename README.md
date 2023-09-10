@@ -2,6 +2,8 @@
 
 This repository contains the code for the DTL project.
 
+## [Link to the Website](https://dtl-project-rvce.onrender.com/)
+
 ## How to Contribute
 
 1. Fork the repository by clicking on the `Fork` button on the top of the page. This will create a copy of this repository in your account.
