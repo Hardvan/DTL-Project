@@ -1,0 +1,76 @@
+{% extends 'events.html' %} {% block switchbar_section %}
+<!-- Landing Image -->
+{% for post in posts_dict if post.name == name %}
+<div class="add_img_margin_new">
+  <img src="{{ post.image }}" class="img-fluid" alt="Wild Landscape" />
+</div>
+{% endfor %} {% endblock %} {% block genEvents %} {% for post in posts_dict if
+post.name == name %}
+<h1 class="sub_title_det" style="margin-top: 6px">{{ post.name }}</h1>
+<div class="description">
+  <h5>{{ post.Intro }}</h5>
+  <h2 style="margin-top: 40px; margin-bottom: 40px">About Us</h2>
+  <h5>{{ post.Prompt }}</h5>
+  <h2 style="margin-top: 40px; margin-bottom: 40px">Gallery</h2>
+  <div class="addmargin row row-cols-1 row-cols-md-3 g-4">
+    {% for image in post.gallery %}
+    <div class="col">
+      <div class="card_align card" style="height: 200px">
+        <img
+          src="{{ image.image }}"
+          class="img_align_card card-img-top"
+          alt="Hollywood Sign on The Hill"
+        />
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  <h2 style="margin-top: 40px; margin-bottom: 40px">Achievements</h2>
+  <h5>{{ post.Achievements }}</h5>
+  {% if post.reg_open == "0" %}
+  <h2 style="margin-top: 40px; margin-bottom: 40px">
+    Registrations are temporarily closed
+  </h2>
+  {% endif %} {% if post.reg_open == "1" %}
+  <h2 style="margin-top: 40px; margin-bottom: 40px">Registrations</h2>
+  <img
+    src="{{ url_for('static',filename='Images/pocket-watch.gif') }}"
+    alt=""
+    class="gif_adjust"
+  />
+
+  <h5 style="display: inline-block; text-align: center; margin-top: 20px">
+    Deadline: {{ post.deadline }}
+  </h5>
+  <p>{{ des }}</p>
+  <img
+    src="{{ url_for('static',filename='Images/location.gif') }}"
+    alt=""
+    class="gif_adjust"
+  />
+  <h6 style="display: inline-block">RVCE</h6>
+  <div>
+    <a href="{{ post.Registration }}">
+      <button
+        class="explore_button_bigger"
+        style="margin-top: 40px; margin-bottom: 40px"
+      >
+        Register
+      </button>
+    </a>
+  </div>
+  {% endif %}
+  <h2>Relevant Links</h2>
+  <ul>
+    <li>
+      <a href="{{ post.insta }}"><h5>Instagram</h5></a>
+    </li>
+    <li>
+      <a href="{{ post.fb }}"><h5>Facebook</h5></a>
+    </li>
+    <li>
+      <a href="{{ post.linkedin }}"><h5>LinkedIn</h5></a>
+    </li>
+  </ul>
+</div>
+{% endfor %} {% endblock %}
