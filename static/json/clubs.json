@@ -28,6 +28,205 @@
           "image": "https://i.ibb.co/7kmfSpd/deb1.jpg"
         }
       ]
+    },
+    {
+      "name": "Team Ashwa",
+      "category": "technical",
+      "President": "Samantha Johnson",
+      "Intro": "Team Ashwa is the technical team at RV College of Engineering dedicated to the field of robotics and automation. We aim to develop cutting-edge robotic systems and compete in various national and international competitions.",
+      "Prompt": "Our team participates in prestigious competitions like RoboRacers, where we design and build autonomous racing robots, and the International Robotics Challenge. We also organize workshops and seminars to promote robotics knowledge within the college community.",
+      "Achievements": "Team Ashwa has consistently ranked in the top three at RoboRacers and received recognition for our innovative robot designs. In 2022, we won the Gold Award at the International Robotics Challenge.",
+      "Registration": "https://www.example.com/teamashwa",
+      "reg_open": "1",
+      "deadline": "10/15/2023",
+      "image": "https://rvce.edu.in/sites/all/themes/tb_rave/images/teams/ashwa.jpg",
+      "insta": "https://www.instagram.com/teamashwa",
+      "fb": "https://www.facebook.com/teamashwa",
+      "linkedin": "https://www.linkedin.com/company/teamashwa",
+      "gallery": [
+        {
+          "image": "https://i.ibb.co/Kbtk5kL/team-ashwa-1.jpg"
+        },
+        {
+          "image": "https://i.ibb.co/922n8NF/team-ashwa-2.jpg"
+        },
+        {
+          "image": "https://i.ibb.co/z5Bk45k/team-ashwa-3.jpg"
+        }
+      ]
+    },
+    {
+      "name": "Team Chimera",
+      "category": "technical",
+      "President": "Rajesh Patel",
+      "Intro": "Team Chimera is a dynamic technical group at RV College of Engineering specializing in software development, AI, and machine learning. We're passionate about coding and innovation.",
+      "Prompt": "Our team organizes hackathons, coding competitions, and AI workshops throughout the year. We also collaborate on research projects with faculty and industry experts.",
+      "Achievements": "Team Chimera has won numerous coding competitions, and our members have published research papers in top conferences. We are known for our innovative AI projects, including a self-driving car prototype.",
+      "Registration": "https://www.example.com/teamchimera",
+      "reg_open": "1",
+      "deadline": "10/20/2023",
+      "image": "https://rvce.edu.in/sites/all/themes/tb_rave/images/teams/chimera.jpg",
+      "insta": "https://www.instagram.com/teamchimera",
+      "fb": "https://www.facebook.com/teamchimera",
+      "linkedin": "https://www.linkedin.com/company/teamchimera",
+      "gallery": [
+        {
+          "image": "https://i.ibb.co/Kbtk5kL/team-chimera-1.jpg"
+        },
+        {
+          "image": "https://i.ibb.co/922n8NF/team-chimera-2.jpg"
+        },
+        {
+          "image": "https://i.ibb.co/z5Bk45k/team-chimera-3.jpg"
+        }
+      ]
+    },
+    {
+      "name": "Team Garuda",
+      "category": "technical",
+      "President": "Emily Wang",
+      "Intro": "Team Garuda is the aerospace and aviation enthusiast's paradise at RV College of Engineering. We design and build drones, rockets, and other flying machines.",
+      "Prompt": "Our team participates in national aerospace competitions and airshows. We offer hands-on experience in building and flying unmanned aerial vehicles (UAVs) and rockets.",
+      "Achievements": "Team Garuda has won first place at the National Drone Challenge and received recognition for our rocket launches at the AeroFest. Our UAVs have been featured in aviation magazines.",
+      "Registration": "https://www.example.com/teamgaruda",
+      "reg_open": "0",
+      "deadline": "10/10/2023",
+      "image": "https://rvce.edu.in/sites/all/themes/tb_rave/images/teams/garuda.jpg",
+      "insta": "https://www.instagram.com/teamgaruda",
+      "fb": "https://www.facebook.com/teamgaruda",
+      "linkedin": "https://www.linkedin.com/company/teamgaruda",
+      "gallery": [
+        {
+          "image": "https://i.ibb.co/Kbtk5kL/team-garuda-1.jpg"
+        },
+        {
+          "image": "https://i.ibb.co/922n8NF/team-garuda-2.jpg"
+        },
+        {
+          "image": "https://i.ibb.co/z5Bk45k/team-garuda-3.jpg"
+        }
+      ]
+    },
+    {
+      "name": "Team Helios",
+      "category": "technical",
+      "President": "Alex Rodriguez",
+      "Intro": "Team Helios is dedicated to renewable energy and sustainable technologies. We design and build solar-powered devices and promote eco-friendly practices.",
+      "Prompt": "Our team works on solar car projects, solar-powered chargers, and energy-efficient devices. We also conduct awareness campaigns on environmental conservation.",
+      "Achievements": "Team Helios won the Solar Car Challenge in 2022 and received recognition for our innovative solar-powered gadgets. We are committed to a greener future.",
+      "Registration": "https://www.example.com/teamhelios",
+      "reg_open": "1",
+      "deadline": "10/25/2023",
+      "image": "https://rvce.edu.in/sites/all/themes/tb_rave/images/teams/helios.jpg",
+      "insta": "https://www.instagram.com/teamhelios",
+      "fb": "https://www.facebook.com/teamhelios",
+      "linkedin": "https://www.linkedin.com/company/teamhelios",
+      "gallery": [
+        {
+          "image": "https://i.ibb.co/Kbtk5kL/team-helios-1.jpg"
+        },
+        {
+          "image": "https://i.ibb.co/922n8NF/team-helios-2.jpg"
+        }
+      ]
+    },
+    {
+      "name": "Team Jatayu",
+      "category": "technical",
+      "President": "Priya Sharma",
+      "Intro": "Team Jatayu is the robotics and automation club at RV College of Engineering. We focus on creating innovative robotic solutions for real-world problems.",
+      "Prompt": "Our team participates in RoboWarriors and RobotRacers competitions. We also conduct robotics workshops for students interested in learning robotics.",
+      "Achievements": "Team Jatayu has won the RoboWarriors championship for three consecutive years. We are known for our agile and versatile robots.",
+      "Registration": "https://www.example.com/teamjatayu",
+      "reg_open": "1",
+      "deadline": "10/18/2023",
+      "image": "https://rvce.edu.in/sites/all/themes/tb_rave/images/teams/jatayu.jpg",
+      "insta": "https://www.instagram.com/teamjatayu",
+      "fb": "https://www.facebook.com/teamjatayu",
+      "linkedin": "https://www.linkedin.com/company/teamjatayu",
+      "gallery": [
+        {
+          "image": "https://i.ibb.co/Kbtk5kL/team-jatayu-1.jpg"
+        },
+        {
+          "image": "https://i.ibb.co/922n8NF/team-jatayu-2.jpg"
+        }
+      ]
+    },
+    {
+      "name": "Team Vyoma",
+      "category": "technical",
+      "President": "Rahul Gupta",
+      "Intro": "Team Vyoma is the astronomy and space exploration club at RV College of Engineering. We explore the cosmos and educate students about the wonders of space.",
+      "Prompt": "Our team organizes stargazing events, astrophotography workshops, and space-themed quizzes. We also build model rockets and telescopes for enthusiasts.",
+      "Achievements": "Team Vyoma has hosted successful stargazing nights and won the Astronomy Quiz Championship. We inspire future astronomers and space enthusiasts.",
+      "Registration": "https://www.example.com/teamvyoma",
+      "reg_open": "1",
+      "deadline": "10/12/2023",
+      "image": "https://rvce.edu.in/sites/all/themes/tb_rave/images/teams/vyoma.jpg",
+      "insta": "https://www.instagram.com/teamvyoma",
+      "fb": "https://www.facebook.com/teamvyoma",
+      "linkedin": "https://www.linkedin.com/company/teamvyoma",
+      "gallery": [
+        {
+          "image": "https://i.ibb.co/Kbtk5kL/team-vyoma-1.jpg"
+        },
+        {
+          "image": "https://i.ibb.co/922n8NF/team-vyoma-2.jpg"
+        }
+      ]
+    },
+    {
+      "name": "Raag",
+      "category": "cultural",
+      "President": "Neha Kapoor",
+      "Intro": "Raag is the cultural and music club at RV College of Engineering. We celebrate the diversity of Indian music and culture through various performances and events.",
+      "Prompt": "Our club hosts classical music concerts, dance recitals, and cultural festivals. We provide a platform for students to showcase their artistic talents.",
+      "Achievements": "Raag has received accolades for its classical music performances and dance showcases. We promote cultural diversity and unity through the arts.",
+      "Registration": "https://www.example.com/raag",
+      "reg_open": "1",
+      "deadline": "10/14/2023",
+      "image": "https://rvce.edu.in/sites/all/themes/tb_rave/images/teams/raag.jpg",
+      "insta": "https://www.instagram.com/raagrvce",
+      "fb": "https://www.facebook.com/raagrvce",
+      "linkedin": "https://www.linkedin.com/company/raagrvce",
+      "gallery": [
+        {
+          "image": "https://i.ibb.co/Kbtk5kL/raag-1.jpg"
+        },
+        {
+          "image": "https://i.ibb.co/922n8NF/raag-2.jpg"
+        },
+        {
+          "image": "https://i.ibb.co/z5Bk45k/raag-3.jpg"
+        }
+      ]
+    },
+    {
+      "name": "RV Quiz Corp",
+      "category": "technical",
+      "President": "Amit Gupta",
+      "Intro": "RV Quiz Corp is the ultimate quizzing and knowledge club at RV College of Engineering. We host challenging quizzes and trivia contests on a wide range of topics.",
+      "Prompt": "Our club conducts weekly quiz sessions, intercollegiate quiz competitions, and competitive exams training. We are a hub for quiz enthusiasts and trivia buffs.",
+      "Achievements": "RV Quiz Corp has won multiple intercollegiate quiz competitions and produced top-ranking quizzers. We also organize charity quizzes to give back to the community.",
+      "Registration": "https://www.example.com/rvquizcorp",
+      "reg_open": "1",
+      "deadline": "10/16/2023",
+      "image": "https://rvce.edu.in/sites/all/themes/tb_rave/images/teams/rvquizcorp.jpg",
+      "insta": "https://www.instagram.com/rvquizcorp",
+      "fb": "https://www.facebook.com/rvquizcorp",
+      "linkedin": "https://www.linkedin.com/company/rvquizcorp",
+      "gallery": [
+        {
+          "image": "https://i.ibb.co/Kbtk5kL/rv-quiz-corp-1.jpg"
+        },
+        {
+          "image": "https://i.ibb.co/922n8NF/rv-quiz-corp-2.jpg"
+        },
+        {
+          "image": "https://i.ibb.co/z5Bk45k/rv-quiz-corp-3.jpg"
+        }
+      ]
     }
   ]
 }
