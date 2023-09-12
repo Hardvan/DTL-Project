@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Find Location</title>
+
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      href="{{ url_for('static', filename='favicon/favicon2.png') }}"
+    />
+
+    <!-- Custom CSS -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='styles/find_location.css') }}"
+    />
+  </head>
+
+  <body>
+    <h1>{{ location_data.name }}</h1>
+    <p>{{ location_data.description }}</p>
+
+    <!-- Display the steps under location_data.steps as a list -->
+    <ol>
+      {% for step in location_data.steps %}
+      <li>{{ step }}</li>
+      {% endfor %}
+    </ol>
+
+    <a href="{{ location_data.location }}" target="_blank">View on Map</a>
+    <a href="{{ url_for('dashboard') }}">Back to Home</a>
+  </body>
+</html>

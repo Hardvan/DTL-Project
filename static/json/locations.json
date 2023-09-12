@@ -1,0 +1,62 @@
+{
+  "admin": {
+    "name": "Admin Block",
+    "description": "The administrative building of RVCE.",
+    "location": "https://g.co/kgs/PAEb3n",
+    "steps": [
+      "Enter the RVCE campus.",
+      "Head towards the main building.",
+      "The Admin Block is located on the left side."
+    ]
+  },
+  "canteen": {
+    "name": "Canteen",
+    "description": "The campus canteen serving delicious food.",
+    "location": "https://g.co/kgs/PAEb3n",
+    "steps": [
+      "Enter the RVCE campus.",
+      "The canteen is located near the main entrance."
+    ]
+  },
+  "hostel": {
+    "name": "Hostel Facilities",
+    "description": "Information about hostel facilities at RVCE.",
+    "location": "https://g.co/kgs/PAEb3n",
+    "steps": ["Enter the RVCE campus.", "Head towards the hostel area."]
+  },
+  "library": {
+    "name": "Library",
+    "description": "The RVCE library with a vast collection of books.",
+    "location": "https://g.co/kgs/PAEb3n",
+    "steps": [
+      "Enter the RVCE campus.",
+      "The library is located near the academic block."
+    ]
+  },
+  "admission": {
+    "name": "Admission Process",
+    "description": "Details about the admission process at RVCE.",
+    "location": "https://g.co/kgs/PAEb3n",
+    "steps": [
+      "Enter the RVCE campus.",
+      "Head towards the main building.",
+      "The admission office is located on the right side."
+    ]
+  },
+  "auditorium": {
+    "name": "Auditorium",
+    "description": "The RVCE auditorium for events and performances.",
+    "location": "https://g.co/kgs/PAEb3n",
+    "steps": [
+      "Enter the RVCE campus.",
+      "Head towards the main building.",
+      "The auditorium is located on the left side."
+    ]
+  },
+  "default": {
+    "name": "RVCE",
+    "description": "Rashtreeya Vidyalaya College of Engineering",
+    "location": "https://g.co/kgs/PAEb3n",
+    "steps": ["Enter the RVCE campus."]
+  }
+}

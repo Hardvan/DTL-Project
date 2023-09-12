@@ -4,6 +4,7 @@ from pymongo.server_api import ServerApi
 from gtts import gTTS
 import io
 import base64
+import json
 
 import os
 from dotenv import load_dotenv
@@ -140,6 +141,23 @@ def getSpeech(result_text):
     return speech_base64
 
 
+@app.route('/find_location/<location>')
+def find_location(location):
+
+    # Load data from JSON file
+    with open('static/json/locations.json') as f:
+        data = json.load(f)
+
+    # Check if location exists in the JSON file
+    location_data = None
+    if location in data:
+        location_data = data[location]
+    else:
+        location_data = data['default']
+
+    return render_template('find_location.html', location_data=location_data)
+
+
 def getChatbotResponse(user_input):
 
     # Default values
@@ -171,6 +189,31 @@ def getChatbotResponse(user_input):
         redirect_link = "https://rvce.edu.in/placement-statistics"
         redirect_text = "Get Placement Statistics"
 
+    elif user_input == "Find the admin block":
+        response_text = "You chose option 7: Find the admin block."
+        redirect_link = url_for('find_location', location='admin')
+        redirect_text = "Find the admin block"
+    elif user_input == "Find canteen":
+        response_text = "You chose option 8: Find canteen."
+        redirect_link = url_for('find_location', location='canteen')
+        redirect_text = "Find canteen"
+    elif user_input == "Enquire about hostel facilities":
+        response_text = "You chose option 9: Enquire about hostel facilities."
+        redirect_link = url_for('find_location', location='hostel')
+        redirect_text = "Enquire about hostel facilities"
+    elif user_input == "Find the library":
+        response_text = "You chose option 10: Find the library."
+        redirect_link = url_for('find_location', location='library')
+        redirect_text = "Find the library"
+    elif user_input == "Enquire about the admission process":
+        response_text = "You chose option 11: Enquire about the admission process."
+        redirect_link = url_for('find_location', location='admission')
+        redirect_text = "Enquire about the admission process"
+    elif user_input == "Find the auditorium":
+        response_text = "You chose option 12: Find the auditorium."
+        redirect_link = url_for('find_location', location='auditorium')
+        redirect_text = "Find the auditorium"
+
     audio_text = f"""{response_text} Opening the link for you.
     If not redirected automatically, please click the link below. 
     If you would like to choose another option, please select it from the dropdown menu given above."""
@@ -189,7 +232,14 @@ def chatbot():
                                                     "See completed events",
                                                     "Visit the events page",
                                                     "Visit the official RVCE website",
-                                                    "Get Placement Statistics"
+                                                    "Get Placement Statistics",
+
+                                                    "Find the admin block",
+                                                    "Find canteen",
+                                                    "Enquire about hostel facilities",
+                                                    "Find the library",
+                                                    "Enquire about the admission process",
+                                                    "Find the auditorium",
                                                     ]}
 
     hello = "Hello, I am the DTL Chatbot of RVCE. How can I help you today?"
