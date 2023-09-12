@@ -1,294 +1,208 @@
-app.py:
-from flask import Flask, render_template, request, redirect, url_for
-from pymongo.mongo_client import MongoClient
-from pymongo.server_api import ServerApi
-from gtts import gTTS
-import io
-import base64
-
-import os
-from dotenv import load_dotenv
-
-# Custom modules
-import PostHandler
-
-load_dotenv()
-
-
-app = Flask(__name__)
-
-# Testing Parameters
-REAL_DATA = False            # ? False: use sample data / True: use real data
-TEST_CONNECTION = False     # ? False: don't test connection / True: test connection
-
-
-# Define db and collection as placeholders
-db = None
-collection = None
-
-if REAL_DATA:
-    # MongoDB connection
-    mongodb_uri = os.getenv("MONGODB_URI")
-    client = MongoClient(mongodb_uri, server_api=ServerApi('1'))
-
-    # Select the database and collection
-    db = client['DTL_db']
-    collection = db['posts']
-
-    # Send a ping to confirm a successful connection
-    if TEST_CONNECTION:
-        try:
-            client.admin.command('ping')
-            print("✅ Pinged your deployment. You successfully connected to MongoDB!")
-        except Exception as e:
-            print(e)
-
-        # Add a sample document in the collection (don't add if already exists)
-        name = 'John Doe'
-        if collection.count_documents({'name': name}) == 0:
-            collection.insert_one({'name': name})
-            print("✅ Added a sample document in the collection.")
-
-        # Retrieve the sample document added
-        result = collection.find_one({'name': name})
-        print(result)
-        print("✅ Retrieved the sample document.")
-
-        # Delete the sample document added
-        collection.delete_one({'name': name})
-        print("✅ Deleted the sample document.")
-
-
-@app.route('/')
-def index():
-
-    posts_dict = PostHandler.getPostsData(collection, REAL_DATA)
-
-    return render_template('dashboard.html', posts_dict=posts_dict)
-
-
-@app.route('/dashboard')
-def dashboard():
-    return render_template('dashboard.html')
-
-
-@app.route('/events')
-def events():
-    return render_template('events.html')
-
-
-@app.route('/events/all_in_one/<category>')
-def all_in_one(category):
-
-    # category = upcoming/ongoing/completed
-
-    posts_dict = PostHandler.getPostsData(collection, REAL_DATA)
-    return render_template('all_in_one.html', posts_dict=posts_dict, category=category)
-
-
-@app.route('/eventDetail')
-def eventDetail():
-
-    # Get the event details from the URL
-
-    title = request.args.get('title')
-    date = request.args.get('date')
-    des = request.args.get('des')
-    image = request.args.get('image')
-    host = request.args.get('host')
-
-    return render_template('eventDetails.html', title=title, date=date, des=des, image=image, host=host)
-
-
-@app.route('/clubs')
-def clubs_page():
-    return render_template('clubs.html')
-
-
-@app.route('/clubs/all_in_one_clubs/<category>')
-def all_in_one_clubs(category):
-
-    posts_dict = PostHandler.getPostsDataClubs(collection, REAL_DATA)
-    return render_template('all_in_one_clubs.html', posts_dict=posts_dict, category=category)
-
-
-@app.route('/clubDetails')
-def clubDetails():
-
-    # Get the event details from the URL
-
-    name = request.args.get('name')
-    posts_dict = PostHandler.getPostsDataClubs(collection, REAL_DATA)
-    return render_template('clubDetails.html', name=name, posts_dict=posts_dict)
-
-
-# Chatbot functions
-def getSpeech(result_text):
-
-    language = 'en'
-    speech = gTTS(text=result_text, lang=language, slow=False)
-
-    # On local machine
-    # speech.save("speech.mp3")
-    # os.system("start speech.mp3")
-
-    # Save the speech to memory as bytes
-    speech_file = io.BytesIO()
-    speech.write_to_fp(speech_file)
-    speech_bytes = speech_file.getvalue()
-    speech_base64 = base64.b64encode(speech_bytes).decode('utf-8')
-
-    return speech_base64
-
-
-def getChatbotResponse(user_input):
-
-    # Default values
-    response_text = "Sorry, I don't understand. Please try again."
-    redirect_link = None
-
-    if user_input == "See upcoming events":
-        response_text = "You chose option 1: See upcoming events."
-        redirect_link = url_for('all_in_one', category='upcoming')
-        redirect_text = "View upcoming events"
-    elif user_input == "See ongoing events":
-        response_text = "You chose option 2: See ongoing events."
-        redirect_link = url_for('all_in_one', category='ongoing')
-        redirect_text = "View ongoing events"
-    elif user_input == "See completed events":
-        response_text = "You chose option 3: See completed events."
-        redirect_link = url_for('all_in_one', category='completed')
-        redirect_text = "View completed events"
-    elif user_input == "Visit the events page":
-        response_text = "You chose option 4: Visit the events page."
-        redirect_link = url_for('events')
-        redirect_text = "Visit the events page"
-    elif user_input == "Visit the official RVCE website":
-        response_text = "You chose option 5: Visit the official RVCE website."
-        redirect_link = "https://www.rvce.edu.in/"
-        redirect_text = "Visit the official RVCE website"
-    elif user_input == "Get Placement Statistics":
-        response_text = "You chose option 6: Get Placement Statistics."
-        redirect_link = "https://rvce.edu.in/placement-statistics"
-        redirect_text = "Get Placement Statistics"
-
-    audio_text = f"""{response_text} Click the link below to proceed to your chosen option.
-    If you would like to choose another option, please select it from the dropdown menu given above."""
-
-    response_audio = getSpeech(audio_text)
-
-    return response_text, redirect_link, redirect_text, response_audio
-
-
-@app.route('/chatbot', methods=['GET', 'POST'])
-def chatbot():
-
-    # Question : Options dictionary
-    questionnaire = {"What would you like to do?": ["See upcoming events",
-                                                    "See ongoing events",
-                                                    "See completed events",
-                                                    "Visit the events page",
-                                                    "Visit the official RVCE website",
-                                                    "Get Placement Statistics"
-                                                    ]}
-
-    hello = "Hello, I am the DTL Chatbot of RVCE. How can I help you today?"
-    speech_base64 = getSpeech(hello)
-
-    if request.method == 'POST':
-        user_input = request.form['user_input']
-        response_text, redirect_link, redirect_text, response_audio = getChatbotResponse(
-            user_input)
-
-        return render_template('chatbot.html', questionnaire=questionnaire,
-                               user_input=user_input, response_text=response_text,
-                               redirect_link=redirect_link, redirect_text=redirect_text,
-                               response_audio=response_audio)
-
-    return render_template('chatbot.html', questionnaire=questionnaire, speech_base64=speech_base64)
-
-
-if __name__ == '__main__':
-    app.run(debug=True)
-
-
-templates/chatbot.html:
+templates/find_location.html:
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Chatbot</title>
+    <title>Find Location</title>
+
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      href="{{ url_for('static', filename='favicon/favicon3.png') }}"
+    />
 
     <!-- Custom CSS -->
     <link
       rel="stylesheet"
       type="text/css"
-      href="{{ url_for('static', filename='styles/chatbot.css') }}"
+      href="{{ url_for('static', filename='styles/find_location.css') }}"
     />
   </head>
+  <body>
+    <div class="location-container">
+      <div class="location-details">
+        <h1 class="location-title">{{ location_data.name }}</h1>
+        <p class="location-description">{{ location_data.description }}</p>
 
-  <body class="chatbot-bckg">
-    <!-- Chatbot section -->
-    <section class="chatbot">
-      <!-- <h2>Chatbot</h2> -->
+        <!-- Display the steps under location_data.steps as a list -->
+        <h2 class="location-steps-title">Steps</h2>
+        <ul class="location-steps">
+          <!-- Use <ul> for an unordered list -->
+          {% for step in location_data.steps %}
+          <li class="location-step">{{ step }}</li>
+          {% endfor %}
+        </ul>
 
-      <img
-        src="https://d2vrvpw63099lz.cloudfront.net/do-i-need-a-chatbot/header-chat-box.png"
-        alt=""
-      />
-
-      <!-- Use hidden to hide the audio container -->
-      <audio controls autoplay hidden>
-        <source
-          src="data:audio/mpeg;base64,{{ speech_base64 }}"
-          type="audio/mpeg"
-        />
-        Your browser does not support the audio element.
-      </audio>
-
-      <!-- Form -->
-      <form method="POST" action="/chatbot">
-        <label for="user_input"
-          >Hello, I am the DTL Chatbot. How can I help you today?</label
+        <a class="location-back" href="{{ url_for('dashboard') }}"
+          >Back to Home</a
         >
-        <select name="user_input" id="user_input">
-          {% for question, choices in questionnaire.items() %}
-          <option value="{{ question }}" disabled selected>
-            {{ question }}
-          </option>
-          {% for choice in choices %}
-          <option value="{{ choice }}">{{ choice }}</option>
-          {% endfor %} {% endfor %}
-        </select>
-        <button type="submit">Get Assistance</button>
-      </form>
-
-      <!-- Display user input and bot response -->
-      {% if user_input %}
-      <div class="conversation">
-        <div class="user-message">
-          <p>You: {{ user_input }}</p>
-        </div>
-
-        <div class="bot-message">
-          <!-- Use hidden to hide the audio container -->
-          <audio controls autoplay hidden>
-            <source
-              src="data:audio/mpeg;base64,{{ response_audio }}"
-              type="audio/mpeg"
-            />
-            Your browser does not support the audio element.
-          </audio>
-          <p>Bot Message: {{ response_text }}</p>
-          {% if redirect_link %}
-          <a target="_blank" href="{{ redirect_link }}">{{redirect_text}}</a>
-          {% endif %}
-        </div>
       </div>
-      {% endif %}
-    </section>
+
+      <div class="location-map-section">
+        <h2 class="location-map-title">View in Map</h2>
+        <!-- Make the Google Map Image clickable -->
+        <a
+          class="location-map-link"
+          href="{{ location_data.location }}"
+          target="_blank"
+        >
+          <img
+            class="location-map-image"
+            src="https://cdn-icons-png.flaticon.com/512/355/355980.png"
+            alt="Google Map"
+          />
+        </a>
+      </div>
+    </div>
   </body>
 </html>
+
+
+static/styles/find_location.css:
+.location-container {
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin: 50px;
+}
+
+.location-details {
+  flex: 1;
+  text-align: left;
+  padding-right: 20px; /* Add space between left and right sections */
+}
+
+.location-title {
+  color: #333;
+}
+
+.location-description {
+  color: #666;
+  font-size: 1.2em;
+}
+
+.location-steps-title {
+  color: #333;
+  font-size: 1.2em;
+}
+
+.location-steps {
+  text-align: left;
+  margin: 20px 0;
+  margin-left: 20px;
+  padding: 0;
+}
+
+.location-step {
+  margin: 10px 0;
+  font-size: 1.1em;
+  background-color: #007bff; /* Background color */
+  color: #fff; /* Text color */
+  border-radius: 20px; /* Rounded corners */
+  padding: 10px 20px; /* Spacing around text */
+  display: inline-block; /* Make each step inline */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
+  transition: background-color 0.3s, color 0.3s; /* Smooth transitions */
+}
+.location-step:hover {
+  background-color: #0056b3; /* Darker background color on hover */
+  color: #fff; /* Text color */
+}
+
+.location-back {
+  display: block;
+  margin-top: 20px;
+  text-decoration: none;
+  color: #fff;
+  background-color: #007bff;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 1em;
+  transition: background-color 0.3s;
+  text-align: center;
+}
+
+.location-back:hover {
+  background-color: #0056b3;
+}
+
+.location-map-section {
+  flex: 1;
+  text-align: center;
+}
+
+.location-map-title {
+  color: #333;
+  font-size: 1.2em;
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.location-map-image {
+  max-width: 100%;
+  width: 50%;
+  height: auto;
+  border-radius: 5px;
+  transition: box-shadow 0.3s, transform 0.3s; /* Add transition for smooth animation */
+}
+
+/* Add hover styles */
+.location-map-image:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Add a shadow when hovering */
+  transform: scale(1.1); /* Increase the size by 10% on hover */
+}
+
+/* Responsive design */
+
+@media (max-width: 768px) {
+  .location-container {
+    flex-direction: column; /* Stack sections vertically */
+    align-items: center; /* Center align content */
+    margin: 20px; /* Adjust margin for spacing */
+  }
+
+  .location-details,
+  .location-map-section {
+    flex: 1;
+    text-align: center; /* Center align text */
+    width: 100%; /* Full width for both sections */
+    margin: 0; /* Remove margin for both sections */
+  }
+
+  .location-title,
+  .location-description,
+  .location-steps-title,
+  .location-steps,
+  .location-map-title,
+  .location-map-link,
+  .location-map-image {
+    width: 100%; /* Set width to 100% for text and images */
+    text-align: center; /* Center align text */
+  }
+
+  .location-back {
+    margin: 20px auto;
+    width: 80%;
+    text-align: center; /* Center-align text within the button */
+  }
+
+  .location-description,
+  .location-steps-title,
+  .location-steps {
+    font-size: 1em; /* Adjust font size */
+  }
+
+  .location-map-title,
+  .location-map-link,
+  .location-map-image {
+    margin-top: 10px; /* Adjust margin for spacing */
+  }
+
+  .location-map-image {
+    max-width: 80%; /* Reduce image width */
+  }
+}
 
 

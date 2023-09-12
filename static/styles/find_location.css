@@ -36,6 +36,17 @@
 .location-step {
   margin: 10px 0;
   font-size: 1.1em;
+  background-color: #007bff; /* Background color */
+  color: #fff; /* Text color */
+  border-radius: 20px; /* Rounded corners */
+  padding: 10px 20px; /* Spacing around text */
+  display: inline-block; /* Make each step inline */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
+  transition: background-color 0.3s, color 0.3s; /* Smooth transitions */
+}
+.location-step:hover {
+  background-color: #0056b3; /* Darker background color on hover */
+  color: #fff; /* Text color */
 }
 
 .location-back {

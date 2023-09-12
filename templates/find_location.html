@@ -26,11 +26,12 @@
 
         <!-- Display the steps under location_data.steps as a list -->
         <h2 class="location-steps-title">Steps</h2>
-        <ol class="location-steps">
+        <ul class="location-steps">
+          <!-- Use <ul> for an unordered list -->
           {% for step in location_data.steps %}
           <li class="location-step">{{ step }}</li>
           {% endfor %}
-        </ol>
+        </ul>
 
         <a class="location-back" href="{{ url_for('dashboard') }}"
           >Back to Home</a
