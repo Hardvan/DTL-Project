@@ -317,3 +317,109 @@ body {
   width: 80px;
   font-size: large;
 }
+
+@media (max-width: 768px) {
+  #logo_section {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .logo_right {
+    padding-right: 0; /* Remove right padding on smaller screens */
+    padding-left: 0;
+  }
+
+  .logo {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  #top_font {
+    font-size: 14px; /* Adjust font size for smaller screens */
+  }
+
+  #bottom_font {
+    font-size: 10px; /* Adjust font size for smaller screens */
+  }
+
+  #great_rv {
+    font-size: 22px; /* Adjust font size for smaller screens */
+    margin-top: 10px;
+  }
+
+  #since_rv {
+    margin-right: 0; /* Remove right margin on smaller screens */
+    margin-top: 10px;
+  }
+
+  /* Navbar */
+  /* Update the navbar styles for smaller screens */
+  #navbar_layout {
+    flex-direction: column;
+    align-items: center;
+    padding: 10px; /* Adjust padding for smaller screens */
+  }
+
+  .nav_button {
+    margin-bottom: 10px; /* Add space between buttons on smaller screens */
+  }
+
+  /* Switchbar */
+  /* Update the switchbar styles for smaller screens */
+  #switchbar_section {
+    margin-top: 20px; /* Adjust margin for smaller screens */
+  }
+
+  .switchbar_btn {
+    padding-top: 4px; /* Adjust padding for smaller screens */
+    padding-bottom: 4px;
+  }
+
+  /* Events */
+  /* Update the events section styles for smaller screens */
+  .sub_heading {
+    font-size: 22px; /* Adjust font size for smaller screens */
+    margin-top: 40px;
+  }
+
+  .gen_text {
+    margin-top: 20px; /* Adjust margin for smaller screens */
+    margin-left: 5%; /* Adjust margins for smaller screens */
+    margin-right: 5%;
+  }
+
+  /* Carousel */
+  /* Update the carousel section styles for smaller screens */
+  #carousel_section {
+    margin-left: 5%; /* Adjust margins for smaller screens */
+    margin-right: 5%;
+  }
+
+  .firstCarousel_3 {
+    width: 100%; /* Make carousel images full-width on smaller screens */
+  }
+
+  #img1_3,
+  #img2_3,
+  #img3_3 {
+    width: 100%; /* Make carousel images full-width on smaller screens */
+    height: auto; /* Auto height for responsive scaling */
+    border-radius: 0; /* Remove border-radius on smaller screens */
+  }
+
+  /* Section Separator */
+  /* Update the section separator styles for smaller screens */
+  .section_separator {
+    margin-top: 20px; /* Adjust margin for smaller screens */
+    margin-left: 0; /* Remove left margin on smaller screens */
+    margin-right: 0; /* Remove right margin on smaller screens */
+    height: 5px; /* Adjust height for smaller screens */
+  }
+
+  /* Cards */
+  /* Update the card styles for smaller screens */
+  .addmargin {
+    margin: 5%; /* Adjust margin for smaller screens */
+  }
+}

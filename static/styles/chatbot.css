@@ -18,6 +18,19 @@
   opacity: 90%;
 }
 
+.chatbot-icon {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background-color: #007bff;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
+
 /* Styling for the form */
 .chatbot form {
   display: flex;
@@ -103,5 +116,35 @@
   .chatbot section {
     margin: 10px;
     padding: 10px;
+  }
+
+  .chatbot {
+    margin: 10px;
+    padding: 10px;
+  }
+
+  .chatbot-bckg {
+    background-size: cover;
+    opacity: 90%;
+  }
+
+  .chatbot label {
+    font-size: 16px;
+  }
+
+  .chatbot select {
+    padding: 10px;
+    font-size: 16px;
+  }
+
+  .chatbot button {
+    margin-top: 10px;
+    padding: 8px 16px;
+    font-size: 16px;
+  }
+
+  .user-message,
+  .bot-message {
+    font-size: 14px;
   }
 }
