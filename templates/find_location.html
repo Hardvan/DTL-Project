@@ -24,14 +24,13 @@
         <h1 class="location-title">{{ location_data.name }}</h1>
         <p class="location-description">{{ location_data.description }}</p>
 
-        <!-- Display the steps under location_data.steps as a list -->
+        <!-- Display the steps under location_data.steps as separate div elements -->
         <h2 class="location-steps-title">Steps</h2>
-        <ul class="location-steps">
-          <!-- Use <ul> for an unordered list -->
+        <div class="location-steps">
           {% for step in location_data.steps %}
-          <li class="location-step">{{ step }}</li>
+          <div class="location-step">{{ step }}</div>
           {% endfor %}
-        </ul>
+        </div>
 
         <a class="location-back" href="{{ url_for('dashboard') }}"
           >Back to Home</a
