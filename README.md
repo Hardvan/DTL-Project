@@ -1,8 +1,18 @@
 # DTL Project
 
-This repository contains the code for the DTL project.
+Welcome to the DTL Project repository! This project is aimed at providing a platform for the RV College of Engineering community to stay updated about events, clubs, and various activities. Below, you'll find more information about the project and how you can contribute to it.
 
-## [Link to the Website](https://dtl-project-rvce.onrender.com/)
+## [Link to the Website](https://dtl-project-rvce.onrender.com/) (Hosted on Render)
+
+## Project Overview
+
+The DTL Project is a web-based platform designed to serve the RV College of Engineering community. It offers the following features:
+
+- **Events**: Stay informed about upcoming, ongoing, and completed events happening within the college. You can also view detailed event information.
+
+- **Clubs**: Explore and learn more about the various clubs and departments operating within the college.
+
+- **Chatbot**: Interact with the DTL Chatbot, which can provide information about events and assist you with various tasks related to the college.
 
 ## How to Contribute
 
@@ -31,3 +41,13 @@ This repository contains the code for the DTL project.
 5. Create a Pull Request from your forked repository (Click on the `New Pull Request` button located at the top of your repo)
 
 6. Wait for your PR review and merge approval!
+
+## Project Structure
+
+Here's a brief overview of the main project files and directories:
+
+- `app.py`: Contains the Flask application code for the DTL Project, including routes for different sections of the website and the chatbot functionality.
+
+- `PostHandler.py`: A module responsible for handling posts and formatting data for display on the website.
+
+- `templates`: This directory contains HTML templates for different pages of the website, such as the dashboard and chatbot pages.
