@@ -88,7 +88,9 @@ static/styles/find_location.css:
 }
 
 .location-steps {
-  text-align: left;
+  display: flex; /* Use flexbox to arrange steps horizontally */
+  flex-direction: column; /* Arrange steps vertically (one below the other) */
+  align-items: flex-start; /* Align steps to the left */
   margin: 20px 0;
   margin-left: 20px;
   padding: 0;
@@ -97,13 +99,12 @@ static/styles/find_location.css:
 .location-step {
   margin: 10px 0;
   font-size: 1.1em;
-  background-color: #007bff; /* Background color */
-  color: #fff; /* Text color */
-  border-radius: 20px; /* Rounded corners */
-  padding: 10px 20px; /* Spacing around text */
-  display: inline-block; /* Make each step inline */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
-  transition: background-color 0.3s, color 0.3s; /* Smooth transitions */
+  background-color: #007bff;
+  color: #fff;
+  border-radius: 20px;
+  padding: 10px 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s, color 0.3s;
 }
 .location-step:hover {
   background-color: #0056b3; /* Darker background color on hover */
