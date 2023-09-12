@@ -68,8 +68,6 @@ if __name__ == "__main__":
 
     file_list = [
         app_py,
-        post_handler_py,
-        dashboard_html,
         chatbot_html
     ]
 

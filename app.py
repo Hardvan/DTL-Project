@@ -171,7 +171,8 @@ def getChatbotResponse(user_input):
         redirect_link = "https://rvce.edu.in/placement-statistics"
         redirect_text = "Get Placement Statistics"
 
-    audio_text = f"""{response_text} Click the link below to proceed to your chosen option.
+    audio_text = f"""{response_text} Opening the link for you.
+    If not redirected automatically, please click the link below. 
     If you would like to choose another option, please select it from the dropdown menu given above."""
 
     response_audio = getSpeech(audio_text)
