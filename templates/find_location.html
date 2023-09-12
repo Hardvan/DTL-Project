@@ -8,7 +8,7 @@
     <!-- Favicon -->
     <link
       rel="icon"
-      href="{{ url_for('static', filename='favicon/favicon2.png') }}"
+      href="{{ url_for('static', filename='favicon/favicon3.png') }}"
     />
 
     <!-- Custom CSS -->
@@ -18,30 +18,36 @@
       href="{{ url_for('static', filename='styles/find_location.css') }}"
     />
   </head>
-
   <body>
     <div class="location-container">
-      <h1 class="location-title">{{ location_data.name }}</h1>
-      <p class="location-description">{{ location_data.description }}</p>
+      <div class="location-details">
+        <h1 class="location-title">{{ location_data.name }}</h1>
+        <p class="location-description">{{ location_data.description }}</p>
 
-      <!-- Display the steps under location_data.steps as a list -->
-      <h2 class="location-steps-title">Steps</h2>
-      <ol class="location-steps">
-        {% for step in location_data.steps %}
-        <li class="location-step">{{ step }}</li>
-        {% endfor %}
-      </ol>
+        <!-- Display the steps under location_data.steps as a list -->
+        <h2 class="location-steps-title">Steps</h2>
+        <ol class="location-steps">
+          {% for step in location_data.steps %}
+          <li class="location-step">{{ step }}</li>
+          {% endfor %}
+        </ol>
 
-      <a
-        class="location-map"
-        href="{{ location_data.location }}"
-        target="_blank"
-        >View on Map</a
-      >
-      <br />
-      <a class="location-back" href="{{ url_for('dashboard') }}"
-        >Back to Home</a
-      >
+        <a class="location-back" href="{{ url_for('dashboard') }}"
+          >Back to Home</a
+        >
+      </div>
+
+      <div class="location-map-section">
+        <h2 class="location-map-title">View in Map</h2>
+        <!-- Make the Google Map Image clickable -->
+        <a href="{{ location_data.location }}" target="_blank">
+          <img
+            class="location-map-image"
+            src="https://cdn-icons-png.flaticon.com/512/355/355980.png"
+            alt="Google Map"
+          />
+        </a>
+      </div>
     </div>
   </body>
 </html>
