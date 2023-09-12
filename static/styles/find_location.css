@@ -80,3 +80,54 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Add a shadow when hovering */
   transform: scale(1.1); /* Increase the size by 10% on hover */
 }
+
+/* Responsive design */
+
+@media (max-width: 768px) {
+  .location-container {
+    flex-direction: column; /* Stack sections vertically */
+    align-items: center; /* Center align content */
+    margin: 20px; /* Adjust margin for spacing */
+  }
+
+  .location-details,
+  .location-map-section {
+    flex: 1;
+    text-align: center; /* Center align text */
+    width: 100%; /* Full width for both sections */
+    margin: 0; /* Remove margin for both sections */
+  }
+
+  .location-title,
+  .location-description,
+  .location-steps-title,
+  .location-steps,
+  .location-map-title,
+  .location-map-link,
+  .location-map-image {
+    width: 100%; /* Set width to 100% for text and images */
+    text-align: center; /* Center align text */
+  }
+
+  .location-back {
+    margin: 20px auto;
+    width: 80%;
+    text-align: center; /* Center-align text within the button */
+  }
+
+  .location-description,
+  .location-steps-title,
+  .location-steps {
+    font-size: 1em; /* Adjust font size */
+  }
+
+  .location-map-title,
+  .location-map-link,
+  .location-map-image {
+    margin-top: 10px; /* Adjust margin for spacing */
+  }
+
+  .location-map-image {
+    max-width: 80%; /* Reduce image width */
+  }
+}
