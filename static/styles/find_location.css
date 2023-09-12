@@ -1,0 +1,47 @@
+.location-container {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  margin: 50px;
+}
+
+.location-title {
+  color: #333;
+}
+
+.location-description {
+  color: #666;
+  font-size: 1.2em;
+}
+
+.location-steps-title {
+  color: #333;
+  font-size: 1.2em;
+}
+
+.location-steps {
+  text-align: left;
+  margin: 20px auto;
+}
+
+.location-step {
+  margin: 10px 0;
+  font-size: 1.1em;
+}
+
+.location-map,
+.location-back {
+  display: inline-block;
+  margin: 10px;
+  padding: 10px 20px;
+  text-decoration: none;
+  color: #fff;
+  background-color: #007bff;
+  border-radius: 5px;
+  font-size: 1em;
+  transition: background-color 0.3s;
+}
+
+.location-map:hover,
+.location-back:hover {
+  background-color: #0056b3;
+}
