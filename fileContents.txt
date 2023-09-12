@@ -1,207 +1,889 @@
-templates/find_location.html:
+templates/events.html:
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Find Location</title>
+    <title>Events</title>
 
+    <!-- Custom JS -->
+    <script src="{{url_for('static',filename='javaScript/script.js')}}"></script>
+    <!-- Font Awesome -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
     <!-- Favicon -->
     <link
       rel="icon"
-      href="{{ url_for('static', filename='favicon/favicon3.png') }}"
+      href="{{ url_for('static', filename='favicon/favicon.png') }}"
     />
-
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Chela+One&display=swap"
+      rel="stylesheet"
+    />
+    <!-- MDB -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.css"
+      rel="stylesheet"
+    />
     <!-- Custom CSS -->
     <link
       rel="stylesheet"
       type="text/css"
-      href="{{ url_for('static', filename='styles/find_location.css') }}"
+      href="{{ url_for('static',filename='styles/events.css') }}"
     />
   </head>
-  <body>
-    <div class="location-container">
-      <div class="location-details">
-        <h1 class="location-title">{{ location_data.name }}</h1>
-        <p class="location-description">{{ location_data.description }}</p>
 
-        <!-- Display the steps under location_data.steps as separate div elements -->
-        <h2 class="location-steps-title">Steps</h2>
-        <div class="location-steps">
-          {% for step in location_data.steps %}
-          <div class="location-step">{{ step }}</div>
-          {% endfor %}
-        </div>
-
-        <a class="location-back" href="{{ url_for('dashboard') }}"
-          >Back to Home</a
+  <body onload="playback()">
+    <!-- RV logo section -->
+    <section id="logo_section">
+      <div class="logo">
+        <img
+          src="{{url_for('static', filename='Images/RVlogo.png')}}"
+          alt="RV logo"
+        />
+      </div>
+      <div class="logo_des">
+        <span id="top_font">Rashtreeya Sikshana Samithi Trust</span>
+        <span id="great_rv">R V College of Engineering</span>
+        <span id="bottom_font"
+          >Autonomous Institution affiliated to Visvesvaraya Technological
+          University, Belagavi <br />
+          Approved By AICTE, New Delhi, Accredited By NBA, New Delhi</span
         >
       </div>
+      <div style="display: flex">
+        <div><span id="since_rv">Since 1963</span></div>
 
-      <div class="location-map-section">
-        <h2 class="location-map-title">View in Map</h2>
-        <!-- Make the Google Map Image clickable -->
-        <a
-          class="location-map-link"
-          href="{{ location_data.location }}"
-          target="_blank"
-        >
+        <div class="logo_right">
           <img
-            class="location-map-image"
-            src="https://cdn-icons-png.flaticon.com/512/355/355980.png"
-            alt="Google Map"
+            src="{{url_for('static', filename='Images/RVrightLogo.jpg')}}"
+            alt="RV right logo"
           />
+        </div>
+      </div>
+    </section>
+
+    <!-- Navbar -->
+    <nav id="navbar_layout">
+      <div id="nav_btn_container">
+        <a href="{{ url_for('dashboard') }}">
+          <button class="nav_button">Home</button></a
+        >
+        <a href="{{ url_for('events') }}">
+          <button class="nav_button">Events</button>
+        </a>
+        <button class="nav_button">Achievments</button>
+        <a href="{{ url_for('clubs_page') }}">
+          <button class="nav_button">clubs</button>
+        </a>
+        <button class="nav_button">Timeline</button>
+        <!-- Admin Page Link-->
+        <!-- Only after login -->
+        <!-- <button class="nav_button">Admin</button> -->
+      </div>
+    </nav>
+
+    <!-- SwitchBar -->
+    {% block switchbar_section %}
+    <section id="switchbar_section">
+      <div id="switchbar_container">
+        <a href="{{ url_for('all_in_one', category='upcoming') }}">
+          <button class="switchbar_btn left_btn">Upcoming</button>
+        </a>
+        <a href="{{ url_for('all_in_one', category='ongoing') }}">
+          <button class="switchbar_btn">Ongoing</button>
+        </a>
+        <a href="{{ url_for('all_in_one', category='completed') }}">
+          <button class="switchbar_btn right_btn">Completed</button>
         </a>
       </div>
-    </div>
+    </section>
+    {% endblock %}
+
+    <!-- Section Separator -->
+    <div class="section_separator"></div>
+    {% block genEvents %}
+
+    <!-- Events -->
+    <section>
+      <div class="sub_heading">
+        Welcome to the centralised event hub of RVCE
+      </div>
+      <div class="gen_text">
+        Discover a world of captivating events organized by various clubs and
+        departments at our college. Stay informed about the latest happenings
+        and relive memorable past events through our comprehensive event
+        notification platform. Engage in stimulating discussions, showcase your
+        talents, and partake in friendly competitions. Whether you're interested
+        in academic pursuits, artistic expressions, or athletic endeavors, our
+        website is your gateway to a plethora of enriching experiences. Stay
+        connected, get involved, and make the most of your college journey as we
+        keep you updated on all the exciting events taking place on campus.
+      </div>
+    </section>
+
+    <!-- Carousel -->
+    <section id="carousel_section">
+      <section id="type_1_carousel_3">
+        <div class="firstCarousel_3">
+          <img
+            src="https://i.ibb.co/ykRbtKR/8thMile.jpg"
+            alt="Image not found"
+            id="img1_3"
+          />
+        </div>
+        <div id="midCarousel">
+          <img
+            src="https://i.ibb.co/gjpCPTP/fest.jpg"
+            alt="Image not found"
+            id="img2_3"
+          />
+        </div>
+        <div class="firstCarousel_3">
+          <img
+            src="https://i.ibb.co/nBSM2Z1/marathon.jpg"
+            alt="Image not found"
+            id="img3_3"
+          />
+        </div>
+      </section>
+    </section>
+
+    <!-- Section Separator -->
+    <div class="section_separator"></div>
+
+    <!--Tech Clubs Section -->
+    <section id="tech_clubs_section">
+      <div class="sub_heading">Technical Clubs</div>
+      <div class="addmargin row row-cols-1 row-cols-md-3 g-4">
+        <div class="col">
+          <div class="card">
+            <img
+              src="{{ url_for('static', filename='Images/ashwa.jpeg') }}"
+              class="card_size_adjust card-img-top"
+              alt="Hollywood Sign on The Hill"
+            />
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+            <img
+              src="{{ url_for('static', filename='Images/antariksh.png') }}"
+              class="card_size_adjust card-img-top"
+              alt="Palm Springs Road"
+            />
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+            <img
+              src="https://i.ibb.co/MSydPXZ/coding.png"
+              class="card_size_adjust card-img-top"
+              alt="Los Angeles Skyscrapers"
+            />
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+            <img
+              src="https://i.ibb.co/XspXyJC/ham.jpg"
+              class="card_size_adjust card-img-top"
+              alt="Skyscrapers"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section Separator -->
+    <div class="section_separator"></div>
+
+    <!-- Cultural Clubs Section -->
+    <section id="cultural_clubs_section">
+      <div class="sub_heading">Culutral Clubs</div>
+      <div class="addmargin row row-cols-1 row-cols-md-3 g-4">
+        <div class="col">
+          <div class="card">
+            <img
+              src="{{ url_for('static', filename='Images/evoke.jpeg') }}"
+              class="card_size_adjust card-img-top"
+              alt="Hollywood Sign on The Hill"
+            />
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+            <img
+              src="{{ url_for('static', filename='Images/rotaract.png') }}"
+              class="card_size_adjust card-img-top"
+              alt="Palm Springs Road"
+            />
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+            <img
+              src="{{ url_for('static', filename='Images/footprints.jpeg') }}"
+              class="card_size_adjust card-img-top"
+              alt="Los Angeles Skyscrapers"
+            />
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+            <img
+              src="{{ url_for('static', filename='Images/ecell.jpeg') }}"
+              class="card_size_adjust card-img-top"
+              alt="Skyscrapers"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+    {% endblock %}
+
+    <!-- Section Separator -->
+    <div class="section_separator"></div>
+
+    <!-- Footer -->
+
+    <!-- MDB -->
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.js"
+    ></script>
   </body>
 </html>
 
 
-static/styles/find_location.css:
-.location-container {
-  font-family: Arial, sans-serif;
+templates/all_in_one.html:
+{% extends 'events.html' %} {% block switchbar_section %}
+
+<!-- Switchbar Section -->
+<section id="switchbar_section">
+  <div id="switchbar_container">
+    {% if category == "upcoming" %}
+    <a href="{{ url_for('all_in_one', category='upcoming') }}">
+      <button class="left_btn switchbar_btn_up">Upcoming</button></a
+    >
+    <a href="{{ url_for('all_in_one', category='ongoing') }}"
+      ><button class="switchbar_btn">Ongoing</button></a
+    >
+    <a href="{{ url_for('all_in_one', category='completed') }}"
+      ><button class="switchbar_btn right_btn">Completed</button></a
+    >
+
+    {% elif category == "ongoing" %}
+    <a href="{{ url_for('all_in_one', category='upcoming') }}">
+      <button class="left_btn switchbar_btn">Upcoming</button></a
+    >
+    <a href="{{ url_for('all_in_one', category='ongoing') }}"
+      ><button class="switchbar_btn_on">Ongoing</button></a
+    >
+    <a href="{{ url_for('all_in_one', category='completed') }}"
+      ><button class="switchbar_btn right_btn">Completed</button></a
+    >
+
+    {% elif category == "completed" %}
+    <a href="{{ url_for('all_in_one', category='upcoming') }}">
+      <button class="left_btn switchbar_btn">Upcoming</button></a
+    >
+    <a href="{{ url_for('all_in_one', category='ongoing') }}"
+      ><button class="switchbar_btn">Ongoing</button></a
+    >
+    <a href="{{ url_for('all_in_one', category='completed') }}"
+      ><button class="switchbar_btn_com right_btn">Completed</button></a
+    >
+
+    {% else %}
+    <p>Invalid (category = {{category}})</p>
+    {% endif %}
+  </div>
+</section>
+{% endblock %} {% block genEvents %}
+
+<!-- Landing Image -->
+<div class="add_img_margin">
+  <!-- <img src="https://i.ibb.co/X87YJ1B/Admin-block.jpg" class="img-fluid" alt="Wild Landscape" /> -->
+  {% if category == "upcoming" %}
+  <h1 class="sub_title">Upcoming Events</h1>
+  {% elif category == "ongoing" %}
+  <h1 class="sub_title">Ongoing Events</h1>
+  {% elif category == "completed" %}
+  <h1 class="sub_title">Completed Events</h1>
+  {% endif %}
+</div>
+
+<!-- Section Separator -->
+<div class="section_separator"></div>
+
+<!-- Sports -->
+<section id="sports_section">
+  <div class="sub_title_det_new sub_heading">Sports</div>
+  <div class="addmargin row row-cols-1 row-cols-md-3 g-4">
+    {% for post in posts_dict if post.tag == "s" and post.category.lower() ==
+    category %}
+    <div class="col">
+      <div class="card_align card">
+        <img
+          src="{{ post.image }}"
+          class="img_align_card card-img-top"
+          alt="Hollywood Sign on The Hill"
+        />
+        <div class="card-body">
+          <h5 class="card-title">{{ post.title }}</h5>
+          <div>
+            <p class="card-text">{{ post.date_str }}</p>
+            <a
+              href="{{url_for('eventDetail', title=post.title,
+              date=post.date_str, des = post.desc,
+              image=post.image, host=post.clubName)}}"
+              ><button class="explore_button">Explore</button></a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+<!-- Section Separator -->
+<div class="section_separator"></div>
+
+<!-- Technical -->
+<section id="technical_section">
+  <div class="sub_title_det_new sub_heading">Technical</div>
+  <div class="addmargin row row-cols-1 row-cols-md-3 g-4">
+    {% for post in posts_dict if post.tag == "t" and post.category.lower() ==
+    category %}
+    <div class="col">
+      <div class="card_align card">
+        <img
+          src="{{ post.image }}"
+          class="img_align_card card-img-top"
+          alt="Hollywood Sign on The Hill"
+        />
+        <div class="card-body">
+          <h5 class="card-title">{{ post.title }}</h5>
+          <div>
+            <p class="card-text">{{ post.date_str }}</p>
+            <a
+              href="{{url_for('eventDetail', title=post.title,
+              date=post.date_str, des = post.desc,
+              image=post.image, host=post.clubName)}}"
+              ><button class="explore_button">Explore</button></a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+<!-- Section Separator -->
+<div class="section_separator"></div>
+
+<!-- Cultural -->
+<section if="cultural_section">
+  <div class="sub_title_det_new sub_heading">Culutral</div>
+  <div class="addmargin row row-cols-1 row-cols-md-3 g-4">
+    {% for post in posts_dict if post.tag == "c" and post.category.lower() ==
+    category %}
+    <div class="col">
+      <div class="card_align card">
+        <img
+          src="{{ post.image }}"
+          class="img_align_card card-img-top"
+          alt="Hollywood Sign on The Hill"
+        />
+        <div class="card-body">
+          <h5 class="card-title">{{ post.title }}</h5>
+          <div>
+            <p class="card-text">{{ post.date_str }}</p>
+            <a
+              href="{{url_for('eventDetail', title=post.title,
+              date=post.date_str, des = post.desc,
+              image=post.image, host=post.clubName)}}"
+              ><button class="explore_button">Explore</button></a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}
+
+
+templates/eventDetails.html:
+{% extends 'events.html' %} {% block switchbar_section %}
+<!-- Landing Image -->
+<div class="add_img_margin_new">
+  <img src="{{ image }}" class="img-fluid" alt="Wild Landscape" />
+</div>
+{% endblock %} {% block genEvents %}
+<h1 class="sub_title_det">{{ title }}</h1>
+<div class="description">
+  <h2>Hosted by {{ host }}</h2>
+  <img
+    src="{{ url_for('static',filename='Images/pocket-watch.gif') }}"
+    alt=""
+    class="gif_adjust"
+  />
+  <h5 style="display: inline-block; text-align: center; margin-top: 20px">
+    On {{ date }}
+  </h5>
+  <p>{{ des }}</p>
+  <img
+    src="{{ url_for('static',filename='Images/location.gif') }}"
+    alt=""
+    class="gif_adjust"
+  />
+  <h6 style="display: inline-block">RVCE</h6>
+  <div>
+    <button class="explore_button">Register</button>
+  </div>
+</div>
+
+{% endblock %}
+
+
+static/styles/events.css:
+/* General */
+
+html {
+  background-color: aliceblue;
+  font-family: sans-serif;
+}
+
+body {
+  margin-left: 15%;
+  margin-right: 15%;
+  background-color: white;
+}
+
+/* Logo Section */
+
+#logo_section {
   display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  margin: 50px;
-}
-
-.location-details {
-  flex: 1;
-  text-align: left;
-  padding-right: 20px; /* Add space between left and right sections */
-}
-
-.location-title {
+  justify-content: space-between;
   color: #333;
 }
 
-.location-description {
-  color: #666;
-  font-size: 1.2em;
+.logo_right {
+  padding-right: 60px;
+  padding-left: 0px;
 }
 
-.location-steps-title {
-  color: #333;
-  font-size: 1.2em;
+.logo {
+  padding-left: 60px;
+  padding-right: 60px;
 }
 
-.location-steps {
-  display: flex; /* Use flexbox to arrange steps horizontally */
-  flex-direction: column; /* Arrange steps vertically (one below the other) */
-  align-items: flex-start; /* Align steps to the left */
-  margin: 20px 0;
-  margin-left: 20px;
-  padding: 0;
+#top_font {
+  font-size: 16px;
 }
 
-.location-step {
-  margin: 10px 0;
-  font-size: 1.1em;
-  background-color: #007bff;
-  color: #fff;
-  border-radius: 20px;
-  padding: 10px 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  transition: background-color 0.3s, color 0.3s;
-}
-.location-step:hover {
-  background-color: #0056b3; /* Darker background color on hover */
-  color: #fff; /* Text color */
+#bottom_font {
+  font-size: 12px;
 }
 
-.location-back {
+.logo_des {
+  text-align: center;
+}
+
+#great_rv {
+  font-size: 26px;
+  font-weight: bold;
   display: block;
   margin-top: 20px;
-  text-decoration: none;
-  color: #fff;
-  background-color: #007bff;
-  border-radius: 5px;
-  padding: 10px 20px;
-  font-size: 1em;
-  transition: background-color 0.3s;
+}
+
+#since_rv {
+  display: block;
+  margin-right: 25px;
+  color: #002f65;
+  line-height: 83px;
+  font-size: 25px;
+  float: left;
+  margin-top: 20px;
+}
+
+/* Navbar */
+
+#navbar_layout {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+.nav_button {
+  padding: 10px;
+  color: white;
+  background-color: #27447e;
+  border: none;
+}
+
+#nav_btn_container {
+  background-color: #27447e;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+/* Switchbar */
+
+#switchbar_section {
+  display: flex;
+  justify-content: center;
+}
+
+#switchbar_container {
+  background-color: rgb(153, 198, 234);
+  border-radius: 10px;
+  padding-left: 0px;
+  padding-right: 0px;
+  margin-top: 12px;
+}
+
+.switchbar_btn {
+  padding-top: 6px;
+  padding-bottom: 6px;
+  background-color: rgb(153, 198, 234);
+  border-color: rgb(142, 194, 236);
+  color: white;
+}
+
+.right_btn {
+  border-right: none;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  padding-right: 5px;
+}
+
+.left_btn {
+  border-left: none;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  padding-left: 5px;
+}
+
+/* Upcoming switchbar */
+
+.switchbar_btn_up {
+  padding: 6px;
+  background-color: #27447e;
+  border-color: rgb(142, 194, 236);
+  color: white;
+}
+
+.switchbar_btn_on {
+  padding: 6px;
+  background-color: #27447e;
+  border-color: rgb(142, 194, 236);
+  color: white;
+}
+
+.switchbar_btn_com {
+  padding: 6px;
+  background-color: #27447e;
+  border-color: rgb(142, 194, 236);
+  color: white;
+}
+
+/* Events */
+
+.sub_heading {
+  font-size: 26px;
+  font-weight: bold;
+  display: block;
+  margin-top: 80px;
   text-align: center;
 }
 
-.location-back:hover {
-  background-color: #0056b3;
+.gen_text {
+  margin-top: 40px;
+  text-align: center;
+  margin-left: 10%;
+  margin-right: 10%;
 }
 
-.location-map-section {
-  flex: 1;
+/* Carousel */
+
+/* For Carousel 3 __ContinuousPlayback */
+
+#carousel_section {
+  display: flex;
+  justify-content: center;
+  margin-left: 15%;
+  margin-right: 15%;
+}
+
+#type_1_carousel_3 {
+  display: flex;
+  margin-top: 100px;
+}
+
+.firstCarousel_3 {
+  display: flex;
+  width: 300px;
+  height: 180px;
+  justify-content: center;
+}
+
+#img3_3 {
+  width: 210px;
+  height: 140px;
+  margin-top: 25px;
+  opacity: 50%;
+  border-radius: 40%;
+}
+
+#img1_3 {
+  width: 210px;
+  height: 140px;
+  margin-top: 25px;
+  opacity: 50%;
+  border-radius: 40%;
+}
+
+#img2_3 {
+  border-radius: 10%;
+}
+
+/* Section Separator */
+
+.section_separator {
+  background-color: #27447e;
+  display: flex;
+  justify-content: center;
+  height: 10px;
+  margin-top: 40px;
+  margin-left: 22px;
+  margin-right: 22px;
+}
+
+/* Cards */
+
+.addmargin {
+  margin: 10%;
+}
+
+/* Upcoming Events */
+/* Landing Image */
+
+.add_img_margin {
+  margin: 22px;
+  width: 95%;
+  align-content: center;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  background-image: url("https://i.ibb.co/X87YJ1B/Admin-block.jpg");
+}
+
+.sub_title {
+  padding-top: 200px;
+  padding-bottom: 200px;
+  background: #0ccfb5;
+  background: linear-gradient(to right, #0ccfb5 0%, #2982cf 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-family: "Chela One", cursive;
+  font-size: 100px;
+}
+
+/* Cards */
+
+.explore_button {
+  color: white;
+  background-color: green;
+  border: none;
+  border-radius: 10px;
+}
+
+.img_align_card {
+  height: 250px;
+}
+
+.card_align {
+  height: 420px;
+}
+
+/* Event Details */
+
+.add_img_margin_new {
+  margin: 22px;
+  width: 95%;
+  align-content: center;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.sub_title_det {
+  margin-top: 10px;
+  margin-bottom: 60px;
+  background: #0ccfb5;
+  background: linear-gradient(to right, #0ccfb5 0%, #2982cf 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-family: "Chela One", cursive;
+  font-size: 80px;
   text-align: center;
 }
 
-.location-map-title {
-  color: #333;
-  font-size: 1.2em;
-  margin-top: 0;
-  margin-bottom: 20px;
+.description {
+  margin-left: 10%;
+  margin-right: 10%;
 }
 
-.location-map-image {
-  max-width: 100%;
-  width: 50%;
-  height: auto;
-  border-radius: 5px;
-  transition: box-shadow 0.3s, transform 0.3s; /* Add transition for smooth animation */
+/* Gifs */
+
+.gif_adjust {
+  width: 50px;
+  display: inline-block;
 }
 
-/* Add hover styles */
-.location-map-image:hover {
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Add a shadow when hovering */
-  transform: scale(1.1); /* Increase the size by 10% on hover */
+.card_size_adjust {
+  height: 200px;
 }
 
-/* Responsive design */
+.sub_title_det_new {
+  background: #0ccfb5;
+  background: linear-gradient(to right, #0ccfb5 40%, #2982cf 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-family: "Chela One", cursive;
+  font-size: 40px;
+  text-align: center;
+}
+
+.explore_button_bigger {
+  color: white;
+  background-color: green;
+  border: none;
+  border-radius: 10px;
+  height: 50px;
+  width: 80px;
+  font-size: large;
+}
 
 @media (max-width: 768px) {
-  .location-container {
-    flex-direction: column; /* Stack sections vertically */
-    align-items: center; /* Center align content */
-    margin: 20px; /* Adjust margin for spacing */
+  #logo_section {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
   }
 
-  .location-details,
-  .location-map-section {
-    flex: 1;
-    text-align: center; /* Center align text */
-    width: 100%; /* Full width for both sections */
-    margin: 0; /* Remove margin for both sections */
+  .logo_right {
+    padding-right: 0; /* Remove right padding on smaller screens */
+    padding-left: 0;
   }
 
-  .location-title,
-  .location-description,
-  .location-steps-title,
-  .location-steps,
-  .location-map-title,
-  .location-map-link,
-  .location-map-image {
-    width: 100%; /* Set width to 100% for text and images */
-    text-align: center; /* Center align text */
+  .logo {
+    padding-left: 0;
+    padding-right: 0;
   }
 
-  .location-back {
-    margin: 20px auto;
-    width: 80%;
-    text-align: center; /* Center-align text within the button */
+  #top_font {
+    font-size: 14px; /* Adjust font size for smaller screens */
   }
 
-  .location-description,
-  .location-steps-title,
-  .location-steps {
-    font-size: 1em; /* Adjust font size */
+  #bottom_font {
+    font-size: 10px; /* Adjust font size for smaller screens */
   }
 
-  .location-map-title,
-  .location-map-link,
-  .location-map-image {
-    margin-top: 10px; /* Adjust margin for spacing */
+  #great_rv {
+    font-size: 22px; /* Adjust font size for smaller screens */
+    margin-top: 10px;
   }
 
-  .location-map-image {
-    max-width: 80%; /* Reduce image width */
+  #since_rv {
+    margin-right: 0; /* Remove right margin on smaller screens */
+    margin-top: 10px;
+  }
+
+  /* Navbar */
+  /* Update the navbar styles for smaller screens */
+  #navbar_layout {
+    flex-direction: column;
+    align-items: center;
+    padding: 10px; /* Adjust padding for smaller screens */
+  }
+
+  .nav_button {
+    margin-bottom: 10px; /* Add space between buttons on smaller screens */
+  }
+
+  /* Switchbar */
+  /* Update the switchbar styles for smaller screens */
+  #switchbar_section {
+    margin-top: 20px; /* Adjust margin for smaller screens */
+  }
+
+  .switchbar_btn {
+    padding-top: 4px; /* Adjust padding for smaller screens */
+    padding-bottom: 4px;
+  }
+
+  /* Events */
+  /* Update the events section styles for smaller screens */
+  .sub_heading {
+    font-size: 22px; /* Adjust font size for smaller screens */
+    margin-top: 40px;
+  }
+
+  .gen_text {
+    margin-top: 20px; /* Adjust margin for smaller screens */
+    margin-left: 5%; /* Adjust margins for smaller screens */
+    margin-right: 5%;
+  }
+
+  /* Carousel */
+  /* Update the carousel section styles for smaller screens */
+  #carousel_section {
+    margin-left: 5%; /* Adjust margins for smaller screens */
+    margin-right: 5%;
+  }
+
+  .firstCarousel_3 {
+    width: 100%; /* Make carousel images full-width on smaller screens */
+  }
+
+  #img1_3,
+  #img2_3,
+  #img3_3 {
+    width: 100%; /* Make carousel images full-width on smaller screens */
+    height: auto; /* Auto height for responsive scaling */
+    border-radius: 0; /* Remove border-radius on smaller screens */
+  }
+
+  /* Section Separator */
+  /* Update the section separator styles for smaller screens */
+  .section_separator {
+    margin-top: 20px; /* Adjust margin for smaller screens */
+    margin-left: 0; /* Remove left margin on smaller screens */
+    margin-right: 0; /* Remove right margin on smaller screens */
+    height: 5px; /* Adjust height for smaller screens */
+  }
+
+  /* Cards */
+  /* Update the card styles for smaller screens */
+  .addmargin {
+    margin: 5%; /* Adjust margin for smaller screens */
   }
 }
 

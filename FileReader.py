@@ -55,6 +55,7 @@ if __name__ == "__main__":
     dashboard_html = "templates/dashboard.html"
     chatbot_html = "templates/chatbot.html"
     events_html = "templates/events.html"
+    all_in_one_html = "templates/all_in_one.html"
     eventDetails_html = "templates/eventDetails.html"
     find_location_html = "templates/find_location.html"
 
@@ -69,8 +70,10 @@ if __name__ == "__main__":
     chatbot_js = "static/javaScript/chatbot.js"
 
     file_list = [
-        find_location_html,
-        find_location_css,
+        events_html,
+        all_in_one_html,
+        eventDetails_html,
+        events_css
     ]
 
     read_files_in_directory(".", file_list)
