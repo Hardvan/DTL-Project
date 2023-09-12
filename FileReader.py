@@ -68,10 +68,9 @@ if __name__ == "__main__":
 
     file_list = [
         app_py,
+        post_handler_py,
         dashboard_html,
-        chatbot_html,
-        events_html,
-        eventDetails_html
+        chatbot_html
     ]
 
     read_files_in_directory(".", file_list)
