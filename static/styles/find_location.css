@@ -64,11 +64,19 @@
   color: #333;
   font-size: 1.2em;
   margin-top: 0;
+  margin-bottom: 20px;
 }
 
 .location-map-image {
-  max-width: 100%; /* Ensure the image fits within the container */
+  max-width: 100%;
   width: 50%;
   height: auto;
   border-radius: 5px;
+  transition: box-shadow 0.3s, transform 0.3s; /* Add transition for smooth animation */
+}
+
+/* Add hover styles */
+.location-map-image:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Add a shadow when hovering */
+  transform: scale(1.1); /* Increase the size by 10% on hover */
 }

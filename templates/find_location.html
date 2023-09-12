@@ -40,7 +40,11 @@
       <div class="location-map-section">
         <h2 class="location-map-title">View in Map</h2>
         <!-- Make the Google Map Image clickable -->
-        <a href="{{ location_data.location }}" target="_blank">
+        <a
+          class="location-map-link"
+          href="{{ location_data.location }}"
+          target="_blank"
+        >
           <img
             class="location-map-image"
             src="https://cdn-icons-png.flaticon.com/512/355/355980.png"
