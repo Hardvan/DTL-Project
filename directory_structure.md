@@ -1,0 +1,65 @@
+# Directory Structure
+
+- 📂 **DTL Project (Current Directory)**
+  - [.env](./.env)
+  - [.gitignore](./.gitignore)
+  - [app.py](./app.py)
+  - [directory_structure.md](./directory_structure.md)
+  - [directory_structure.txt](./directory_structure.txt)
+  - [DirecTracer.py](./DirecTracer.py)
+  - [fileContents.txt](./fileContents.txt)
+  - [FileReader.py](./FileReader.py)
+  - [PostHandler.py](./PostHandler.py)
+  - [README.md](./README.md)
+  - [requirements.txt](./requirements.txt)
+- 📂 **DTL Poster**
+  - [DTL Poster.pdf](DTL%20Poster/DTL%20Poster.pdf)
+  - [DTL Poster.png](DTL%20Poster/DTL%20Poster.png)
+- 📂 **static**
+  - 📂 **favicon**
+    - [favicon.png](static/favicon/favicon.png)
+    - [favicon2.png](static/favicon/favicon2.png)
+    - [favicon3.png](static/favicon/favicon3.png)
+  - 📂 **images**
+    - [antariksh.png](static/images/antariksh.png)
+    - [ashwa.jpeg](static/images/ashwa.jpeg)
+    - [chat-bot-img.png](static/images/chat-bot-img.png)
+    - [chatbot-background.png](static/images/chatbot-background.png)
+    - [ecell.jpeg](static/images/ecell.jpeg)
+    - [evoke.jpeg](static/images/evoke.jpeg)
+    - [footprints.jpeg](static/images/footprints.jpeg)
+    - [location.gif](static/images/location.gif)
+    - [pocket-watch.gif](static/images/pocket-watch.gif)
+    - [rotaract.png](static/images/rotaract.png)
+    - [RVlogo.png](static/images/RVlogo.png)
+    - [RVrightLogo.jpg](static/images/RVrightLogo.jpg)
+  - 📂 **javaScript**
+    - [chatbot.js](static/javaScript/chatbot.js)
+    - [script.js](static/javaScript/script.js)
+  - 📂 **json**
+    - [clubs.json](static/json/clubs.json)
+    - [locations.json](static/json/locations.json)
+    - [sample_posts.json](static/json/sample_posts.json)
+  - 📂 **styles**
+    - [chatbot.css](static/styles/chatbot.css)
+    - [dashboard.css](static/styles/dashboard.css)
+    - [events.css](static/styles/events.css)
+    - [find_location.css](static/styles/find_location.css)
+- 📂 **templates**
+  - [all_in_one.html](templates/all_in_one.html)
+  - [all_in_one_clubs.html](templates/all_in_one_clubs.html)
+  - [chatbot.html](templates/chatbot.html)
+  - [clubDetails.html](templates/clubDetails.html)
+  - [clubs.html](templates/clubs.html)
+  - [dashboard.html](templates/dashboard.html)
+  - [eventDetails.html](templates/eventDetails.html)
+  - [events.html](templates/events.html)
+  - [find_location.html](templates/find_location.html)
+- 📂 **video**
+  - [Demo Video.mp4](video/Demo%20Video.mp4)
+- 📂 **website_draft**
+  - [img1.jpg](website_draft/img1.jpg)
+  - [img2.jpg](website_draft/img2.jpg)
+  - [img3.jpg](website_draft/img3.jpg)
+  - [img4.jpg](website_draft/img4.jpg)
+  - [img5.jpg](website_draft/img5.jpg)

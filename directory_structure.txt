@@ -1,0 +1,63 @@
+📂 DTL Project (Current Directory)
+  - .env
+  - .gitignore
+  - app.py
+  - directory_structure.md
+  - directory_structure.txt
+  - DirecTracer.py
+  - fileContents.txt
+  - FileReader.py
+  - PostHandler.py
+  - README.md
+  - requirements.txt
+📂 DTL Poster
+  - DTL Poster.pdf
+  - DTL Poster.png
+📂 static
+	📂 favicon
+	  - favicon.png
+	  - favicon2.png
+	  - favicon3.png
+	📂 images
+	  - antariksh.png
+	  - ashwa.jpeg
+	  - chat-bot-img.png
+	  - chatbot-background.png
+	  - ecell.jpeg
+	  - evoke.jpeg
+	  - footprints.jpeg
+	  - location.gif
+	  - pocket-watch.gif
+	  - rotaract.png
+	  - RVlogo.png
+	  - RVrightLogo.jpg
+	📂 javaScript
+	  - chatbot.js
+	  - script.js
+	📂 json
+	  - clubs.json
+	  - locations.json
+	  - sample_posts.json
+	📂 styles
+	  - chatbot.css
+	  - dashboard.css
+	  - events.css
+	  - find_location.css
+📂 templates
+  - all_in_one.html
+  - all_in_one_clubs.html
+  - chatbot.html
+  - clubDetails.html
+  - clubs.html
+  - dashboard.html
+  - eventDetails.html
+  - events.html
+  - find_location.html
+📂 video
+  - Demo Video.mp4
+📂 website_draft
+  - img1.jpg
+  - img2.jpg
+  - img3.jpg
+  - img4.jpg
+  - img5.jpg
