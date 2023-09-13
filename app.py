@@ -158,58 +158,74 @@ def find_location(location):
     return render_template('find_location.html', location_data=location_data)
 
 
+# Global user_input string for easy access (chatbot)
+see_upcoming_events = "See upcoming events"
+see_ongoing_events = "See ongoing events"
+see_completed_events = "See completed events"
+visit_events_page = "Visit the events page"
+visit_rvce_website = "Visit the official RVCE website"
+get_placement_statistics = "Get Placement Statistics"
+
+find_admin_block = "Find the admin block"
+find_canteen = "Find the canteen"
+enquire_hostel_facilities = "Enquire about hostel facilities"
+find_library = "Find the library"
+enquire_admission_process = "Enquire about the admission process"
+find_auditorium = "Find the auditorium"
+
+
 def getChatbotResponse(user_input):
 
     # Default values
     response_text = "Sorry, I don't understand. Please try again."
     redirect_link = None
 
-    if user_input == "See upcoming events":
+    if user_input == see_upcoming_events:
         response_text = "You chose option 1: See upcoming events."
         redirect_link = url_for('all_in_one', category='upcoming')
         redirect_text = "View upcoming events"
-    elif user_input == "See ongoing events":
+    elif user_input == see_ongoing_events:
         response_text = "You chose option 2: See ongoing events."
         redirect_link = url_for('all_in_one', category='ongoing')
         redirect_text = "View ongoing events"
-    elif user_input == "See completed events":
+    elif user_input == see_completed_events:
         response_text = "You chose option 3: See completed events."
         redirect_link = url_for('all_in_one', category='completed')
         redirect_text = "View completed events"
-    elif user_input == "Visit the events page":
+    elif user_input == visit_events_page:
         response_text = "You chose option 4: Visit the events page."
         redirect_link = url_for('events')
         redirect_text = "Visit the events page"
-    elif user_input == "Visit the official RVCE website":
+    elif user_input == visit_rvce_website:
         response_text = "You chose option 5: Visit the official RVCE website."
         redirect_link = "https://www.rvce.edu.in/"
         redirect_text = "Visit the official RVCE website"
-    elif user_input == "Get Placement Statistics":
+    elif user_input == get_placement_statistics:
         response_text = "You chose option 6: Get Placement Statistics."
         redirect_link = "https://rvce.edu.in/placement-statistics"
         redirect_text = "Get Placement Statistics"
 
-    elif user_input == "Find the admin block":
+    elif user_input == find_admin_block:
         response_text = "You chose option 7: Find the admin block."
         redirect_link = url_for('find_location', location='admin')
         redirect_text = "Find the admin block"
-    elif user_input == "Find the canteen":
+    elif user_input == find_canteen:
         response_text = "You chose option 8: Find canteen."
         redirect_link = url_for('find_location', location='canteen')
         redirect_text = "Find the canteen"
-    elif user_input == "Enquire about hostel facilities":
+    elif user_input == enquire_hostel_facilities:
         response_text = "You chose option 9: Enquire about hostel facilities."
         redirect_link = url_for('find_location', location='hostel')
         redirect_text = "Enquire about hostel facilities"
-    elif user_input == "Find the library":
+    elif user_input == find_library:
         response_text = "You chose option 10: Find the library."
         redirect_link = url_for('find_location', location='library')
         redirect_text = "Find the library"
-    elif user_input == "Enquire about the admission process":
+    elif user_input == enquire_admission_process:
         response_text = "You chose option 11: Enquire about the admission process."
         redirect_link = url_for('find_location', location='admission')
         redirect_text = "Enquire about the admission process"
-    elif user_input == "Find the auditorium":
+    elif user_input == find_auditorium:
         response_text = "You chose option 12: Find the auditorium."
         redirect_link = url_for('find_location', location='auditorium')
         redirect_text = "Find the auditorium"
@@ -226,20 +242,20 @@ def getChatbotResponse(user_input):
 @app.route('/chatbot', methods=['GET', 'POST'])
 def chatbot():
 
-    # Question : Options dictionary
-    questionnaire = {"What would you like to do?": ["See upcoming events",
-                                                    "See ongoing events",
-                                                    "See completed events",
-                                                    "Visit the events page",
-                                                    "Visit the official RVCE website",
-                                                    "Get Placement Statistics",
+    # "Question" : [Options] dictionary
+    questionnaire = {"What would you like to do?": [see_upcoming_events,
+                                                    see_ongoing_events,
+                                                    see_completed_events,
+                                                    visit_events_page,
+                                                    visit_rvce_website,
+                                                    get_placement_statistics,
 
-                                                    "Find the admin block",
-                                                    "Find the canteen",
-                                                    "Enquire about hostel facilities",
-                                                    "Find the library",
-                                                    "Enquire about the admission process",
-                                                    "Find the auditorium",
+                                                    find_admin_block,
+                                                    find_canteen,
+                                                    enquire_hostel_facilities,
+                                                    find_library,
+                                                    enquire_admission_process,
+                                                    find_auditorium
                                                     ]}
 
     hello = "Hello, I am RVCE's chatbot, at your service. How can I help you today?"
