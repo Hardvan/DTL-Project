@@ -49,13 +49,13 @@
         <a class="nav-link active text-white" id="home" aria-current="page" href="/">Home</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-white" href="/">Events</a>
+        <a class="nav-link text-white" href="{{ url_for('events') }}">Events</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-white" href="/">Achievements</a>
+        <a class="nav-link text-white" href="{{ url_for('chatbot') }}">Chatbot</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-white" href="/">Login</a>
+        <a class="nav-link text-white" href="{{ url_for('clubs_page') }}">Clubs</a>
       </li>
     
     </ul>
@@ -122,29 +122,29 @@
       </div>
 
       <div class="card my-5 mx-5" >
-        <img src="https://source.unsplash.com/300x200/?coding" class="card-img-top" alt="imgs" />
+        <img src="https://source.unsplash.com/300x200/?frequency,waves" class="card-img-top" alt="imgs" />
         <div class="card-body">
-             <h5 class="card-title">Coding Club</h5>
-               <p class="card-text">HackTheNight starts soon.The registrations are open.Please do register and join us to upskill and learn.</p>
+             <h5 class="card-title">Frequency Club</h5>
+               <p class="card-text">Welcome to the enchanting world of our club, where harmonious melodies,soaring voices come together to create pure magic!</p>
               <a href="/" class="btn btn-primary mx-2">Upcoming</a>
               <a href="/" class="btn btn-success mx-2">Previous</a>
            </div>
         </div>
 
         <div class="card my-5 mx-5" >
-          <img src="https://source.unsplash.com/300x200/?coding" class="card-img-top" alt="imgs" />
+          <img src="https://source.unsplash.com/300x200/?electronics" class="card-img-top" alt="imgs" />
           <div class="card-body">
-               <h5 class="card-title">Coding Club</h5>
-                 <p class="card-text">HackTheNight starts soon.The registrations are open.Please do register and join us to upskill and learn.</p>
+               <h5 class="card-title">Astra Robotics</h5>
+                 <p class="card-text">Welcome to the realm of innovation and cutting-edge technology – welcome to our robotics club!</p>
                 <a href="/" class="btn btn-primary mx-2">Upcoming</a>
                 <a href="/" class="btn btn-success mx-2">Previous</a>
              </div>
           </div>
 
           <div class="card my-5 mx-5" >
-            <img src="https://source.unsplash.com/300x200/?coding" class="card-img-top" alt="imgs" />
+            <img src="https://source.unsplash.com/300x200/?Racing" class="card-img-top" alt="imgs" />
             <div class="card-body">
-                 <h5 class="card-title">Coding Club</h5>
+                 <h5 class="card-title">Ashwa Racing</h5>
                    <p class="card-text">HackTheNight starts soon.The registrations are open.Please do register and join us to upskill and learn.</p>
                   <a href="/" class="btn btn-primary mx-2">Upcoming</a>
                   <a href="/" class="btn btn-success mx-2">Previous</a>
@@ -156,9 +156,9 @@
 
           <div class="card-display">
             <div class="card my-5 mx-5" >
-              <img src="https://source.unsplash.com/300x200/?coding" class="card-img-top" alt="imgs" />
+              <img src="https://source.unsplash.com/300x200/?dancing" class="card-img-top" alt="imgs" />
               <div class="card-body">
-                   <h5 class="card-title">Coding Club</h5>
+                   <h5 class="card-title">FootPrints</h5>
                      <p class="card-text">HackTheNight starts soon.The registrations are open.Please do register and join us to upskill and learn.</p>
                     <a href="/" class="btn btn-primary mx-2">Upcoming</a>
                     <a href="/" class="btn btn-success mx-2">Previous</a>
@@ -166,9 +166,9 @@
               </div>
         
               <div class="card my-5 mx-5" >
-                <img src="https://source.unsplash.com/300x200/?coding" class="card-img-top" alt="imgs" />
+                <img src="https://source.unsplash.com/300x200/?singing" class="card-img-top" alt="imgs" />
                 <div class="card-body">
-                     <h5 class="card-title">Coding Club</h5>
+                     <h5 class="card-title">Alaap</h5>
                        <p class="card-text">HackTheNight starts soon.The registrations are open.Please do register and join us to upskill and learn.</p>
                       <a href="/" class="btn btn-primary mx-2">Upcoming</a>
                       <a href="/" class="btn btn-success mx-2">Previous</a>
@@ -176,9 +176,9 @@
                 </div>
         
                 <div class="card my-5 mx-5" >
-                  <img src="https://source.unsplash.com/300x200/?coding" class="card-img-top" alt="imgs" />
+                  <img src="https://source.unsplash.com/300x200/?helping" class="card-img-top" alt="imgs" />
                   <div class="card-body">
-                       <h5 class="card-title">Coding Club</h5>
+                       <h5 class="card-title">Rotaract</h5>
                          <p class="card-text">HackTheNight starts soon.The registrations are open.Please do register and join us to upskill and learn.</p>
                         <a href="/" class="btn btn-primary mx-2">Upcoming</a>
                         <a href="/" class="btn btn-success mx-2">Previous</a>
@@ -186,9 +186,9 @@
                   </div>
         
                   <div class="card my-5 mx-5" >
-                    <img src="https://source.unsplash.com/300x200/?coding" class="card-img-top" alt="imgs" />
+                    <img src="https://source.unsplash.com/300x200/?photography" class="card-img-top" alt="imgs" />
                     <div class="card-body">
-                         <h5 class="card-title">Coding Club</h5>
+                         <h5 class="card-title">Photography Club</h5>
                            <p class="card-text">HackTheNight starts soon.The registrations are open.Please do register and join us to upskill and learn.</p>
                           <a href="/" class="btn btn-primary mx-2">Upcoming</a>
                           <a href="/" class="btn btn-success mx-2">Previous</a>
