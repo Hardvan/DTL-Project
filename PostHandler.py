@@ -61,3 +61,19 @@ def getPostsDataClubs(collection, REAL_DATA):
             posts_dict = data['posts']
 
     return posts_dict
+
+
+def getLocationData(collection, REAL_DATA):
+
+    location_dict = []
+
+    # Get data from MongoDB afterwards
+    if REAL_DATA:
+        location_dict = list(collection.find({}))
+
+    # Sample data
+    else:
+        with open('./static/json/locations.json') as file:
+            location_dict = json.load(file)
+
+    return location_dict

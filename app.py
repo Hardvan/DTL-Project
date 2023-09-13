@@ -4,7 +4,6 @@ from pymongo.server_api import ServerApi
 from gtts import gTTS
 import io
 import base64
-import json
 
 import os
 from dotenv import load_dotenv
@@ -145,15 +144,10 @@ def getSpeech(result_text):
 def find_location(location):
 
     # Load data from JSON file
-    with open('static/json/locations.json') as f:
-        data = json.load(f)
+    location_dict = PostHandler.getLocationData(collection, REAL_DATA)
 
-    # Check if location exists in the JSON file
-    location_data = None
-    if location in data:
-        location_data = data[location]
-    else:
-        location_data = data['default']
+    # Get the location data from the JSON file (default if not found)
+    location_data = location_dict.get(location, location_dict['default'])
 
     return render_template('find_location.html', location_data=location_data)
 
