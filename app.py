@@ -80,7 +80,7 @@ def events():
 @app.route('/events/all_in_one/<category>')
 def all_in_one(category):
 
-    # category = upcoming/ongoing/completed
+    # categories: upcoming/ongoing/completed
 
     posts_dict = PostHandler.getPostsData(collection, REAL_DATA)
     return render_template('all_in_one.html', posts_dict=posts_dict, category=category)
