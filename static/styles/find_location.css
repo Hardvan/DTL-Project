@@ -88,7 +88,7 @@
 
 /* Style the map image */
 .location-map-image {
-  max-width: 100%;
+  max-width: 60%;
   height: auto;
   border-radius: 5px;
   transition: box-shadow 0.3s, transform 0.3s;

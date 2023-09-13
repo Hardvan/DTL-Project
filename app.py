@@ -196,7 +196,7 @@ def getChatbotResponse(user_input):
     elif user_input == "Find canteen":
         response_text = "You chose option 8: Find canteen."
         redirect_link = url_for('find_location', location='canteen')
-        redirect_text = "Find canteen"
+        redirect_text = "Find the canteen"
     elif user_input == "Enquire about hostel facilities":
         response_text = "You chose option 9: Enquire about hostel facilities."
         redirect_link = url_for('find_location', location='hostel')
@@ -235,14 +235,14 @@ def chatbot():
                                                     "Get Placement Statistics",
 
                                                     "Find the admin block",
-                                                    "Find canteen",
+                                                    "Find the canteen",
                                                     "Enquire about hostel facilities",
                                                     "Find the library",
                                                     "Enquire about the admission process",
                                                     "Find the auditorium",
                                                     ]}
 
-    hello = "Hello, I am the DTL Chatbot of RVCE. How can I help you today?"
+    hello = "Hello, I am RVCE's chatbot, at your service. How can I help you today?"
     speech_base64 = getSpeech(hello)
 
     if request.method == 'POST':
