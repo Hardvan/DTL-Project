@@ -73,9 +73,9 @@
       </audio>
 
       <!-- Form -->
-      <form method="POST" action="/chatbot">
+      <form method="POST" action="/chatbot" id="chatbot-form">
         <label for="user_input">How can I help you today?</label>
-        <select name="user_input" id="user_input">
+        <select name="user_input" id="user_input" onchange="submitForm()">
           {% for question, choices in questionnaire.items() %}
           <option value="{{ question }}" disabled selected>
             {{ question }}
@@ -84,7 +84,6 @@
           <option value="{{ choice }}">{{ choice }}</option>
           {% endfor %} {% endfor %}
         </select>
-        <button type="submit">Get Assistance</button>
       </form>
 
       <!-- Display user input and bot response -->
@@ -123,9 +122,27 @@
         }
       }
 
+      // <---- Form Section ---->
+
+      // JavaScript function to submit the form when an option is selected
+      function submitForm() {
+        let form = document.getElementById("chatbot-form");
+        let user_input = document.getElementById("user_input").value;
+        form.submit();
+      }
+
       // Call the function when the page loads
       window.onload = function () {
         openRedirectLink();
+
+        // Check if user_input is defined (i.e., a response exists)
+        let user_input = "{{ user_input }}";
+        if (user_input) {
+          let response_text = "{{ response_text }}";
+          let redirect_link = "{{ redirect_link }}";
+          let redirect_text = "{{ redirect_text }}";
+          let response_audio = "{{ response_audio }}";
+        }
       };
     </script>
 
