@@ -193,7 +193,7 @@ def getChatbotResponse(user_input):
         response_text = "You chose option 7: Find the admin block."
         redirect_link = url_for('find_location', location='admin')
         redirect_text = "Find the admin block"
-    elif user_input == "Find canteen":
+    elif user_input == "Find the canteen":
         response_text = "You chose option 8: Find canteen."
         redirect_link = url_for('find_location', location='canteen')
         redirect_text = "Find the canteen"
