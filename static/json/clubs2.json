@@ -1,0 +1,161 @@
+{
+  "posts": [
+    {
+      "name": "Coding Club",
+      "category": "technical",
+      "President": "John Smith",
+      "Intro": "Coding Club is a group of passionate coders at RV College of Engineering. We explore various programming languages and work on exciting coding projects.",
+      "Prompt": "Our club conducts coding competitions, hackathons, and coding workshops. We provide a platform for students to enhance their coding skills and collaborate on projects.",
+      "Achievements": "Coding Club members have won coding competitions at both national and international levels. We are known for our innovative coding solutions.",
+      "Registration": "https://www.example.com/codingclub",
+      "reg_open": "1",
+      "deadline": "10/22/2023",
+      "image": "https://example.com/codingclub.jpg",
+      "insta": "https://www.instagram.com/codingclub",
+      "fb": "https://www.facebook.com/codingclub",
+      "linkedin": "https://www.linkedin.com/company/codingclub",
+      "gallery": []
+    },
+    {
+      "name": "Frequency Club",
+      "category": "cultural",
+      "President": "Emily Johnson",
+      "Intro": "Frequency Club is the hub for music and dance enthusiasts at RV College of Engineering. We promote various forms of music and dance through workshops and performances.",
+      "Prompt": "Our club organizes music concerts, dance competitions, and cultural events. We provide a platform for students to showcase their musical and dance talents.",
+      "Achievements": "Frequency Club has received accolades for its music concerts and dance performances. We foster a vibrant cultural community at RVCE.",
+      "Registration": "https://www.example.com/frequencyclub",
+      "reg_open": "1",
+      "deadline": "10/17/2023",
+      "image": "https://example.com/frequencyclub.jpg",
+      "insta": "https://www.instagram.com/frequencyclub",
+      "fb": "https://www.facebook.com/frequencyclub",
+      "linkedin": "https://www.linkedin.com/company/frequencyclub",
+      "gallery": []
+    },
+    {
+      "name": "Astra Robotics",
+      "category": "technical",
+      "President": "Samantha Williams",
+      "Intro": "Astra Robotics is a dynamic technical team at RV College of Engineering specializing in robotics and automation. We aim to create cutting-edge robotic solutions.",
+      "Prompt": "Our team participates in prestigious robotics competitions and organizes workshops to promote robotics knowledge within the college community.",
+      "Achievements": "Astra Robotics has consistently ranked at the top in national and international robotics competitions. We are known for our innovative robotic designs.",
+      "Registration": "https://www.example.com/astrarobotics",
+      "reg_open": "1",
+      "deadline": "10/19/2023",
+      "image": "https://example.com/astrarobotics.jpg",
+      "insta": "https://www.instagram.com/astrarobotics",
+      "fb": "https://www.facebook.com/astrarobotics",
+      "linkedin": "https://www.linkedin.com/company/astrarobotics",
+      "gallery": []
+    },
+    {
+      "name": "Ashwa Racing",
+      "category": "technical",
+      "President": "David Lee",
+      "Intro": "Ashwa Racing is the technical team at RV College of Engineering dedicated to the field of automotive engineering. We design and build racing cars for competitions.",
+      "Prompt": "Our team participates in Formula SAE competitions and has won awards for our racing car designs. We also organize workshops to enhance automotive engineering skills.",
+      "Achievements": "Ashwa Racing has consistently ranked in the top three at Formula SAE competitions and received recognition for our innovative car designs.",
+      "Registration": "https://www.example.com/ashwaracing",
+      "reg_open": "1",
+      "deadline": "10/16/2023",
+      "image": "https://example.com/ashwaracing.jpg",
+      "insta": "https://www.instagram.com/ashwaracing",
+      "fb": "https://www.facebook.com/ashwaracing",
+      "linkedin": "https://www.linkedin.com/company/ashwaracing",
+      "gallery": []
+    },
+    {
+      "name": "Footprints",
+      "category": "cultural",
+      "President": "Sophia Davis",
+      "Intro": "Footprints is the cultural and arts club at RV College of Engineering. We celebrate creativity through various art forms such as painting, poetry, and more.",
+      "Prompt": "Our club hosts art exhibitions, poetry slams, and creative workshops. We provide a platform for students to express their artistic talents.",
+      "Achievements": "Footprints has received acclaim for its art exhibitions and poetry events. We promote creativity and self-expression among students.",
+      "Registration": "https://www.example.com/footprints",
+      "reg_open": "1",
+      "deadline": "10/18/2023",
+      "image": "https://example.com/footprints.jpg",
+      "insta": "https://www.instagram.com/footprints",
+      "fb": "https://www.facebook.com/footprints",
+      "linkedin": "https://www.linkedin.com/company/footprints",
+      "gallery": []
+    },
+    {
+      "name": "Alaap",
+      "category": "cultural",
+      "President": "Aryan Gupta",
+      "Intro": "Alaap is the music and cultural club at RV College of Engineering. We promote various forms of music and culture through performances and events.",
+      "Prompt": "Our club organizes classical music concerts, dance performances, and cultural festivals. We provide a platform for students to showcase their artistic talents.",
+      "Achievements": "Alaap has received accolades for its classical music concerts and cultural festivals. We foster a vibrant cultural community at RVCE.",
+      "Registration": "https://www.example.com/alaap",
+      "reg_open": "1",
+      "deadline": "10/14/2023",
+      "image": "https://example.com/alaap.jpg",
+      "insta": "https://www.instagram.com/alaaprvce",
+      "fb": "https://www.facebook.com/alaaprvce",
+      "linkedin": "https://www.linkedin.com/company/alaaprvce",
+      "gallery": []
+    },
+    {
+      "name": "Rotaract",
+      "category": "community",
+      "President": "Linda Anderson",
+      "Intro": "Rotaract is a community service club at RV College of Engineering. We are committed to serving the community through various service projects and initiatives.",
+      "Prompt": "Our club organizes charity events, blood donation drives, and community outreach programs. We strive to make a positive impact on society.",
+      "Achievements": "Rotaract has received recognition for its community service projects and initiatives. We are dedicated to making a difference in the community.",
+      "Registration": "https://www.example.com/rotaract",
+      "reg_open": "1",
+      "deadline": "10/20/2023",
+      "image": "https://example.com/rotaract.jpg",
+      "insta": "https://www.instagram.com/rotaractrvce",
+      "fb": "https://www.facebook.com/rotaractrvce",
+      "linkedin": "https://www.linkedin.com/company/rotaractrvce",
+      "gallery": []
+    },
+    {
+      "name": "Photography Club",
+      "category": "creative",
+      "President": "Michael Brown",
+      "Intro": "Photography Club is a creative club at RV College of Engineering dedicated to the art of photography. We capture moments and tell stories through our lenses.",
+      "Prompt": "Our club organizes photography contests, exhibitions, and workshops. We provide a platform for students to develop their photography skills and creativity.",
+      "Achievements": "Photography Club members have received recognition for their photography skills and won photography contests. We are passionate about visual storytelling.",
+      "Registration": "https://www.example.com/photographyclub",
+      "reg_open": "1",
+      "deadline": "10/15/2023",
+      "image": "https://example.com/photographyclub.jpg",
+      "insta": "https://www.instagram.com/photographyclubrvce",
+      "fb": "https://www.facebook.com/photographyclubrvce",
+      "linkedin": "https://www.linkedin.com/company/photographyclubrvce",
+      "gallery": []
+    },
+    {
+      "name": "Debsoc",
+      "category": "cultural",
+      "President": "Akash Shetty",
+      "Intro": "DEBSOC, the Debating Society of RV College of Engineering, is a student-run organization that promotes the art of debate and critical thinking. The society was founded in 1963 and has since produced some of the finest debaters in the country. DEBSOC is affiliated to the Indian Parliamentary Debate Association (IADA) and the World Universities Debating Championship (WUDC).",
+      "Prompt": "The society organizes a number of debate tournaments throughout the year, including the RVCE Inter-Collegiate Debate Tournament, the RVCE Open Debate Tournament, and the RVCE Parliamentary Debate Tournament. DEBSOC also sends teams to represent RVCE at national and international tournaments. In addition to debating, DEBSOC also organizes a number of other activities, such as workshops, lectures, and discussions on current affairs. The society also has a vibrant alumni network that provides support and guidance to current members.DEBSOC is a great way to develop your critical thinking skills, learn how to articulate your ideas, and meet new people. If you are interested in debating or public speaking, then DEBSOC is the perfect place for you.",
+      "Achievements": "DEBSOC RVCE has won several awards at national and international debate tournaments, including the Best New Team Award in the 13th All Asian Debate Championship in Langkawi, Malaysia, the Best Speaker Award at the RVCE Inter-Collegiate Debate Tournament in 2022, and the Best Overall Team award at the RVCE Open Debate Tournament in 2022. They have also sent teams to represent RVCE at the World Universities Debating Championship (WUDC) in 2019, 2021, and 2023.",
+      "Registration": "https://www.instagram.com/rvcedebsoc/?hl=en",
+      "reg_open": "1",
+      "deadline": "10/10/2023",
+      "image": "https://i.ibb.co/fk2wGyy/debsoc.jpg",
+      "insta": "https://www.instagram.com/rvcedebsoc/?hl=en",
+      "fb": "https://www.facebook.com/rvcedebsoc/",
+      "linkedin": "https://www.linkedin.com/in/rvce-debating-society-163890187/?originalSubdomain=in",
+      "gallery": [
+        {
+          "image": "https://i.ibb.co/Kbtk5kL/deb4.jpg"
+        },
+        {
+          "image": "https://i.ibb.co/922n8NF/deb3.jpg"
+        },
+        {
+          "image": "https://i.ibb.co/z5Bk45k/deb2.jpg"
+        },
+        {
+          "image": "https://i.ibb.co/7kmfSpd/deb1.jpg"
+        }
+      ]
+    }
+  ]
+}

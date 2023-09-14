@@ -1,0 +1,42 @@
+[
+  {
+    "name": "Coding Club",
+    "image": "https://source.unsplash.com/300x200/?coding",
+    "intro": "The premium programming club of RVCE that aims to provide a platform for students to learn and practice competitive programming."
+  },
+  {
+    "name": "Frequency Club",
+    "image": "https://source.unsplash.com/300x200/?frequency,waves",
+    "intro": "The hardware and software duo club of RVCE featuring numerous hackathons and workshops in the fields of ML and Web Development."
+  },
+  {
+    "name": "Astra Robotics",
+    "image": "https://source.unsplash.com/300x200/?electronics",
+    "intro": "Welcome to the realm of innovation and cutting-edge technology - welcome to our robotics club!"
+  },
+  {
+    "name": "Ashwa Racing",
+    "image": "https://source.unsplash.com/300x200/?Racing",
+    "intro": "Team Ashwa is the technical team at RV College of Engineering dedicated to the field of robotics and automation. We aim to develop cutting-edge robotic systems and compete in various national and international competitions."
+  },
+  {
+    "name": "FootPrints",
+    "image": "https://source.unsplash.com/300x200/?dancing",
+    "intro": "FootPrints is the dance club at RVCE, where rhythm meets creativity. Join us to express yourself through dance and explore various dance forms."
+  },
+  {
+    "name": "Alaap",
+    "image": "https://source.unsplash.com/300x200/?singing",
+    "intro": "Alaap is the music club at RVCE, where melodies and harmonies come together. Join us to explore your vocal talents and perform at mesmerizing musical events."
+  },
+  {
+    "name": "Rotaract",
+    "image": "https://source.unsplash.com/300x200/?helping",
+    "intro": "Rotaract is the club dedicated to community service and social initiatives. Join us to make a positive impact on society and engage in various volunteering activities."
+  },
+  {
+    "name": "Photography Club",
+    "image": "https://source.unsplash.com/300x200/?photography",
+    "intro": "The Photography Club at RVCE is the perfect place for shutterbugs. Join us to capture stunning moments and enhance your photography skills."
+  }
+]

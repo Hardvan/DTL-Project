@@ -4,6 +4,7 @@ from pymongo.server_api import ServerApi
 from gtts import gTTS
 import io
 import base64
+import json
 
 import os
 from dotenv import load_dotenv
@@ -61,14 +62,19 @@ if REAL_DATA:
 @app.route('/')
 def index():
 
-    posts_dict = PostHandler.getPostsData(collection, REAL_DATA)
+    with open('./static/json/dashboard_clubs.json', 'r') as json_file:
+        clubs_data = json.load(json_file)
 
-    return render_template('dashboard.html', posts_dict=posts_dict)
+    return render_template('dashboard.html', clubs_data=clubs_data)
 
 
 @app.route('/dashboard')
 def dashboard():
-    return render_template('dashboard.html')
+
+    with open('./static/json/dashboard_clubs.json', 'r') as json_file:
+        clubs_data = json.load(json_file)
+
+    return render_template('dashboard.html', clubs_data=clubs_data)
 
 
 @app.route('/events')
@@ -102,6 +108,7 @@ def eventDetail():
 @app.route('/clubs')
 def clubs_page():
     return render_template('clubs.html')
+
 
 @app.route('/achievements')
 def achievements():

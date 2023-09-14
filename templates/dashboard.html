@@ -180,6 +180,7 @@
     <br />
     <br />
 
+    <!--
     <div class="card-display">
       <div class="card my-5 mx-5">
         <img
@@ -316,6 +317,25 @@
           <a href="/" class="btn btn-success mx-2">Explore</a>
         </div>
       </div>
+    </div>
+    -->
+
+    <div class="card-display">
+      {% for club in clubs_data %}
+      <div class="card my-5 mx-5">
+        <img src="{{ club.image }}" class="card-img-top" alt="imgs" />
+        <div class="card-body">
+          <h5 class="card-title">{{ club.name }}</h5>
+          <p class="card-text">{{ club.intro }}</p>
+          <!-- Add a link to the clubDetails route with the club name as a parameter -->
+          <a
+            href="{{ url_for('clubDetails', name=club.name) }}"
+            class="btn btn-success mx-2"
+            >Explore</a
+          >
+        </div>
+      </div>
+      {% endfor %}
     </div>
 
     <!-- Grid section -->
