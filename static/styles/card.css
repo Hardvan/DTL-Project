@@ -13,6 +13,6 @@
 
 @media (max-width: 768px) {
   .card {
-    width: calc(50% - 20px); /* On smaller screens, 2 cards per row */
+    width: calc(100% - 20px); /* On smaller screens, full width with spacing */
   }
 }

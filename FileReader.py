@@ -61,19 +61,23 @@ if __name__ == "__main__":
     clubDetails_html = "templates/clubDetails.html"
 
     # .css files
-    dashboard_css = "static/styles/dashboard.css"
+    achieve_css = "static/styles/achieve.css"
+    card_css = "static/styles/card.css"
     chatbot_css = "static/styles/chatbot.css"
+    dashboard_css = "static/styles/dashboard.css"
     events_css = "static/styles/events.css"
     find_location_css = "static/styles/find_location.css"
+    navbar_css = "static/styles/navbar.css"
 
     # .js files
     index_js = "static/js/index.js"
     chatbot_js = "static/javaScript/chatbot.js"
 
     file_list = [
-        app_py,
         dashboard_html,
-        clubDetails_html,
+        dashboard_css,
+        card_css,
+        navbar_css
     ]
 
     read_files_in_directory(".", file_list)
