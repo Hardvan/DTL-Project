@@ -37,7 +37,7 @@ def getPostsData(collection, REAL_DATA):
 
     # Sample data
     else:
-        with open('./static/json/sample_posts.json', 'r') as file:
+        with open('DTL-College-Website/static/json/sample_posts.json', 'r') as file:
             data = json.load(file)
             posts_dict = data['posts']
 
@@ -56,7 +56,7 @@ def getPostsDataClubs(collection, REAL_DATA):
 
     # Sample data
     else:
-        with open('./static/json/clubs.json', 'r') as file:
+        with open('DTL-College-Website/static/json/clubs.json', 'r') as file:
             data = json.load(file)
             posts_dict = data['posts']
 
@@ -73,7 +73,7 @@ def getLocationData(collection, REAL_DATA):
 
     # Sample data
     else:
-        with open('./static/json/locations.json') as file:
+        with open('DTL-College-Website/static/json/locations.json') as file:
             location_dict = json.load(file)
 
     return location_dict
