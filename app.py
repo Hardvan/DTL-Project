@@ -103,6 +103,10 @@ def eventDetail():
 def clubs_page():
     return render_template('clubs.html')
 
+@app.route('/achievements')
+def achievements():
+    return render_template('achievements.html')
+
 
 @app.route('/clubs/all_in_one_clubs/<category>')
 def all_in_one_clubs(category):
