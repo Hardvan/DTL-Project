@@ -83,7 +83,10 @@ def index():
     with open('./static/json/dashboard_clubs.json', 'r') as json_file:
         clubs_data = json.load(json_file)
 
-    return render_template('dashboard.html', clubs_data=clubs_data)
+    speech_base64 = getSpeech(
+        "Try out the chatbot on the bottom right corner of the screen!")
+
+    return render_template('dashboard.html', clubs_data=clubs_data, speech_base64=speech_base64)
 
 
 @app.route('/dashboard')

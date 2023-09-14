@@ -218,6 +218,12 @@
       </div>
     </section>
 
+    <!-- Audio element to play the chatbot message -->
+    <audio id="chatbot-audio" controls style="display: none">
+      <source src="" type="audio/mpeg" />
+      Your browser does not support the audio element.
+    </audio>
+
     <!-- Chatbot image link -->
     <a href="{{ url_for('chatbot') }}" id="chatbot-link" target="_blank">
       <img
@@ -235,10 +241,15 @@
     ></script>
 
     <script>
-      // Function to show the chatbot link
+      // Function to show the chatbot link and play the audio message
       function showChatbotLink() {
         const chatbotLink = document.getElementById("chatbot-link");
         chatbotLink.style.display = "block";
+
+        // Play the audio message
+        const audio = document.getElementById("chatbot-audio");
+        audio.src = "data:audio/mpeg;base64,{{ speech_base64 }}"; // URL to the chatbot message route
+        audio.play();
       }
 
       // Delay showing the chatbot link by 3s
