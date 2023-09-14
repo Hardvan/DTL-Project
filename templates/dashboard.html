@@ -323,8 +323,8 @@
     <!-- Display all clubs -->
     <div class="card-display">
       {% for club in clubs_data %}
-      <div class="card my-5 mx-5">
-        <img src="{{ club.image }}" class="card-img-top" alt="imgs" />
+      <div class="card">
+        <img src="{{ club.image }}" class="" alt="imgs" />
         <div class="card-body">
           <h5 class="card-title">{{ club.name }}</h5>
           <p class="card-text">{{ club.intro }}</p>

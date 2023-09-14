@@ -1,7 +1,18 @@
-.card{
-    width: 18rem;
+.card-display {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; /* Distribute cards evenly in a row */
+  margin: 0 10px; /* Add a little margin on the sides */
 }
 
-.card-display{
-    display: flex;
+.card {
+  width: calc(25% - 20px); /* 25% width for each card with a little spacing */
+  margin-bottom: 20px; /* Add spacing between rows */
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .card {
+    width: calc(50% - 20px); /* On smaller screens, 2 cards per row */
+  }
 }
