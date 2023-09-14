@@ -1,3 +1,282 @@
+app.py:
+from flask import Flask, render_template, request, redirect, url_for
+from pymongo.mongo_client import MongoClient
+from pymongo.server_api import ServerApi
+from gtts import gTTS
+import io
+import base64
+
+import os
+from dotenv import load_dotenv
+
+# Custom modules
+import PostHandler
+
+load_dotenv()
+
+
+app = Flask(__name__)
+
+# Testing Parameters
+REAL_DATA = False            # ? False: use sample data / True: use real data
+TEST_CONNECTION = False     # ? False: don't test connection / True: test connection
+
+
+# Define db and collection as placeholders
+db = None
+collection = None
+
+if REAL_DATA:
+    # MongoDB connection
+    mongodb_uri = os.getenv("MONGODB_URI")
+    client = MongoClient(mongodb_uri, server_api=ServerApi('1'))
+
+    # Select the database and collection
+    db = client['DTL_db']
+    collection = db['posts']
+
+    # Send a ping to confirm a successful connection
+    if TEST_CONNECTION:
+        try:
+            client.admin.command('ping')
+            print("✅ Pinged your deployment. You successfully connected to MongoDB!")
+        except Exception as e:
+            print(e)
+
+        # Add a sample document in the collection (don't add if already exists)
+        name = 'John Doe'
+        if collection.count_documents({'name': name}) == 0:
+            collection.insert_one({'name': name})
+            print("✅ Added a sample document in the collection.")
+
+        # Retrieve the sample document added
+        result = collection.find_one({'name': name})
+        print(result)
+        print("✅ Retrieved the sample document.")
+
+        # Delete the sample document added
+        collection.delete_one({'name': name})
+        print("✅ Deleted the sample document.")
+
+
+@app.route('/')
+def index():
+
+    posts_dict = PostHandler.getPostsData(collection, REAL_DATA)
+
+    return render_template('dashboard.html', posts_dict=posts_dict)
+
+
+@app.route('/dashboard')
+def dashboard():
+    return render_template('dashboard.html')
+
+
+@app.route('/events')
+def events():
+    return render_template('events.html')
+
+
+@app.route('/events/all_in_one/<category>')
+def all_in_one(category):
+
+    # categories: upcoming/ongoing/completed
+
+    posts_dict = PostHandler.getPostsData(collection, REAL_DATA)
+    return render_template('all_in_one.html', posts_dict=posts_dict, category=category)
+
+
+@app.route('/eventDetail')
+def eventDetail():
+
+    # Get the event details from the URL
+
+    title = request.args.get('title')
+    date = request.args.get('date')
+    des = request.args.get('des')
+    image = request.args.get('image')
+    host = request.args.get('host')
+
+    return render_template('eventDetails.html', title=title, date=date, des=des, image=image, host=host)
+
+
+@app.route('/clubs')
+def clubs_page():
+    return render_template('clubs.html')
+
+@app.route('/achievements')
+def achievements():
+    return render_template('achievements.html')
+
+
+@app.route('/clubs/all_in_one_clubs/<category>')
+def all_in_one_clubs(category):
+
+    posts_dict = PostHandler.getPostsDataClubs(collection, REAL_DATA)
+    return render_template('all_in_one_clubs.html', posts_dict=posts_dict, category=category)
+
+
+@app.route('/clubDetails')
+def clubDetails():
+
+    # Get the event details from the URL
+
+    name = request.args.get('name')
+    posts_dict = PostHandler.getPostsDataClubs(collection, REAL_DATA)
+    return render_template('clubDetails.html', name=name, posts_dict=posts_dict)
+
+
+# Chatbot functions
+def getSpeech(result_text):
+
+    language = 'en'
+    speech = gTTS(text=result_text, lang=language, slow=False)
+
+    # On local machine
+    # speech.save("speech.mp3")
+    # os.system("start speech.mp3")
+
+    # Save the speech to memory as bytes
+    speech_file = io.BytesIO()
+    speech.write_to_fp(speech_file)
+    speech_bytes = speech_file.getvalue()
+    speech_base64 = base64.b64encode(speech_bytes).decode('utf-8')
+
+    return speech_base64
+
+
+@app.route('/find_location/<location>')
+def find_location(location):
+
+    # Load data from JSON file
+    location_dict = PostHandler.getLocationData(collection, REAL_DATA)
+
+    # Get the location data from the JSON file (default if not found)
+    location_data = location_dict.get(location, location_dict['default'])
+
+    return render_template('find_location.html', location_data=location_data)
+
+
+# Global user_input string for easy access (chatbot)
+see_upcoming_events = "See upcoming events"
+see_ongoing_events = "See ongoing events"
+see_completed_events = "See completed events"
+visit_events_page = "Visit the events page"
+visit_rvce_website = "Visit the official RVCE website"
+get_placement_statistics = "Get Placement Statistics"
+
+find_admin_block = "Find the admin block"
+find_canteen = "Find the canteen"
+enquire_hostel_facilities = "Enquire about hostel facilities"
+find_library = "Find the library"
+enquire_admission_process = "Enquire about the admission process"
+find_auditorium = "Find the auditorium"
+
+
+def getChatbotResponse(user_input):
+
+    # Default values
+    response_text = "Sorry, I don't understand. Please try again."
+    redirect_link = None
+
+    if user_input == see_upcoming_events:
+        response_text = "You chose option 1: See upcoming events."
+        redirect_link = url_for('all_in_one', category='upcoming')
+        redirect_text = "View upcoming events"
+    elif user_input == see_ongoing_events:
+        response_text = "You chose option 2: See ongoing events."
+        redirect_link = url_for('all_in_one', category='ongoing')
+        redirect_text = "View ongoing events"
+    elif user_input == see_completed_events:
+        response_text = "You chose option 3: See completed events."
+        redirect_link = url_for('all_in_one', category='completed')
+        redirect_text = "View completed events"
+    elif user_input == visit_events_page:
+        response_text = "You chose option 4: Visit the events page."
+        redirect_link = url_for('events')
+        redirect_text = "Visit the events page"
+    elif user_input == visit_rvce_website:
+        response_text = "You chose option 5: Visit the official RVCE website."
+        redirect_link = "https://www.rvce.edu.in/"
+        redirect_text = "Visit the official RVCE website"
+    elif user_input == get_placement_statistics:
+        response_text = "You chose option 6: Get Placement Statistics."
+        redirect_link = "https://rvce.edu.in/placement-statistics"
+        redirect_text = "Get Placement Statistics"
+
+    elif user_input == find_admin_block:
+        response_text = "You chose option 7: Find the admin block."
+        redirect_link = url_for('find_location', location='admin')
+        redirect_text = "Find the admin block"
+    elif user_input == find_canteen:
+        response_text = "You chose option 8: Find canteen."
+        redirect_link = url_for('find_location', location='canteen')
+        redirect_text = "Find the canteen"
+    elif user_input == enquire_hostel_facilities:
+        response_text = "You chose option 9: Enquire about hostel facilities."
+        redirect_link = url_for('find_location', location='hostel')
+        redirect_text = "Enquire about hostel facilities"
+    elif user_input == find_library:
+        response_text = "You chose option 10: Find the library."
+        redirect_link = url_for('find_location', location='library')
+        redirect_text = "Find the library"
+    elif user_input == enquire_admission_process:
+        response_text = "You chose option 11: Enquire about the admission process."
+        redirect_link = url_for('find_location', location='admission')
+        redirect_text = "Enquire about the admission process"
+    elif user_input == find_auditorium:
+        response_text = "You chose option 12: Find the auditorium."
+        redirect_link = url_for('find_location', location='auditorium')
+        redirect_text = "Find the auditorium"
+
+    audio_text = f"""{response_text} Opening the link for you.
+    If not redirected automatically, please click the link below. 
+    If you would like to choose another option, please select it from the dropdown menu given above."""
+
+    response_audio = getSpeech(audio_text)
+
+    return response_text, redirect_link, redirect_text, response_audio
+
+
+@app.route('/chatbot', methods=['GET', 'POST'])
+def chatbot():
+
+    # "Question" : [Options] dictionary
+    questionnaire = {"What would you like to do?": [see_upcoming_events,
+                                                    see_ongoing_events,
+                                                    see_completed_events,
+                                                    visit_events_page,
+                                                    visit_rvce_website,
+                                                    get_placement_statistics,
+
+                                                    find_admin_block,
+                                                    find_canteen,
+                                                    enquire_hostel_facilities,
+                                                    find_library,
+                                                    enquire_admission_process,
+                                                    find_auditorium
+                                                    ]}
+
+    hello = "Hello, I am RVCE's chatbot, at your service. How can I help you today?"
+    speech_base64 = getSpeech(hello)
+
+    if request.method == 'POST':
+        user_input = request.form['user_input']
+        response_text, redirect_link, redirect_text, response_audio = getChatbotResponse(
+            user_input)
+
+        return render_template('chatbot.html', questionnaire=questionnaire,
+                               user_input=user_input, response_text=response_text,
+                               redirect_link=redirect_link, redirect_text=redirect_text,
+                               response_audio=response_audio)
+
+    return render_template('chatbot.html', questionnaire=questionnaire, speech_base64=speech_base64)
+
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
+
 templates/dashboard.html:
 <!DOCTYPE html>
 <html lang="en">
@@ -129,8 +408,8 @@ templates/dashboard.html:
             alt="image"
           />
           <div class="carousel-caption d-none d-md-block">
-            <h5>First slide label</h5>
-            <p>Some representative placeholder content for the first slide.</p>
+            <h5>Welcome to RVCE</h5>
+            <p>Explore our vibrant campus and engage in exciting activities.</p>
           </div>
         </div>
         <div class="carousel-item">
@@ -140,8 +419,8 @@ templates/dashboard.html:
             alt="..."
           />
           <div class="carousel-caption d-none d-md-block">
-            <h5>Second slide label</h5>
-            <p>Some representative placeholder content for the second slide.</p>
+            <h5>Graduation Moments</h5>
+            <p>Celebrating the success of our talented graduates.</p>
           </div>
         </div>
         <div class="carousel-item">
@@ -151,8 +430,8 @@ templates/dashboard.html:
             alt="..."
           />
           <div class="carousel-caption d-none d-md-block">
-            <h5>Third slide label</h5>
-            <p>Some representative placeholder content for the third slide.</p>
+            <h5>Technology at RVCE</h5>
+            <p>Experience innovation and cutting-edge technology.</p>
           </div>
         </div>
       </div>
@@ -191,8 +470,8 @@ templates/dashboard.html:
         <div class="card-body">
           <h5 class="card-title">Coding Club</h5>
           <p class="card-text">
-            HackTheNight starts soon.The registrations are open.Please do
-            register and join us to upskill and learn.
+            The premium programming club of RVCE that aims to provide a platform
+            for students to learn and practice competitive programming.
           </p>
           <a href="/" class="btn btn-primary mx-2">Upcoming</a>
           <a href="/" class="btn btn-success mx-2">Previous</a>
@@ -208,11 +487,10 @@ templates/dashboard.html:
         <div class="card-body">
           <h5 class="card-title">Frequency Club</h5>
           <p class="card-text">
-            Welcome to the enchanting world of our club, where harmonious
-            melodies,soaring voices come together to create pure magic!
+            The hardware and software duo club of RVCE featuring numerous
+            hackathons and workshops in the fields of ML and Web Development.
           </p>
-          <a href="/" class="btn btn-primary mx-2">Upcoming</a>
-          <a href="/" class="btn btn-success mx-2">Previous</a>
+          <a href="/" class="btn btn-success mx-2">Explore</a>
         </div>
       </div>
 
@@ -225,11 +503,10 @@ templates/dashboard.html:
         <div class="card-body">
           <h5 class="card-title">Astra Robotics</h5>
           <p class="card-text">
-            Welcome to the realm of innovation and cutting-edge technology –
+            Welcome to the realm of innovation and cutting-edge technology -
             welcome to our robotics club!
           </p>
-          <a href="/" class="btn btn-primary mx-2">Upcoming</a>
-          <a href="/" class="btn btn-success mx-2">Previous</a>
+          <a href="/" class="btn btn-success mx-2">Explore</a>
         </div>
       </div>
 
@@ -242,11 +519,12 @@ templates/dashboard.html:
         <div class="card-body">
           <h5 class="card-title">Ashwa Racing</h5>
           <p class="card-text">
-            HackTheNight starts soon.The registrations are open.Please do
-            register and join us to upskill and learn.
+            Team Ashwa is the technical team at RV College of Engineering
+            dedicated to the field of robotics and automation. We aim to develop
+            cutting-edge robotic systems and compete in various national and
+            international competitions.
           </p>
-          <a href="/" class="btn btn-primary mx-2">Upcoming</a>
-          <a href="/" class="btn btn-success mx-2">Previous</a>
+          <a href="/" class="btn btn-success mx-2">Explore</a>
         </div>
       </div>
     </div>
@@ -261,11 +539,11 @@ templates/dashboard.html:
         <div class="card-body">
           <h5 class="card-title">FootPrints</h5>
           <p class="card-text">
-            HackTheNight starts soon.The registrations are open.Please do
-            register and join us to upskill and learn.
+            FootPrints is the dance club at RVCE, where rhythm meets creativity.
+            Join us to express yourself through dance and explore various dance
+            forms.
           </p>
-          <a href="/" class="btn btn-primary mx-2">Upcoming</a>
-          <a href="/" class="btn btn-success mx-2">Previous</a>
+          <a href="/" class="btn btn-success mx-2">Explore</a>
         </div>
       </div>
 
@@ -278,11 +556,11 @@ templates/dashboard.html:
         <div class="card-body">
           <h5 class="card-title">Alaap</h5>
           <p class="card-text">
-            HackTheNight starts soon.The registrations are open.Please do
-            register and join us to upskill and learn.
+            Alaap is the music club at RVCE, where melodies and harmonies come
+            together. Join us to explore your vocal talents and perform at
+            mesmerizing musical events.
           </p>
-          <a href="/" class="btn btn-primary mx-2">Upcoming</a>
-          <a href="/" class="btn btn-success mx-2">Previous</a>
+          <a href="/" class="btn btn-success mx-2">Explore</a>
         </div>
       </div>
 
@@ -295,11 +573,11 @@ templates/dashboard.html:
         <div class="card-body">
           <h5 class="card-title">Rotaract</h5>
           <p class="card-text">
-            HackTheNight starts soon.The registrations are open.Please do
-            register and join us to upskill and learn.
+            Rotaract is the club dedicated to community service and social
+            initiatives. Join us to make a positive impact on society and engage
+            in various volunteering activities.
           </p>
-          <a href="/" class="btn btn-primary mx-2">Upcoming</a>
-          <a href="/" class="btn btn-success mx-2">Previous</a>
+          <a href="/" class="btn btn-success mx-2">Explore</a>
         </div>
       </div>
 
@@ -312,11 +590,11 @@ templates/dashboard.html:
         <div class="card-body">
           <h5 class="card-title">Photography Club</h5>
           <p class="card-text">
-            HackTheNight starts soon.The registrations are open.Please do
-            register and join us to upskill and learn.
+            The Photography Club at RVCE is the perfect place for shutterbugs.
+            Join us to capture stunning moments and enhance your photography
+            skills.
           </p>
-          <a href="/" class="btn btn-primary mx-2">Upcoming</a>
-          <a href="/" class="btn btn-success mx-2">Previous</a>
+          <a href="/" class="btn btn-success mx-2">Explore</a>
         </div>
       </div>
     </div>
@@ -370,37 +648,82 @@ templates/dashboard.html:
 </html>
 
 
-static/styles/dashboard.css:
-/* General Layout */
-html {
-  background-color: rgb(250, 239, 239);
-}
+templates/clubDetails.html:
+{% extends 'events.html' %} {% block switchbar_section %}
+<!-- Landing Image -->
+{% for post in posts_dict if post.name == name %}
+<div class="add_img_margin_new">
+  <img src="{{ post.image }}" class="img-fluid" alt="Wild Landscape" />
+</div>
+{% endfor %} {% endblock %} {% block genEvents %} {% for post in posts_dict if
+post.name == name %}
+<h1 class="sub_title_det" style="margin-top: 6px">{{ post.name }}</h1>
+<div class="description">
+  <h5>{{ post.Intro }}</h5>
+  <h2 style="margin-top: 40px; margin-bottom: 40px">About Us</h2>
+  <h5>{{ post.Prompt }}</h5>
+  <h2 style="margin-top: 40px; margin-bottom: 40px">Gallery</h2>
+  <div class="addmargin row row-cols-1 row-cols-md-3 g-4">
+    {% for image in post.gallery %}
+    <div class="col">
+      <div class="card_align card" style="height: 200px">
+        <img
+          src="{{ image.image }}"
+          class="img_align_card card-img-top"
+          alt="Hollywood Sign on The Hill"
+        />
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  <h2 style="margin-top: 40px; margin-bottom: 40px">Achievements</h2>
+  <h5>{{ post.Achievements }}</h5>
+  {% if post.reg_open == "0" %}
+  <h2 style="margin-top: 40px; margin-bottom: 40px">
+    Registrations are temporarily closed
+  </h2>
+  {% endif %} {% if post.reg_open == "1" %}
+  <h2 style="margin-top: 40px; margin-bottom: 40px">Registrations</h2>
+  <img
+    src="{{ url_for('static',filename='Images/pocket-watch.gif') }}"
+    alt=""
+    class="gif_adjust"
+  />
 
-body {
-  background-color: white;
-}
-
-#chatbot-link {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  display: none;
-  border-radius: 50%;
-  z-index: 9999; /* Ensure it's above other elements */
-}
-
-/* Chatbot Image */
-#chatbot-image {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%; /* Make the image round */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Add a shadow for visual effect */
-  transition: transform 0.2s, box-shadow 0.2s; /* Add a smooth transition effect */
-}
-
-#chatbot-image:hover {
-  transform: scale(1.1); /* Increase the size on hover */
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3); /* Add more shadow on hover */
-}
+  <h5 style="display: inline-block; text-align: center; margin-top: 20px">
+    Deadline: {{ post.deadline }}
+  </h5>
+  <p>{{ des }}</p>
+  <img
+    src="{{ url_for('static',filename='Images/location.gif') }}"
+    alt=""
+    class="gif_adjust"
+  />
+  <h6 style="display: inline-block">RVCE</h6>
+  <div>
+    <a href="{{ post.Registration }}">
+      <button
+        class="explore_button_bigger"
+        style="margin-top: 40px; margin-bottom: 40px"
+      >
+        Register
+      </button>
+    </a>
+  </div>
+  {% endif %}
+  <h2>Relevant Links</h2>
+  <ul>
+    <li>
+      <a href="{{ post.insta }}"><h5>Instagram</h5></a>
+    </li>
+    <li>
+      <a href="{{ post.fb }}"><h5>Facebook</h5></a>
+    </li>
+    <li>
+      <a href="{{ post.linkedin }}"><h5>LinkedIn</h5></a>
+    </li>
+  </ul>
+</div>
+{% endfor %} {% endblock %}
 
 

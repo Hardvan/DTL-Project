@@ -58,6 +58,7 @@ if __name__ == "__main__":
     all_in_one_html = "templates/all_in_one.html"
     eventDetails_html = "templates/eventDetails.html"
     find_location_html = "templates/find_location.html"
+    clubDetails_html = "templates/clubDetails.html"
 
     # .css files
     dashboard_css = "static/styles/dashboard.css"
@@ -70,8 +71,9 @@ if __name__ == "__main__":
     chatbot_js = "static/javaScript/chatbot.js"
 
     file_list = [
+        app_py,
         dashboard_html,
-        dashboard_css
+        clubDetails_html,
     ]
 
     read_files_in_directory(".", file_list)
