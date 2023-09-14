@@ -75,7 +75,9 @@ if __name__ == "__main__":
 
     file_list = [
         dashboard_html,
-        app_py
+        dashboard_css,
+        card_css,
+        navbar_css
     ]
 
     read_files_in_directory(".", file_list)
