@@ -24,4 +24,10 @@ body {
   height: 150px;
   border-radius: 50%; /* Make the image round */
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Add a shadow for visual effect */
+  transition: transform 0.2s, box-shadow 0.2s; /* Add a smooth transition effect */
+}
+
+#chatbot-image:hover {
+  transform: scale(1.1); /* Increase the size on hover */
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3); /* Add more shadow on hover */
 }
