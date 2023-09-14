@@ -59,6 +59,24 @@ if REAL_DATA:
         print("✅ Deleted the sample document.")
 
 
+def getSpeech(result_text):
+
+    language = 'en'
+    speech = gTTS(text=result_text, lang=language, slow=False)
+
+    # On local machine
+    # speech.save("speech.mp3")
+    # os.system("start speech.mp3")
+
+    # Save the speech to memory as bytes
+    speech_file = io.BytesIO()
+    speech.write_to_fp(speech_file)
+    speech_bytes = speech_file.getvalue()
+    speech_base64 = base64.b64encode(speech_bytes).decode('utf-8')
+
+    return speech_base64
+
+
 @app.route('/')
 def index():
 
@@ -146,25 +164,8 @@ def clubDetails2():
 
     return render_template('clubDetails.html', name=name, posts_dict=clubs_data)
 
+
 # Chatbot functions
-
-
-def getSpeech(result_text):
-
-    language = 'en'
-    speech = gTTS(text=result_text, lang=language, slow=False)
-
-    # On local machine
-    # speech.save("speech.mp3")
-    # os.system("start speech.mp3")
-
-    # Save the speech to memory as bytes
-    speech_file = io.BytesIO()
-    speech.write_to_fp(speech_file)
-    speech_bytes = speech_file.getvalue()
-    speech_base64 = base64.b64encode(speech_bytes).decode('utf-8')
-
-    return speech_base64
 
 
 @app.route('/find_location/<location>')
