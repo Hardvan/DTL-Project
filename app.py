@@ -80,7 +80,7 @@ def getSpeech(result_text):
 @app.route('/')
 def index():
 
-    with open('DTL-College-Website\static\json\dashboard_clubs.json', 'r') as json_file:
+    with open('static/json/dashboard_clubs.json', 'r') as json_file:
         clubs_data = json.load(json_file)
 
     speech_base64 = getSpeech(
