@@ -60,3 +60,7 @@ Click [here](./directory_structure.md) to view the project directory structure a
 5. Create a Pull Request from your forked repository (Click on the `New Pull Request` button located at the top of your repo)
 
 6. Wait for your PR review and merge approval!
+
+## Some Important Notes
+
+- Click anywhere on the website at the start to play the audio message from the chatbot. (This is because of Google Chrome's [autoplay policy](https://developer.chrome.com/blog/autoplay/))
