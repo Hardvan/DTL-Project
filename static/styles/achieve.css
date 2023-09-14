@@ -57,7 +57,7 @@
     box-shadow: 0px 10px 50px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     transition: all 0.3s ease-out 0s;
-    background-color: #fff;
+    background-color: #ffffff;
   }
   
   .about .icon-box i {
@@ -102,4 +102,4 @@
       margin-top: 0;
     }
   }
-  
+
