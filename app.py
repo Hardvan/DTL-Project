@@ -132,7 +132,23 @@ def clubDetails():
     return render_template('clubDetails.html', name=name, posts_dict=posts_dict)
 
 
+@app.route('/clubDetails2')
+def clubDetails2():
+
+    clubs_data = None
+
+    name = request.args.get('name')
+    print(f"Name: {name}")
+    with open('./static/json/clubs2.json', 'r') as json_file:
+        clubs_data = json.load(json_file)
+
+    clubs_data = clubs_data['posts']
+
+    return render_template('clubDetails.html', name=name, posts_dict=clubs_data)
+
 # Chatbot functions
+
+
 def getSpeech(result_text):
 
     language = 'en'

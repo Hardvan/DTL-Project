@@ -14,7 +14,8 @@
       "insta": "https://www.instagram.com/codingclub",
       "fb": "https://www.facebook.com/codingclub",
       "linkedin": "https://www.linkedin.com/company/codingclub",
-      "gallery": []
+      "gallery": [],
+      "code_name": "coding_club"
     },
     {
       "name": "Frequency Club",
@@ -30,7 +31,8 @@
       "insta": "https://www.instagram.com/frequencyclub",
       "fb": "https://www.facebook.com/frequencyclub",
       "linkedin": "https://www.linkedin.com/company/frequencyclub",
-      "gallery": []
+      "gallery": [],
+      "code_name": "frequency_club"
     },
     {
       "name": "Astra Robotics",
@@ -46,7 +48,8 @@
       "insta": "https://www.instagram.com/astrarobotics",
       "fb": "https://www.facebook.com/astrarobotics",
       "linkedin": "https://www.linkedin.com/company/astrarobotics",
-      "gallery": []
+      "gallery": [],
+      "code_name": "astra_robotics"
     },
     {
       "name": "Ashwa Racing",
@@ -62,7 +65,8 @@
       "insta": "https://www.instagram.com/ashwaracing",
       "fb": "https://www.facebook.com/ashwaracing",
       "linkedin": "https://www.linkedin.com/company/ashwaracing",
-      "gallery": []
+      "gallery": [],
+      "code_name": "ashwa_racing"
     },
     {
       "name": "Footprints",
@@ -78,7 +82,8 @@
       "insta": "https://www.instagram.com/footprints",
       "fb": "https://www.facebook.com/footprints",
       "linkedin": "https://www.linkedin.com/company/footprints",
-      "gallery": []
+      "gallery": [],
+      "code_name": "footprints"
     },
     {
       "name": "Alaap",
@@ -94,7 +99,8 @@
       "insta": "https://www.instagram.com/alaaprvce",
       "fb": "https://www.facebook.com/alaaprvce",
       "linkedin": "https://www.linkedin.com/company/alaaprvce",
-      "gallery": []
+      "gallery": [],
+      "code_name": "alaap"
     },
     {
       "name": "Rotaract",
@@ -110,7 +116,8 @@
       "insta": "https://www.instagram.com/rotaractrvce",
       "fb": "https://www.facebook.com/rotaractrvce",
       "linkedin": "https://www.linkedin.com/company/rotaractrvce",
-      "gallery": []
+      "gallery": [],
+      "code_name": "rotaract"
     },
     {
       "name": "Photography Club",
@@ -126,7 +133,8 @@
       "insta": "https://www.instagram.com/photographyclubrvce",
       "fb": "https://www.facebook.com/photographyclubrvce",
       "linkedin": "https://www.linkedin.com/company/photographyclubrvce",
-      "gallery": []
+      "gallery": [],
+      "code_name": "photography_club"
     },
     {
       "name": "Debsoc",
@@ -155,7 +163,8 @@
         {
           "image": "https://i.ibb.co/7kmfSpd/deb1.jpg"
         }
-      ]
+      ],
+      "code_name": "debsoc"
     }
   ]
 }

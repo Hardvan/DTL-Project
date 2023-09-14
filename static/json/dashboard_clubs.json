@@ -2,41 +2,49 @@
   {
     "name": "Coding Club",
     "image": "https://source.unsplash.com/300x200/?coding",
-    "intro": "The premium programming club of RVCE that aims to provide a platform for students to learn and practice competitive programming."
+    "intro": "The premium programming club of RVCE that aims to provide a platform for students to learn and practice competitive programming.",
+    "code_name": "coding_club"
   },
   {
     "name": "Frequency Club",
     "image": "https://source.unsplash.com/300x200/?frequency,waves",
-    "intro": "The hardware and software duo club of RVCE featuring numerous hackathons and workshops in the fields of ML and Web Development."
+    "intro": "The hardware and software duo club of RVCE featuring numerous hackathons and workshops in the fields of ML and Web Development.",
+    "code_name": "frequency_club"
   },
   {
     "name": "Astra Robotics",
     "image": "https://source.unsplash.com/300x200/?electronics",
-    "intro": "Welcome to the realm of innovation and cutting-edge technology - welcome to our robotics club!"
+    "intro": "Welcome to the realm of innovation and cutting-edge technology - welcome to our robotics club!",
+    "code_name": "astra_robotics"
   },
   {
     "name": "Ashwa Racing",
     "image": "https://source.unsplash.com/300x200/?Racing",
-    "intro": "Team Ashwa is the technical team at RV College of Engineering dedicated to the field of robotics and automation. We aim to develop cutting-edge robotic systems and compete in various national and international competitions."
+    "intro": "Team Ashwa is the technical team at RV College of Engineering dedicated to the field of robotics and automation. We aim to develop cutting-edge robotic systems and compete in various national and international competitions.",
+    "code_name": "ashwa_racing"
   },
   {
     "name": "FootPrints",
     "image": "https://source.unsplash.com/300x200/?dancing",
-    "intro": "FootPrints is the dance club at RVCE, where rhythm meets creativity. Join us to express yourself through dance and explore various dance forms."
+    "intro": "FootPrints is the dance club at RVCE, where rhythm meets creativity. Join us to express yourself through dance and explore various dance forms.",
+    "code_name": "footprints"
   },
   {
     "name": "Alaap",
     "image": "https://source.unsplash.com/300x200/?singing",
-    "intro": "Alaap is the music club at RVCE, where melodies and harmonies come together. Join us to explore your vocal talents and perform at mesmerizing musical events."
+    "intro": "Alaap is the music club at RVCE, where melodies and harmonies come together. Join us to explore your vocal talents and perform at mesmerizing musical events.",
+    "code_name": "alaap"
   },
   {
     "name": "Rotaract",
     "image": "https://source.unsplash.com/300x200/?helping",
-    "intro": "Rotaract is the club dedicated to community service and social initiatives. Join us to make a positive impact on society and engage in various volunteering activities."
+    "intro": "Rotaract is the club dedicated to community service and social initiatives. Join us to make a positive impact on society and engage in various volunteering activities.",
+    "code_name": "rotaract"
   },
   {
     "name": "Photography Club",
     "image": "https://source.unsplash.com/300x200/?photography",
-    "intro": "The Photography Club at RVCE is the perfect place for shutterbugs. Join us to capture stunning moments and enhance your photography skills."
+    "intro": "The Photography Club at RVCE is the perfect place for shutterbugs. Join us to capture stunning moments and enhance your photography skills.",
+    "code_name": "photography_club"
   }
 ]
