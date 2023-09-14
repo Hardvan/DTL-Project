@@ -5,6 +5,7 @@ html {
 
 body {
   background-color: white;
+  overflow: hidden; /* Hide scrollbars */
 }
 
 #chatbot-link {
