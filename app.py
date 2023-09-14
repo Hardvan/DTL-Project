@@ -92,10 +92,8 @@ def index():
 @app.route('/dashboard')
 def dashboard():
 
-    with open('./static/json/dashboard_clubs.json', 'r') as json_file:
-        clubs_data = json.load(json_file)
-
-    return render_template('dashboard.html', clubs_data=clubs_data)
+    # Redirect to the home page
+    return redirect(url_for('index'))
 
 
 @app.route('/events')
