@@ -6,8 +6,8 @@ html {
 }
 
 body {
-  margin-left: 15%;
-  margin-right: 15%;
+  /* margin-left: 15%;
+  margin-right: 15%; */
   background-color: white;
 }
 
@@ -64,6 +64,9 @@ body {
   display: flex;
   justify-content: center;
   padding: 20px;
+  padding-top: 0px;
+  padding-left: 0px;
+  padding-right: 0px;
 }
 
 .nav_button {
@@ -143,16 +146,19 @@ body {
 /* Events */
 
 .sub_heading {
-  font-size: 26px;
-  font-weight: bold;
+  font-size: 30px;
+  font-weight: bolder;
+  font-style: oblique;
   display: block;
-  margin-top: 80px;
+  margin-top: 60px;
   text-align: center;
 }
 
 .gen_text {
-  margin-top: 40px;
+  /* margin-top: 20px; */
   text-align: center;
+  font-size: large;
+  font-weight: bold;
   margin-left: 10%;
   margin-right: 10%;
 }
@@ -164,8 +170,8 @@ body {
 #carousel_section {
   display: flex;
   justify-content: center;
-  margin-left: 15%;
-  margin-right: 15%;
+  margin-left: 3%;
+  margin-right: 3%;
 }
 
 #type_1_carousel_3 {
@@ -208,27 +214,29 @@ body {
   justify-content: center;
   height: 10px;
   margin-top: 40px;
-  margin-left: 22px;
-  margin-right: 22px;
+  /* margin-left: 22px;
+  margin-right: 22px; */
+}
+
+.ignore {
+  margin-top: 0px;
 }
 
 /* Cards */
 
 .addmargin {
   margin: 10%;
+  margin-top: 3%;
 }
 
 /* Upcoming Events */
 /* Landing Image */
 
 .add_img_margin {
-  margin: 22px;
-  width: 95%;
-  align-content: center;
-  align-items: center;
-  display: flex;
-  justify-content: center;
-  background-image: url("https://i.ibb.co/X87YJ1B/Admin-block.jpg");
+  margin: 0px;
+  width: 100%;
+
+  /* background-image: url("https://i.ibb.co/X87YJ1B/Admin-block.jpg"); */
 }
 
 .sub_title {
@@ -422,4 +430,16 @@ body {
   .addmargin {
     margin: 5%; /* Adjust margin for smaller screens */
   }
+}
+
+.event_body {
+  background-image: url("website/static/Images/back.jpg");
+}
+
+.add_small_margin {
+  margin-bottom: 3%;
+}
+
+.add_corner_margin {
+  margin-left: 5%;
 }

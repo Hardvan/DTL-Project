@@ -39,11 +39,26 @@
       type="text/css"
       href="{{ url_for('static',filename='styles/events.css') }}"
     />
+
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='styles/achieve.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='styles/navbar.css') }}"
+    />
+    <link
+    rel="stylesheet"
+    type="text/css"
+    href="{{ url_for('static', filename='styles/navbar.css') }}"
+  />
   </head>
 
-  <body onload="playback()">
+  <body onload="playback()" class="event_body">
     <!-- RV logo section -->
-    <section id="logo_section">
+    <!-- <section id="logo_section">
       <div class="logo">
         <img
           src="{{url_for('static', filename='Images/RVlogo.png')}}"
@@ -69,27 +84,67 @@
           />
         </div>
       </div>
-    </section>
+    </section> -->
 
     <!-- Navbar -->
-    <nav id="navbar_layout">
-      <div id="nav_btn_container">
-        <a href="{{ url_for('dashboard') }}">
-          <button class="nav_button">Home</button></a
-        >
-        <a href="{{ url_for('events') }}">
-          <button class="nav_button">Events</button>
-        </a>
-        <button class="nav_button">Achievments</button>
-        <a href="{{ url_for('clubs_page') }}">
-          <button class="nav_button">Clubs</button>
-        </a>
-        <button class="nav_button">Timeline</button>
-        <!-- Admin Page Link-->
-        <!-- Only after login -->
-        <!-- <button class="nav_button">Admin</button> -->
-      </div>
-    </nav>
+    <div>
+      <nav class="navbar navbar-expand-lg bg-primary">
+        <div class="container-fluid">
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item" id="img2">
+                <img
+                  id="size"
+                  src="{{ url_for('static', filename='Images/rvlogo2.png') }}"
+                  alt="rvlogo"
+                />
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link active text-white"
+                  id="home"
+                  aria-current="page"
+                  href="/"
+                  >Home</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-white" href="{{ url_for('events') }}"
+                  >Events</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-white" href="{{ url_for('chatbot') }}"
+                  >Chatbot</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link text-white"
+                  href="{{ url_for('clubs_page') }}"
+                  >Clubs</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+
+    
+  </div>
 
     <!-- SwitchBar -->
     {% block switchbar_section %}
@@ -111,12 +166,14 @@
     <!-- Section Separator -->
     <div class="section_separator"></div>
     {% block genEvents %}
-
+    <div id="carouselExampleCaptions" class="carousel slide adjust_carousel">
+      <video src="{{ url_for('static', filename='Images/engineers.mp4') }}" autoplay loop muted id="myVideo" style="height: 400px; width: 100%; object-fit: cover; object-position: 20% 20%;" >
+    </div>
     <!-- Events -->
     <section>
-      <div class="sub_heading">
+      <!-- <div class="sub_heading">
         Welcome to the centralised event hub of RVCE
-      </div>
+      </div> -->
       <div class="gen_text">
         Discover a world of captivating events organized by various clubs and
         departments at our college. Stay informed about the latest happenings
@@ -131,7 +188,9 @@
     </section>
 
     <!-- Carousel -->
-    <section id="carousel_section">
+    
+    <!-- Old+carousel -->
+    <!-- <section id="carousel_section">
       <section id="type_1_carousel_3">
         <div class="firstCarousel_3">
           <img
@@ -155,7 +214,7 @@
           />
         </div>
       </section>
-    </section>
+    </section> -->
 
     <!-- Section Separator -->
     <div class="section_separator"></div>
@@ -260,5 +319,11 @@
       type="text/javascript"
       src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.js"
     ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+      crossorigin="anonymous"
+    ></script>
+
   </body>
 </html>

@@ -47,16 +47,22 @@
 <div class="add_img_margin">
   <!-- <img src="https://i.ibb.co/X87YJ1B/Admin-block.jpg" class="img-fluid" alt="Wild Landscape" /> -->
   {% if category == "cultural" %}
-  <h1 class="sub_title">Cultural Clubs</h1>
+  <div id="carouselExampleCaptions" class="carousel slide adjust_carousel">
+    <video src="{{ url_for('static', filename='Images/music.mp4') }}" autoplay loop muted id="myVideo" style="height: 400px; width: 100%; object-fit: cover; object-position: 20% 20%;" >
+  </div>
   {% elif category == "technical" %}
-  <h1 class="sub_title">Technical Clubs</h1>
+  <div id="carouselExampleCaptions" class="carousel slide adjust_carousel">
+    <video src="{{ url_for('static', filename='Images/hacker.mp4') }}" autoplay loop muted id="myVideo" style="height: 400px; width: 100%; object-fit: cover; object-position: 20% 20%;" >
+  </div>
   {% elif category == "sports" %}
-  <h1 class="sub_title">Sports Clubs</h1>
+  <div id="carouselExampleCaptions" class="carousel slide adjust_carousel">
+    <video src="{{ url_for('static', filename='Images/chess.mp4') }}" autoplay loop muted id="myVideo" style="height: 400px; width: 100%; object-fit: cover; object-position: 20% 20%;" >
+  </div>
   {% endif %}
 </div>
 
 <!-- Section Separator -->
-<div class="section_separator"></div>
+<div class="ignore section_separator"></div>
 
 <!-- Sports -->
 <section id="sports_section">
