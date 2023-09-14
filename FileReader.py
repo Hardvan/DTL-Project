@@ -70,8 +70,8 @@ if __name__ == "__main__":
     chatbot_js = "static/javaScript/chatbot.js"
 
     file_list = [
-        chatbot_html,
-        chatbot_css
+        app_py,
+        dashboard_html,
     ]
 
     read_files_in_directory(".", file_list)
