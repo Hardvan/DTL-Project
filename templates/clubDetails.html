@@ -61,15 +61,15 @@ post.code_name == name or post.name == name %}
   </div>
   {% endif %}
   <h2>Relevant Links</h2>
-  <ul>
-    <li>
-      <a href="{{ post.insta }}"><h5>Instagram</h5></a>
+  <ul class="d-flex ">
+    <li class="mx-3">
+      <a href="{{ post.insta }}" target="_blank"><img src="../static/Images/insta.png" alt="Instagram"></a>
     </li>
-    <li>
-      <a href="{{ post.fb }}"><h5>Facebook</h5></a>
+    <li class="mx-3">
+      <a href="{{ post.fb }}" target="_blank"><img src="../static/Images/facebook.png" alt="facebook"></a>
     </li>
-    <li>
-      <a href="{{ post.linkedin }}"><h5>LinkedIn</h5></a>
+    <li class="mx-3">
+      <a href="{{ post.linkedin }}" target="_blank"><img src="../static/Images/lin.png" alt="linkedin"></a>
     </li>
   </ul>
 </div>

@@ -37,6 +37,12 @@
       type="text/css"
       href="{{ url_for('static', filename='styles/card.css') }}"
     />
+
+    <link
+    rel="stylesheet"
+    type="text/css"
+    href="{{ url_for('static', filename='styles/footer.css') }}"
+  />
   </head>
 
   <body>
@@ -188,6 +194,9 @@
     <br />
     <br />
 
+     
+    <h1 class="mx-5">Clubs</h1>
+    <hr>
     <!-- Display all clubs -->
     <div class="card-display">
       {% for club in clubs_data %}
@@ -209,22 +218,7 @@
 
     <!-- Grid section -->
     <section>
-      <!-- Grid goes here -->
-      <div>
-        <h2>Clubs</h2>
-        <!-- Club boxes -->
-        <h2>Departments</h2>
-        <!-- Department boxes-->
-      </div>
-    </section>
-
-    <!-- Footer -->
-    <section>
-      <div>
-        <!-- RV footer here -->
-        <p>Footer</p>
-      </div>
-    </section>
+  
 
     <!-- Audio element to play the chatbot message -->
     <!-- ! Note: Click anywhere on the website to play the audio message -->
@@ -264,6 +258,25 @@
 
       // Delay showing the chatbot link by 3s
       setTimeout(showChatbotLink, 3000);
+
     </script>
+
+      <br><br><br>
+     <footer>
+      <div id="footer">
+        <div id="end-center-left" className='d-flex'>
+        <img  id="img" src="../static/Images/rvlogo2.png"  alt="rvlogo" /> 
+        </div>
+        <p id="para">R.V College Of Engineering</p>
+        <div id="end-center-right">
+          <h4>Contact Us</h4>
+          <div>Ph No: +9100000000</div>
+          <div>e-mail: something@rvce.edu.com</div>
+         
+        </div>
+  
+        <div id="bottom">
+  <p>Copyright © 2015 rvce.edu.in  All Rights Reserved.</p> 
+     </footer>
   </body>
 </html>
