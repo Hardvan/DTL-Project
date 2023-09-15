@@ -126,7 +126,9 @@ def eventDetail():
 
 @app.route('/clubs')
 def clubs_page():
-    return render_template('clubs.html')
+    with open('./static/json/dashboard_clubs.json', 'r') as json_file:
+        clubs_data = json.load(json_file)
+    return render_template('clubs.html', clubs_data=clubs_data)
 
 
 @app.route('/achievements')
